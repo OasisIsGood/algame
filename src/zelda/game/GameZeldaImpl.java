@@ -1,13 +1,14 @@
-package gameframework.game;
+package zelda.game;
 
 import gameframework.base.IntegerObservable;
+import gameframework.game.CanvasDefaultImpl;
+import gameframework.game.Game;
+import gameframework.game.GameLevel;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Container;
-import java.awt.Frame;
 import java.awt.GridBagLayout;
-import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
@@ -20,12 +21,16 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-/**
- * Create a basic game application with menus and displays of lives and score
- */
-public class GameDefaultImpl implements Game, Observer {
+import zelda.ZeldaGameLevel;
+
+public class GameZeldaImpl implements Game, Observer {
 	protected static final int NB_ROWS = 31;
 	protected static final int NB_COLUMNS = 28;
 	protected static final int SPRITE_SIZE = 16;
@@ -35,38 +40,40 @@ public class GameDefaultImpl implements Game, Observer {
 	protected CanvasDefaultImpl defaultCanvas = null;
 	protected IntegerObservable score[] = new IntegerObservable[MAX_NUMBER_OF_PLAYER];
 	protected IntegerObservable life[] = new IntegerObservable[MAX_NUMBER_OF_PLAYER];
-
-	private Frame f;
-	private GameLevelDefaultImpl currentPlayedLevel = null;
-
+	
+	private JFrame f;
+	private ZeldaGameLevel currentPlayedLevel = null;
+	
 	protected int levelNumber;
 	protected ArrayList<GameLevel> gameLevels;
 	protected Iterator<GameLevel> itLevel;
 
-	protected Label lifeText, scoreText;
-	protected Label information;
-	protected Label informationValue;
-	protected Label lifeValue, scoreValue;
-	protected Label currentLevel;
-	protected Label currentLevelValue;
+	protected JLabel lifeText, scoreText;
+	protected JLabel information;
+	protected JLabel informationValue;
+	protected JLabel lifeValue, scoreValue;
+	protected JLabel currentLevel;
+	protected JLabel currentLevelValue;
 
-	public GameDefaultImpl() {
+	public GameZeldaImpl() {
 		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i) {
 			score[i] = new IntegerObservable();
 			life[i] = new IntegerObservable();
 		}
-		lifeText = new Label("Lives:");
-		scoreText = new Label("Score:");
-		information = new Label("State:");
-		informationValue = new Label("Playing");
-		currentLevel = new Label("Level:");
+		
+		lifeText = new JLabel("Lives:");
+		scoreText = new JLabel("Score:");
+		information = new JLabel("State:");
+		informationValue = new JLabel("Playing");
+		currentLevel = new JLabel("Level:");
 		createGUI();
 	}
-
+	
+	@Override
 	public void createGUI() {
-		f = new Frame("Default Game");
+		f = new JFrame("Zelda Game");
 		f.dispose();
-		
+
 		createMenuBar();
 		Container c = createStatusBar();
 
@@ -85,19 +92,37 @@ public class GameDefaultImpl implements Game, Observer {
 		});
 	}
 
+	private Container createStatusBar() {
+		JPanel c = new JPanel();
+		GridBagLayout layout = new GridBagLayout();
+		c.setLayout(layout);
+		lifeValue = new JLabel(Integer.toString(life[0].getValue()));
+		scoreValue = new JLabel(Integer.toString(score[0].getValue()));
+		currentLevelValue = new JLabel(Integer.toString(levelNumber));
+		c.add(lifeText);
+		c.add(lifeValue);
+		c.add(scoreText);
+		c.add(scoreValue);
+		c.add(currentLevel);
+		c.add(currentLevelValue);
+		c.add(information);
+		c.add(informationValue);
+		return c;
+	}
+
 	private void createMenuBar() {
-		MenuBar menuBar = new MenuBar();
-		Menu file = new Menu("file");
-		MenuItem start = new MenuItem("new game");
-		MenuItem save = new MenuItem("save");
-		MenuItem restore = new MenuItem("load");
-		MenuItem quit = new MenuItem("quit");
-		Menu game = new Menu("game");
-		MenuItem pause = new MenuItem("pause");
-		MenuItem resume = new MenuItem("resume");
+		JMenuBar menuBar = new JMenuBar();
+		JMenu file = new JMenu("file");
+		JMenuItem start = new JMenuItem("new game");
+		JMenuItem save = new JMenuItem("save");
+		JMenuItem restore = new JMenuItem("load");
+		JMenuItem quit = new JMenuItem("quit");
+		JMenu game = new JMenu("game");
+		JMenuItem pause = new JMenuItem("pause");
+		JMenuItem resume = new JMenuItem("resume");
 		menuBar.add(file);
 		menuBar.add(game);
-		f.setMenuBar(menuBar);
+		f.setJMenuBar(menuBar);
 
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,94 +163,60 @@ public class GameDefaultImpl implements Game, Observer {
 		game.add(resume);
 	}
 
-	private Container createStatusBar() {
-		JPanel c = new JPanel();
-		GridBagLayout layout = new GridBagLayout();
-		c.setLayout(layout);
-		lifeValue = new Label(Integer.toString(life[0].getValue()));
-		scoreValue = new Label(Integer.toString(score[0].getValue()));
-		currentLevelValue = new Label(Integer.toString(levelNumber));
-		c.add(lifeText);
-		c.add(lifeValue);
-		c.add(scoreText);
-		c.add(scoreValue);
-		c.add(currentLevel);
-		c.add(currentLevelValue);
-		c.add(information);
-		c.add(informationValue);
-		return c;
-	}
-
+	@Override
 	public Canvas getCanvas() {
 		return defaultCanvas;
 	}
 
-	public void start() {
-		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i) {
-			score[i].addObserver(this);
-			life[i].addObserver(this);
-			life[i].setValue(NUMBER_OF_LIVES);
-			score[i].setValue(0);
-		}
-		itLevel = gameLevels.iterator();
-		levelNumber = 0;
-		try {
-			if (currentPlayedLevel != null && currentPlayedLevel.isAlive()) {
-				currentPlayedLevel.interrupt();
-				currentPlayedLevel = null;
-			}
-			currentPlayedLevel = (GameLevelDefaultImpl) itLevel.next();
-			levelNumber++;
-			currentLevelValue.setText(Integer.toString(levelNumber));
-			currentPlayedLevel.start();
-			currentPlayedLevel.join();
-		} catch (Exception e) {
-		}
-
-	}
-
-	public void restore() {
-		System.out.println("restore(): Unimplemented operation");
-	}
-
-	public void save() {
-		System.out.println("save(): Unimplemented operation");
-	}
-
-	public void pause() {
-		System.out.println("pause(): Unimplemented operation");
-		// currentPlayedLevel.suspend();
-	}
-
-	public void resume() {
-		System.out.println("resume(): Unimplemented operation");
-		// currentPlayedLevel.resume();
-	}
-
-	public IntegerObservable[] score() {
-		return score;
-	}
-
+	@Override
 	public IntegerObservable[] life() {
 		return life;
 	}
 
-	public void setLevels(ArrayList<GameLevel> levels) {
-		gameLevels = levels;
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+
 	}
 
-	/*
-	 * update method so as to make Game as an updatable Observer
-	 * (TODO Handle 2 or more players)
-	 */
-	public void update(Observable o, Object arg) {
-		if (o instanceof IntegerObservable) {
-			IntegerObservable observable = (IntegerObservable) o;
+	@Override
+	public void restore() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void resume() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub. Penser a un système de sauvegarde
+
+	}
+
+	@Override
+	public IntegerObservable[] score() {
+		return score;
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		if (arg0 instanceof IntegerObservable) {
+			IntegerObservable observable = (IntegerObservable) arg0;
 			handleScoreObservable(observable);
 			handleLifeObservable(observable);
 		}
 	}
-
+	
 	private void handleLifeObservable(IntegerObservable observable) {
 		for (IntegerObservable lifeObservable : life) {
 			if (observable == lifeObservable) {
@@ -246,6 +237,11 @@ public class GameDefaultImpl implements Game, Observer {
 				scoreValue.setText(Integer.toString(observable.getValue()));
 			}
 		}
+	}
+
+	public void setLevels(ArrayList<GameLevel> levels) {
+		gameLevels = levels;
+		//TODO Penser à vérifier qu'il ne faille pas faire un update du level
 	}
 
 }
