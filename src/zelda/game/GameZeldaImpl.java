@@ -243,5 +243,4 @@ public class GameZeldaImpl implements Game, Observer {
 		gameLevels = levels;
 		//TODO Penser à vérifier qu'il ne faille pas faire un update du level
 	}
-
 }
