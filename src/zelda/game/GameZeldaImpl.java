@@ -32,7 +32,7 @@ public class GameZeldaImpl implements Game, Observer {
 	protected static final int NB_COLUMNS = 28;
 	protected static final int SPRITE_SIZE = 16;
 	public static final int MAX_NUMBER_OF_PLAYER = 4;
-	public static final int NUMBER_OF_LIVES = 1;
+	public static final int NUMBER_OF_LIVES = 100;
 
 	protected CanvasDefaultImpl defaultCanvas = null;
 	protected IntegerObservable score[] = new IntegerObservable[MAX_NUMBER_OF_PLAYER];
