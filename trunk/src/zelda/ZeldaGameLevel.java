@@ -1,6 +1,7 @@
 package zelda;
 
 import gameframework.game.CanvasDefaultImpl;
+import gameframework.game.Game;
 import gameframework.game.GameLevelDefaultImpl;
 import gameframework.game.GameUniverseDefaultImpl;
 import gameframework.game.GameUniverseViewPortDefaultImpl;
@@ -21,7 +22,7 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	Canvas canvas;
 	//TODO changer pour un zelda
 	// 0 : Pacgums;   1 : Walls;   2 : SuperPacgums;   3 : doors;    4 : Jail;   5 : empty 
-	/*static int[][] tab = {
+	static int[][] tab = {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,	1, 1, 1, 1, 1, 1 },
 			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
 			{ 1, 2, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0,	1, 1, 1, 1, 2, 1 },
@@ -52,14 +53,15 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 			{ 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
 			{ 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
 			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };*/
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 
 	public static final int SPRITE_SIZE = 16;
 	public static final int NUMBER_OF_ENNEMYS = 2;
 
-	public ZeldaGameLevel(GameZeldaImpl g) {
+	public ZeldaGameLevel(Game g) {
 		// TODO Auto-generated constructor stub
 		super(g);
+		canvas = g.getCanvas();
 	}
 
 	@Override
@@ -80,6 +82,9 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
  		overlapRules.setUniverse(universe);
  		
  		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);
+ 		((GameUniverseViewPortDefaultImpl)gameBoard).setBackground("images/lttpdung.gif");
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
+		
+		
 	}
 }
