@@ -9,9 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Container;
 import java.awt.GridBagLayout;
-import java.awt.Menu;
-import java.awt.MenuBar;
-import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -205,7 +202,26 @@ public class GameZeldaImpl implements Game, Observer {
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
-
+		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i) {
+			score[i].addObserver(this);
+			life[i].addObserver(this);
+			life[i].setValue(NUMBER_OF_LIVES);
+			score[i].setValue(0);
+		}
+		itLevel = gameLevels.iterator();
+		levelNumber = 0;
+		try {
+			if (currentPlayedLevel != null && currentPlayedLevel.isAlive()) {
+				currentPlayedLevel.interrupt();
+				currentPlayedLevel = null;
+			}
+			currentPlayedLevel = (ZeldaGameLevel) itLevel.next();
+			levelNumber++;
+			currentLevelValue.setText(Integer.toString(levelNumber));
+			currentPlayedLevel.start();
+			currentPlayedLevel.join();
+		} catch (Exception e) {
+		}
 	}
 
 	@Override
