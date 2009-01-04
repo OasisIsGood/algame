@@ -14,7 +14,6 @@ import gameframework.game.OverlapRuleApplier;
 import java.awt.Canvas;
 import java.awt.Point;
 
-import zelda.game.GameZeldaImpl;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
