@@ -22,7 +22,7 @@ public class Link extends GameMovable implements Drawable, GameEntity, Overlappa
 	
 	public Link(Canvas defaultCanvas) {
 		if (image == null) {
-			image = new DrawableImage("images/pac1.gif", defaultCanvas);
+			image = new DrawableImage("images/characters/pac1.gif", defaultCanvas);
 		}
 	}
 	

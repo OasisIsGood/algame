@@ -18,7 +18,7 @@ public class Buisson implements Drawable, GameEntity, Overlappable {
 
 	public Buisson(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
-			image = new DrawableImage("images/pacgum.gif", defaultCanvas);
+			image = new DrawableImage("images/decor/pacgum.gif", defaultCanvas);
 		}
 		position = pos;
 	}

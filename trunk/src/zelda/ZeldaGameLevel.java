@@ -54,7 +54,7 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
  		overlapRules.setUniverse(universe);
  		
  		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);
- 		((GameUniverseViewPortDefaultImpl)gameBoard).setBackground("images/background_image_zelda.gif");
+ 		((GameUniverseViewPortDefaultImpl)gameBoard).setBackground("images/background/background_image_zelda.gif");
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
 		
 		Link myPac = new Link(canvas);
