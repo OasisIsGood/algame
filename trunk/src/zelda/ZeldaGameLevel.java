@@ -1,8 +1,10 @@
 package zelda;
 
+import gameframework.base.MoveStrategyKeyboard;
 import gameframework.game.CanvasDefaultImpl;
 import gameframework.game.Game;
 import gameframework.game.GameLevelDefaultImpl;
+import gameframework.game.GameMovableDriverDefaultImpl;
 import gameframework.game.GameUniverseDefaultImpl;
 import gameframework.game.GameUniverseViewPortDefaultImpl;
 import gameframework.game.MoveBlockerChecker;
@@ -14,58 +16,29 @@ import gameframework.game.OverlapRuleApplier;
 import java.awt.Canvas;
 import java.awt.Point;
 
+import zelda.base.LinkMoveStrategy;
+import zelda.entity.characters.Link;
+import zelda.entity.decors.Buisson;
+import zelda.entity.decors.Tree;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
 public class ZeldaGameLevel extends GameLevelDefaultImpl {
+	
 	Canvas canvas;
-	//TODO changer pour un zelda
-	// 0 : Pacgums;   1 : Walls;   2 : SuperPacgums;   3 : doors;    4 : Jail;   5 : empty 
-	static int[][] tab = {
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,	1, 1, 1, 1, 1, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 2, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0,	1, 1, 1, 1, 2, 1 },
-			{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0,	1, 1, 1, 1, 0, 1 },
-			{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1 },
-			{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0,	0, 0, 0, 0, 0, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 0,	1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 0, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 1, 1, 3, 3, 1, 1, 1, 5, 1, 1, 0, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 4, 4, 4, 4, 4, 4, 1, 5, 1, 1, 0, 1, 1, 1, 1, 1, 1 },
-			{ 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 1, 4, 4, 4, 4, 4, 4, 1, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 4, 4, 4, 4, 4, 4, 1, 5, 1, 1, 0, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 0, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 0, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 0, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 0, 1, 1, 1, 1, 1, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1 },
-			{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1 },
-			{ 1, 2, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 2, 1 },
-			{ 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1 },
-			{ 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
-			{ 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
-
+	
 	public static final int SPRITE_SIZE = 16;
 	public static final int NUMBER_OF_ENNEMYS = 2;
+	protected static final int NB_ROWS = 31;
+	protected static final int NB_COLUMNS = 50;
 
 	public ZeldaGameLevel(Game g) {
-		// TODO Auto-generated constructor stub
 		super(g);
 		canvas = g.getCanvas();
 	}
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
 		// TODO Mettre en place cette méthode et le tour est joué.
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
 		// TODO mieux définir les positions de départ et trouver des vrais variables !!!!
@@ -81,9 +54,27 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
  		overlapRules.setUniverse(universe);
  		
  		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);
- 		((GameUniverseViewPortDefaultImpl)gameBoard).setBackground("images/lttpdung.gif");
+ 		((GameUniverseViewPortDefaultImpl)gameBoard).setBackground("images/background_image_zelda.gif");
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
 		
+		Link myPac = new Link(canvas);
+		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
+		MoveStrategyKeyboard keyStr = new LinkMoveStrategy();
+		pacDriver.setStrategy(keyStr);
+		pacDriver.setmoveBlockerChecker(moveBlockerChecker);
+		canvas.addKeyListener(keyStr);
+		myPac.setDriver(pacDriver);
+		myPac.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
+		universe.addGameEntity(myPac);
 		
+		// Murs sur les 4 cotés
+		for (int i = 0; i <= NB_COLUMNS; ++i) { 
+			universe.addGameEntity(new Tree(canvas, new Point(i * SPRITE_SIZE, 0)));
+			universe.addGameEntity(new Tree(canvas, new Point(i * SPRITE_SIZE, (NB_ROWS+1) * SPRITE_SIZE)));
+			universe.addGameEntity(new Tree(canvas, new Point(0, i * SPRITE_SIZE)));
+			universe.addGameEntity(new Tree(canvas, new Point(NB_COLUMNS * SPRITE_SIZE, i * SPRITE_SIZE)));
+		}
+		
+		universe.addGameEntity(new Buisson(canvas, new Point(14 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
 	}
 }

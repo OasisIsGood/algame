@@ -7,7 +7,12 @@ import gameframework.game.OverlapRuleApplierDefaultImpl;
 import java.awt.Point;
 import java.util.Vector;
 
-import zelda.entity.Ennemy;
+import pacman.entity.Ghost;
+import pacman.entity.SuperPacgum;
+
+import zelda.entity.characters.Ennemy;
+import zelda.entity.characters.Link;
+import zelda.entity.decors.Buisson;
 
 public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
@@ -34,4 +39,13 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	}
 
 	//TODO Définir les surperpositions, les mêmes que pacman avec des différences
+	
+	public void overlapRule(Link link, Buisson buisson) {
+		score.setValue(score.getValue() + 5);
+		life.setValue(life.getValue() - 1);
+		
+		// pb on peut pas positionner
+		//universe.removeGameEntity();
+		//universe.addGameEntity();
+	}
 }

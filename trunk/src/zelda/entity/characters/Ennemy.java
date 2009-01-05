@@ -1,4 +1,4 @@
-package zelda.entity;
+package zelda.entity.characters;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
