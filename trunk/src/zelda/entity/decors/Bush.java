@@ -10,13 +10,13 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public class Buisson implements Drawable, GameEntity, Overlappable {
+public class Bush implements Drawable, GameEntity, Overlappable {
 
 	protected static DrawableImage image = null;
 	protected Point position;
 	public static final int SPRITE_SIZE = 16;
 
-	public Buisson(Canvas defaultCanvas, Point pos) {
+	public Bush(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
 			image = new DrawableImage("images/decor/pacgum.gif", defaultCanvas);
 		}
