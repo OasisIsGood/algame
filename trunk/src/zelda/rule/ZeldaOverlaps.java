@@ -7,9 +7,6 @@ import gameframework.game.OverlapRuleApplierDefaultImpl;
 import java.awt.Point;
 import java.util.Vector;
 
-import pacman.entity.Ghost;
-import pacman.entity.SuperPacgum;
-
 import zelda.entity.characters.Ennemy;
 import zelda.entity.characters.Link;
 import zelda.entity.decors.Buisson;
@@ -47,5 +44,6 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 		// pb on peut pas positionner
 		//universe.removeGameEntity();
 		//universe.addGameEntity();
+		
 	}
 }
