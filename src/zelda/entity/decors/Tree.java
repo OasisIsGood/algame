@@ -19,7 +19,7 @@ public class Tree implements Drawable, MoveBlocker, GameEntity {
 
 	public Tree(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
-			image = new DrawableImage("images/wall.gif", defaultCanvas);
+			image = new DrawableImage("images/decor/wall.gif", defaultCanvas);
 		}
 		position = pos;
 	}
