@@ -18,8 +18,8 @@ import pacman.entity.Pacman;
 import pacman.entity.SuperPacgum;
 import pacman.entity.TeleportPairOfPoints;
 
-
 public class PacmanOverlaps extends OverlapRuleApplierDefaultImpl {
+	
 	protected GameUniverse universe;
 	protected Vector<Ghost> vGhosts = new Vector<Ghost>();
 
