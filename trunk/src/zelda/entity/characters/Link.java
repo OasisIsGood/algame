@@ -54,10 +54,10 @@ public class Link extends GameMovable implements Drawable, GameEntity, Overlappa
 				(int) getPosition().getY(), 
 				(int) getPosition().getX() + SPRITE_SIZE, // ++ ou -- selon agrandissement ou retrecissement
 				(int) getPosition().getY() + SPRITE_SIZE, // ici aussi
-				spriteNumber * SPRITE_SIZE * 2,
-				spriteType * SPRITE_SIZE * 2, 
-				(spriteNumber + 1) * SPRITE_SIZE * 2,
-				(spriteType + 1) * SPRITE_SIZE * 2, 
+				spriteNumber * SPRITE_SIZE * 2 + 4,
+				spriteType * SPRITE_SIZE * 2 + 4, 
+				(spriteNumber + 1) * SPRITE_SIZE * 2 + 4,
+				(spriteType + 1) * SPRITE_SIZE * 2 + 4, 
 				null);
 	}
 
