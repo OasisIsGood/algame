@@ -11,17 +11,17 @@ import gameframework.base.Overlappable;
 import gameframework.game.GameEntity;
 
 /*
- * To open zelda door
+ * To give max life to link 
  */
-public class Bomb implements Drawable, GameEntity, Overlappable {
+public class SuperPotion implements Drawable, GameEntity, Overlappable {
 
 	protected static DrawableImage image = null;
 	protected Point position;
 	public static final int SPRITE_SIZE = 16;
 
-	public Bomb(Canvas defaultCanvas, Point pos) {
+	public SuperPotion(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
-			image = new DrawableImage("images/decor/z3_bomb.gif", defaultCanvas);
+			image = new DrawableImage("images/decor/z3_bottleblue.gif", defaultCanvas);
 		}
 		position = pos;
 	}
@@ -42,5 +42,4 @@ public class Bomb implements Drawable, GameEntity, Overlappable {
 		return (new Rectangle((int) position.getX(), (int) position.getY(),
 				SPRITE_SIZE , SPRITE_SIZE));
 	}
-
 }

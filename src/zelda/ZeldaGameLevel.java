@@ -17,8 +17,12 @@ import java.awt.Canvas;
 import java.awt.Point;
 
 import zelda.base.LinkMoveStrategy;
+import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
+import zelda.entity.decors.Bomb;
 import zelda.entity.decors.Bush;
+import zelda.entity.decors.Hammer;
+import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Tree;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
@@ -75,8 +79,11 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 			universe.addGameEntity(new Tree(canvas, new Point(NB_COLUMNS * SPRITE_SIZE, i * SPRITE_SIZE)));
 		}
 		
+		universe.addGameEntity(new Guard(canvas/*, new Point(14 * SPRITE_SIZE, 14 * SPRITE_SIZE)*/));
 		universe.addGameEntity(new Bush(canvas, new Point(14 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
-		
-		//universe.addGameEntity(new Bomb(canvas, new Point(14 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
+		universe.addGameEntity(new Bush(canvas, new Point(10 * SPRITE_SIZE, 25 * SPRITE_SIZE)));
+		universe.addGameEntity(new Bomb(canvas, new Point(4 * SPRITE_SIZE, 28 * SPRITE_SIZE)));
+		universe.addGameEntity(new SuperPotion(canvas, new Point(10 * SPRITE_SIZE, 10 * SPRITE_SIZE)));
+		universe.addGameEntity(new Hammer(canvas, new Point(18 * SPRITE_SIZE, 18 * SPRITE_SIZE)));
 	}
 }

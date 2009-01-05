@@ -11,17 +11,17 @@ import gameframework.base.Overlappable;
 import gameframework.game.GameEntity;
 
 /*
- * To open zelda door
+ * A new big Weapon : power + 10 for exemple
  */
-public class Bomb implements Drawable, GameEntity, Overlappable {
+public class Hammer implements Drawable, GameEntity, Overlappable {
 
 	protected static DrawableImage image = null;
 	protected Point position;
 	public static final int SPRITE_SIZE = 16;
 
-	public Bomb(Canvas defaultCanvas, Point pos) {
+	public Hammer(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
-			image = new DrawableImage("images/decor/z3_bomb.gif", defaultCanvas);
+			image = new DrawableImage("images/decor/z3_hammer.gif", defaultCanvas);
 		}
 		position = pos;
 	}
