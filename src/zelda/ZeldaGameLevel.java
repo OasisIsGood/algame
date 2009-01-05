@@ -18,7 +18,7 @@ import java.awt.Point;
 
 import zelda.base.LinkMoveStrategy;
 import zelda.entity.characters.Link;
-import zelda.entity.decors.Buisson;
+import zelda.entity.decors.Bush;
 import zelda.entity.decors.Tree;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
@@ -75,6 +75,8 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 			universe.addGameEntity(new Tree(canvas, new Point(NB_COLUMNS * SPRITE_SIZE, i * SPRITE_SIZE)));
 		}
 		
-		universe.addGameEntity(new Buisson(canvas, new Point(14 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
+		universe.addGameEntity(new Bush(canvas, new Point(14 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
+		
+		//universe.addGameEntity(new Bomb(canvas, new Point(14 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
 	}
 }
