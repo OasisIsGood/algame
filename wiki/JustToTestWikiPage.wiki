@@ -1,5 +1,4 @@
-#summary One-sentence summary of this page.
-This is a amazing algame! wahouuuu
+#summary This is a amazing algame! wahouuuu
 
 = Introduction =
 
