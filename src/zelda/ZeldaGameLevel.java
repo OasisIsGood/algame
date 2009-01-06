@@ -35,6 +35,8 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	public static final int NUMBER_OF_ENNEMYS = 2;
 	protected static final int NB_ROWS = 31;
 	protected static final int NB_COLUMNS = 50;
+	
+	public static enum direction {UP, DOWN, RIGHT, LEFT};
 
 	public ZeldaGameLevel(Game g) {
 		super(g);
@@ -92,5 +94,16 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		universe.addGameEntity(new Bush(canvas, new Point(10 * SPRITE_SIZE, 25 * SPRITE_SIZE)));
 		universe.addGameEntity(new Bomb(canvas, new Point(4 * SPRITE_SIZE, 28 * SPRITE_SIZE)));
 		universe.addGameEntity(new SuperPotion(canvas, new Point(10 * SPRITE_SIZE, 10 * SPRITE_SIZE)));
+		
+		addWalls(new Point(5, 5), direction.UP, 5);
+	}
+	
+	//TODO vérifier ce truc et le finir
+	private void addWalls(Point origin, direction dir, int num) {
+		if(dir.equals(direction.UP)){
+			for(int i = 0; i < num; ++i){
+				universe.addGameEntity(new Tree(canvas, new Point((int) origin.getX() * SPRITE_SIZE, (int) (origin.getY() + i * SPRITE_SIZE))));
+			}
+		}
 	}
 }
