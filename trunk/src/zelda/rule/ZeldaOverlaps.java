@@ -4,6 +4,7 @@ import gameframework.base.IntegerObservable;
 import gameframework.game.GameUniverse;
 import gameframework.game.OverlapRuleApplierDefaultImpl;
 
+import java.awt.Canvas;
 import java.awt.Point;
 import java.util.Vector;
 
@@ -23,7 +24,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	private IntegerObservable life;
 	
 	public ZeldaOverlaps(Point linkPos, Point ePos,
-			IntegerObservable life, IntegerObservable score) {
+			IntegerObservable life, IntegerObservable score, Canvas canvas) {
 		linkStartPos = (Point) linkPos.clone();
 		ennemyStartPos = (Point) ePos.clone();
 		this.life = life;
@@ -38,10 +39,12 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	//TODO Définir les surperpositions, les mêmes que pacman avec des différences
 	
 	public void overlapRule(Link link, Bush bush) {
-		score.setValue(score.getValue() + 5);
-		life.setValue(life.getValue() - 1);
-		
-		universe.removeGameEntity(bush);
+		if(link.isSwording()) {
+			score.setValue(score.getValue() + 5);
+			universe.removeGameEntity(bush);
+		} else {
+			life.setValue(life.getValue() - 1);
+		}
 		//universe.addGameEntity(new Bomb(canvas, bush.getPosition()));
 	}
 }

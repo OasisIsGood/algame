@@ -1,26 +1,27 @@
 package zelda.entity.characters;
 
-import gameframework.base.Overlappable;
-import gameframework.base.Drawable;
-import gameframework.base.DrawableImage;
-import gameframework.game.GameEntity;
-import gameframework.game.GameMovable;
-
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public class Guard extends GameMovable implements Drawable, GameEntity,
-		Overlappable {
-	
+import gameframework.base.Drawable;
+import gameframework.base.DrawableImage;
+import gameframework.base.Overlappable;
+import gameframework.game.GameEntity;
+
+/*
+ * The princess to save !
+ */
+public class ZeldaPrincess implements Drawable, GameEntity, Overlappable {
+
 	protected static DrawableImage image = null;
 	protected Point position;
 	public static final int SPRITE_SIZE = 16;
 
-	public Guard(Canvas defaultCanvas, Point pos) {
+	public ZeldaPrincess(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
-			image = new DrawableImage("images/decor/z3_guard.gif", defaultCanvas);
+			image = new DrawableImage("images/decor/z3_lady.gif", defaultCanvas);
 		}
 		position = pos;
 	}
@@ -28,7 +29,7 @@ public class Guard extends GameMovable implements Drawable, GameEntity,
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(image.getImage(), (int) getPosition().getX(),
-				(int) getPosition().getY(), SPRITE_SIZE + 3, SPRITE_SIZE + 3, null);
+				(int) getPosition().getY(), SPRITE_SIZE + 5, SPRITE_SIZE + 5, null);
 	}
 
 	@Override
@@ -39,10 +40,7 @@ public class Guard extends GameMovable implements Drawable, GameEntity,
 	@Override
 	public Rectangle getBoundingBox() {
 		return (new Rectangle((int) position.getX(), (int) position.getY(),
-				SPRITE_SIZE+3 , SPRITE_SIZE+3));
+				SPRITE_SIZE , SPRITE_SIZE));
 	}
 
-	@Override
-	public void oneStepMoveHandler() {
-	}
 }
