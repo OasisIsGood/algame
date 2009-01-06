@@ -9,8 +9,11 @@ import java.awt.Point;
 import java.util.Vector;
 
 import zelda.entity.characters.Ennemy;
+import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
 import zelda.entity.decors.Bush;
+import zelda.entity.decors.SuperPotion;
+import zelda.game.GameZeldaImpl;
 
 public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
@@ -46,5 +49,19 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 			life.setValue(life.getValue() - 1);
 		}
 		//universe.addGameEntity(new Bomb(canvas, bush.getPosition()));
+	}
+	
+	public void overlapRule(Link link, Guard guard) {
+		if(link.isSwording()) {
+			score.setValue(score.getValue() + 5);
+			universe.removeGameEntity(guard);
+		} else {
+			life.setValue(life.getValue() - 1);
+		}
+	}
+	
+	public void overlapRule(Link link, SuperPotion superPotion) {
+		life.setValue(GameZeldaImpl.NUMBER_OF_LIVES);
+		universe.removeGameEntity(superPotion);
 	}
 }

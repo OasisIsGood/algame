@@ -15,14 +15,13 @@ public class Guard extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 	
 	protected static DrawableImage image = null;
-	protected Point position;
 	public static final int SPRITE_SIZE = 16;
 
 	public Guard(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
 			image = new DrawableImage("images/decor/z3_guard.gif", defaultCanvas);
 		}
-		position = pos;
+		setPosition(pos);
 	}
 	
 	@Override
@@ -32,17 +31,13 @@ public class Guard extends GameMovable implements Drawable, GameEntity,
 	}
 
 	@Override
-	public Point getPosition() {
-		return position;
-	}
-
-	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle((int) position.getX(), (int) position.getY(),
-				SPRITE_SIZE+3 , SPRITE_SIZE+3));
+		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
+				SPRITE_SIZE , SPRITE_SIZE));
 	}
 
 	@Override
 	public void oneStepMoveHandler() {
+		
 	}
 }

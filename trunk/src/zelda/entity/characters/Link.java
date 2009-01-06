@@ -11,7 +11,8 @@ import gameframework.base.Overlappable;
 import gameframework.game.GameEntity;
 import gameframework.game.GameMovable;
 
-public class Link extends GameMovable implements Drawable, GameEntity, Overlappable {
+public class Link extends GameMovable implements Drawable, GameEntity,
+		Overlappable {
 
 	public static final int SPRITE_SIZE = 24;
 	protected static DrawableImage image = null;
@@ -20,21 +21,22 @@ public class Link extends GameMovable implements Drawable, GameEntity, Overlappa
 	protected int spriteType = 0;
 	protected boolean movable = true;
 	private boolean isSwording = false;
-	
+
 	public Link(Canvas defaultCanvas) {
 		if (image == null) {
-			image = new DrawableImage("images/characters/zeldaa.gif", defaultCanvas);
+			image = new DrawableImage("images/characters/zeldaa.gif",
+					defaultCanvas);
 		}
 	}
-	
+
 	@Override
 	public void draw(Graphics g) {
 		Point tmp = getSpeedVector().getDir();
 		movable = true;
-		if(isSwording){
+		if (isSwording) {
 			isSwording = false;
 			// TODO : Afficher l'image de link en train de sworder
-		} 
+		}
 		if (tmp.getX() == 1) {
 			System.out.println("DROITE");
 			spriteType = 0;
@@ -48,22 +50,21 @@ public class Link extends GameMovable implements Drawable, GameEntity, Overlappa
 			System.out.println("BAS");
 			spriteType = 3;
 		} else {
-			//System.out.println("DE FACE");
+			// System.out.println("DE FACE");
 			spriteType = 3;
 			spriteNumber = 0;
 			movable = false;
 		}
-		
-		g.drawImage(image.getImage(), 
-				(int) getPosition().getX(),
-				(int) getPosition().getY(), 
-				(int) getPosition().getX() + SPRITE_SIZE, // ++ ou -- selon agrandissement ou retrecissement
+
+		g.drawImage(image.getImage(), (int) getPosition().getX(),
+				(int) getPosition().getY(),
+				(int) getPosition().getX() + SPRITE_SIZE, // ++ ou -- selon
+															// agrandissement ou
+															// retrecissement
 				(int) getPosition().getY() + SPRITE_SIZE, // ici aussi
-				spriteNumber * SPRITE_SIZE * 2 + 4,
-				spriteType * SPRITE_SIZE * 2 + 4, 
-				(spriteNumber + 1) * SPRITE_SIZE * 2 + 4,
-				(spriteType + 1) * SPRITE_SIZE * 2 + 4, 
-				null);
+				spriteNumber * SPRITE_SIZE * 2 + 4, spriteType * SPRITE_SIZE
+						* 2 + 4, (spriteNumber + 1) * SPRITE_SIZE * 2 + 4,
+				(spriteType + 1) * SPRITE_SIZE * 2 + 4, null);
 	}
 
 	@Override
@@ -78,8 +79,8 @@ public class Link extends GameMovable implements Drawable, GameEntity, Overlappa
 			spriteNumber = spriteNumber % 3;
 		}
 	}
-	
-	public void swording(){
+
+	public void swording() {
 		isSwording = true;
 	}
 

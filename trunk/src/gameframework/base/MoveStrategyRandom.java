@@ -13,7 +13,7 @@ public class MoveStrategyRandom implements MoveStrategy {
 
 	public SpeedVector getSpeedVector() {
 		int i = random.nextInt(5);
-
+		
 		switch (i) {
 		case 0:
 			currentMove.setDir(new Point(1, 0));

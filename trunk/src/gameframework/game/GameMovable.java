@@ -36,8 +36,6 @@ public abstract class GameMovable implements Movable {
 	}
 
 	public void oneStepMove() {
-		
-		//
 		SpeedVector m = moveDriver.getSpeedVector(this);
 		
 		direction.setDir(m.getDir());
