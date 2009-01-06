@@ -10,7 +10,6 @@ import java.util.Vector;
 import zelda.entity.characters.Ennemy;
 import zelda.entity.characters.Link;
 import zelda.entity.decors.Bush;
-import zelda.entity.decors.Bomb;
 
 public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
