@@ -19,6 +19,7 @@ import java.awt.Point;
 import zelda.base.LinkMoveStrategy;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
+import zelda.entity.characters.ZeldaPrincess;
 import zelda.entity.decors.Bomb;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.Hammer;
@@ -50,7 +51,7 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		// TODO mieux définir les positions de départ et trouver des vrais variables !!!!
 		OverlapRuleApplier overlapRules = new ZeldaOverlaps(
 				new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE), new Point(
-						  14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0]);
+						  14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0], canvas);
 		overlapProcessor.setOverlapRules(overlapRules);
 		
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
@@ -63,15 +64,15 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
  		((GameUniverseViewPortDefaultImpl)gameBoard).setBackground("images/background/background_image_zelda.gif");
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
 		
-		Link myPac = new Link(canvas);
+		Link link = new Link(canvas);
 		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
-		MoveStrategyKeyboard keyStr = new LinkMoveStrategy();
+		MoveStrategyKeyboard keyStr = new LinkMoveStrategy(link);
 		pacDriver.setStrategy(keyStr);
 		pacDriver.setmoveBlockerChecker(moveBlockerChecker);
 		canvas.addKeyListener(keyStr);
-		myPac.setDriver(pacDriver);
-		myPac.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
-		universe.addGameEntity(myPac);
+		link.setDriver(pacDriver);
+		link.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
+		universe.addGameEntity(link);
 		
 		// Murs sur les 4 cotés
 		for (int i = 0; i <= NB_COLUMNS; ++i) { 
@@ -84,11 +85,12 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 				for (int j = 0; j <= NB_ROWS; ++j)
 					if(j != (NB_ROWS / 2 -1))
 						universe.addGameEntity(new Tree(canvas, new Point(i * SPRITE_SIZE, j * SPRITE_SIZE)));
-					//else 
-						//universe.addGameEntity(new Hammer(canvas, new Point(i * SPRITE_SIZE, j * SPRITE_SIZE)));
+					else 
+						universe.addGameEntity(new Hammer(canvas, new Point(i * SPRITE_SIZE, j * SPRITE_SIZE)));
 		}
 		
-		universe.addGameEntity(new Guard(canvas));
+		universe.addGameEntity(new Guard(canvas, new Point(6 * SPRITE_SIZE, 8 * SPRITE_SIZE)));
+		universe.addGameEntity(new ZeldaPrincess(canvas, new Point(2 * SPRITE_SIZE, 2 * SPRITE_SIZE)));
 		universe.addGameEntity(new Hammer(canvas, new Point(20 * SPRITE_SIZE, 20 * SPRITE_SIZE)));
 		universe.addGameEntity(new Bush(canvas, new Point(14 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
 		universe.addGameEntity(new Bush(canvas, new Point(10 * SPRITE_SIZE, 25 * SPRITE_SIZE)));

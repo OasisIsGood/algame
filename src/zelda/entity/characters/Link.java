@@ -13,12 +13,13 @@ import gameframework.game.GameMovable;
 
 public class Link extends GameMovable implements Drawable, GameEntity, Overlappable {
 
-	public static final int SPRITE_SIZE = 24; // et pas 26 ou 16 ou autre! 24 !
+	public static final int SPRITE_SIZE = 24;
 	protected static DrawableImage image = null;
 	protected Canvas defaultCanvas;
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
 	protected boolean movable = true;
+	private boolean isSwording = false;
 	
 	public Link(Canvas defaultCanvas) {
 		if (image == null) {
@@ -30,6 +31,10 @@ public class Link extends GameMovable implements Drawable, GameEntity, Overlappa
 	public void draw(Graphics g) {
 		Point tmp = getSpeedVector().getDir();
 		movable = true;
+		if(isSwording){
+			isSwording = false;
+			// TODO : Afficher l'image de link en train de sworder
+		} 
 		if (tmp.getX() == 1) {
 			System.out.println("DROITE");
 			spriteType = 0;
@@ -72,5 +77,13 @@ public class Link extends GameMovable implements Drawable, GameEntity, Overlappa
 			spriteNumber++;
 			spriteNumber = spriteNumber % 3;
 		}
+	}
+	
+	public void swording(){
+		isSwording = true;
+	}
+
+	public boolean isSwording() {
+		return isSwording;
 	}
 }

@@ -6,8 +6,15 @@ import gameframework.base.SpeedVector;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
+import zelda.entity.characters.Link;
+
 public class LinkMoveStrategy extends MoveStrategyKeyboard {
 	private SpeedVector currentMove = getSpeedVector();
+	Link link;
+	
+	public LinkMoveStrategy(Link link) {
+		this.link = link;
+	}
 	
 	@Override
 	public void keyPressed(KeyEvent event) {
@@ -15,9 +22,7 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 		int keycode = event.getKeyCode();
 		switch (keycode) {
 		case KeyEvent.VK_SPACE:
-			// TODO Ici Link doit être averti du fait de devoir frapper
-			System.out.println(currentMove.getDir());
-			System.out.println("Tape avec ton épée mon petit !");
+			link.swording();
 			break;
 		}
 	}
