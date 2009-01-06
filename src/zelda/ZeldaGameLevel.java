@@ -1,6 +1,7 @@
 package zelda;
 
 import gameframework.base.MoveStrategyKeyboard;
+import gameframework.base.MoveStrategyRandom;
 import gameframework.game.CanvasDefaultImpl;
 import gameframework.game.Game;
 import gameframework.game.GameLevelDefaultImpl;
@@ -16,6 +17,11 @@ import gameframework.game.OverlapRuleApplier;
 import java.awt.Canvas;
 import java.awt.Point;
 
+import pacman.PacmanGhostMovableDriver;
+import pacman.entity.Ghost;
+import pacman.rule.PacmanOverlaps;
+
+import zelda.base.GuardMovableDriver;
 import zelda.base.LinkMoveStrategy;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
@@ -89,13 +95,21 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 						universe.addGameEntity(new Hammer(canvas, new Point(i * SPRITE_SIZE, j * SPRITE_SIZE)));
 		}
 		
-		universe.addGameEntity(new Guard(canvas, new Point(6 * SPRITE_SIZE, 8 * SPRITE_SIZE)));
+		
 		universe.addGameEntity(new ZeldaPrincess(canvas, new Point(2 * SPRITE_SIZE, 2 * SPRITE_SIZE)));
 		universe.addGameEntity(new Hammer(canvas, new Point(20 * SPRITE_SIZE, 20 * SPRITE_SIZE)));
 		universe.addGameEntity(new Bush(canvas, new Point(14 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
 		universe.addGameEntity(new Bush(canvas, new Point(10 * SPRITE_SIZE, 25 * SPRITE_SIZE)));
 		universe.addGameEntity(new Bomb(canvas, new Point(4 * SPRITE_SIZE, 28 * SPRITE_SIZE)));
 		universe.addGameEntity(new SuperPotion(canvas, new Point(10 * SPRITE_SIZE, 10 * SPRITE_SIZE)));
+		
+		Guard guard = new Guard(canvas, new Point(2 * SPRITE_SIZE, 4 * SPRITE_SIZE));
+		GameMovableDriverDefaultImpl guardDriv = new GuardMovableDriver();
+		MoveStrategyRandom ranStr = new MoveStrategyRandom();
+		guardDriv.setStrategy(ranStr);
+		guardDriv.setmoveBlockerChecker(moveBlockerChecker);
+		guard.setDriver(guardDriv);
+		universe.addGameEntity(guard);
 		
 		addWalls(new Point(5, 5), direction.UP, 5);
 	}

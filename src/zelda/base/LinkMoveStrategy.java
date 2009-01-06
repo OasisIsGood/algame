@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 import zelda.entity.characters.Link;
 
 public class LinkMoveStrategy extends MoveStrategyKeyboard {
-	private SpeedVector currentMove = getSpeedVector();
+	//private SpeedVector currentMove = getSpeedVector();
 	Link link;
 	
 	public LinkMoveStrategy(Link link) {
@@ -30,6 +30,8 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		super.keyReleased(e);
-		currentMove.setDir(new Point(0, 0));
+		int keycode = e.getKeyCode();
+		if(keycode != KeyEvent.VK_SPACE)
+			getSpeedVector().setDir(new Point(0, 0));
 	}
 }
