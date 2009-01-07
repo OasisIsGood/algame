@@ -77,20 +77,24 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		universe.addGameEntity(link);
 		
 		// Murs sur les 4 cotés
-		for (int i = 0; i <= NB_COLUMNS; ++i) { 
-			universe.addGameEntity(new Tree(canvas, new Point(i * SPRITE_SIZE, 0)));
-			universe.addGameEntity(new Tree(canvas, new Point(i * SPRITE_SIZE, (NB_ROWS + 1) * SPRITE_SIZE)));
-			universe.addGameEntity(new Tree(canvas, new Point(0, i * SPRITE_SIZE)));
-			universe.addGameEntity(new Tree(canvas, new Point(NB_COLUMNS * SPRITE_SIZE, i * SPRITE_SIZE)));
-			
-			if(i == (NB_COLUMNS / 2))
-				for (int j = 0; j <= NB_ROWS; ++j)
-					if(j != (NB_ROWS / 2 -1))
+		for (int i = 0; i < NB_COLUMNS; ++i) { 
+			for (int j = 0; j < NB_ROWS; ++j) {
+				// murs horizontaux
+				universe.addGameEntity(new Tree(canvas, new Point(i * SPRITE_SIZE, 0)));
+				universe.addGameEntity(new Tree(canvas, new Point(i * SPRITE_SIZE, (NB_ROWS-1) * SPRITE_SIZE)));
+				// murs verticaux
+				universe.addGameEntity(new Tree(canvas, new Point(0, j * SPRITE_SIZE)));
+				universe.addGameEntity(new Tree(canvas, new Point((NB_COLUMNS-1) * SPRITE_SIZE, j * SPRITE_SIZE)));
+				// mur vertical milieu
+				if((i == (NB_COLUMNS / 2)) && (j != (NB_ROWS / 2 - 1)) && (j != (NB_ROWS / 2)) && (j != (NB_ROWS / 2 + 1)))
 						universe.addGameEntity(new Tree(canvas, new Point(i * SPRITE_SIZE, j * SPRITE_SIZE)));
-					else 
-						universe.addGameEntity(new Hammer(canvas, new Point(i * SPRITE_SIZE, j * SPRITE_SIZE)));
+				// mur horizontal milieu
+				if((j == (NB_ROWS / 2)) && (i != (NB_COLUMNS / 2 - 2)) && (i != (NB_COLUMNS / 2 - 1)) 
+										&& (i != (NB_COLUMNS / 2)) 
+										&& (i != (NB_COLUMNS / 2 + 1)) && (i != (NB_COLUMNS / 2 + 2)))
+						universe.addGameEntity(new Tree(canvas, new Point(i * SPRITE_SIZE, j * SPRITE_SIZE)));
+			}
 		}
-		
 		
 		universe.addGameEntity(new ZeldaPrincess(canvas, new Point(2 * SPRITE_SIZE, 2 * SPRITE_SIZE)));
 		universe.addGameEntity(new Hammer(canvas, new Point(20 * SPRITE_SIZE, 20 * SPRITE_SIZE)));
