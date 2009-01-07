@@ -2,7 +2,6 @@ package zelda.game;
 
 import gameframework.base.IntegerObservable;
 import gameframework.game.CanvasDefaultImpl;
-import gameframework.game.Game;
 import gameframework.game.GameLevel;
 import gameframework.game.GameLevelDefaultImpl;
 
@@ -245,13 +244,12 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				informationValue.setText("Win");
 				currentPlayedLevel.interrupt();
 				
-				nextLevel();
-				currentPlayedLevel.start();
+				
 				try {
+					nextLevel();
+					currentPlayedLevel.start();
 					currentPlayedLevel.join();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
 		}

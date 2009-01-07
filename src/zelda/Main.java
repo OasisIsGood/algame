@@ -5,6 +5,8 @@ import gameframework.game.GameLevel;
 import java.util.ArrayList;
 
 import zelda.game.GameZeldaAWTImpl;
+import zelda.levels.ZeldaGameLevel1;
+import zelda.levels.ZeldaGameLevel2;
 
 public class Main {
 	public static void main(String[] args) {
@@ -12,8 +14,9 @@ public class Main {
 		GameZeldaAWTImpl g = new GameZeldaAWTImpl();
 		ArrayList<GameLevel> levels = new ArrayList<GameLevel>();
 
-		levels.add(new ZeldaGameLevel(g));
-
+		levels.add(new ZeldaGameLevel1(g));
+		levels.add(new ZeldaGameLevel2(g));
+		
 		g.setLevels(levels);
 		g.start();
 //		g.pause();

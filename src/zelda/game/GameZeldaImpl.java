@@ -25,7 +25,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import zelda.ZeldaGameLevel;
+import zelda.levels.*;
+
 
 public class GameZeldaImpl implements Game, Observer {
 	protected static final int NB_ROWS = 31;
@@ -39,7 +40,7 @@ public class GameZeldaImpl implements Game, Observer {
 	protected IntegerObservable life[] = new IntegerObservable[MAX_NUMBER_OF_PLAYER];
 	
 	private JFrame f;
-	private ZeldaGameLevel currentPlayedLevel = null;
+	private ZeldaGameLevel1 currentPlayedLevel = null;
 	
 	protected int levelNumber;
 	protected ArrayList<GameLevel> gameLevels;
@@ -215,7 +216,7 @@ public class GameZeldaImpl implements Game, Observer {
 				currentPlayedLevel.interrupt();
 				currentPlayedLevel = null;
 			}
-			currentPlayedLevel = (ZeldaGameLevel) itLevel.next();
+			currentPlayedLevel = (ZeldaGameLevel1) itLevel.next();
 			levelNumber++;
 			currentLevelValue.setText(Integer.toString(levelNumber));
 			currentPlayedLevel.start();
