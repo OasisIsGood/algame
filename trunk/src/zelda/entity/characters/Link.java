@@ -4,6 +4,10 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 import gameframework.base.Drawable;
 import gameframework.base.DrawableImage;
@@ -22,11 +26,14 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	protected boolean movable = true;
 	private boolean isSwording = false;
 
+	Timer timer;
+
 	public Link(Canvas defaultCanvas) {
 		if (image == null) {
 			image = new DrawableImage("images/characters/zeldaa.gif",
 					defaultCanvas);
 		}
+		timer = createTimer();
 	}
 
 	@Override
@@ -34,7 +41,7 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 		Point tmp = getSpeedVector().getDir();
 		movable = true;
 		if (isSwording) {
-			isSwording = false;
+			//isSwording = false;
 			// TODO : Afficher l'image de link en train de sworder
 		}
 		if (tmp.getX() == 1) {
@@ -51,11 +58,13 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 			movable = false;
 		}
 
-		g.drawImage(image.getImage(), (int) getPosition().getX(),
+		g.drawImage(
+				image.getImage(),
+				(int) getPosition().getX(),
 				(int) getPosition().getY(),
 				(int) getPosition().getX() + SPRITE_SIZE, // ++ ou -- selon
-															// agrandissement ou
-															// retrecissement
+				// agrandissement ou
+				// retrecissement
 				(int) getPosition().getY() + SPRITE_SIZE, // ici aussi
 				spriteNumber * SPRITE_SIZE * 2 + 4, spriteType * SPRITE_SIZE
 						* 2 + 4, (spriteNumber + 1) * SPRITE_SIZE * 2 + 4,
@@ -64,8 +73,8 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 
 	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
-				SPRITE_SIZE , SPRITE_SIZE));
+		return (new Rectangle((int) getPosition().getX(), (int) getPosition()
+				.getY(), SPRITE_SIZE, SPRITE_SIZE));
 	}
 
 	@Override
@@ -78,9 +87,20 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 
 	public void swording() {
 		isSwording = true;
+		timer.start();
 	}
 
 	public boolean isSwording() {
 		return isSwording;
+	}
+
+	private Timer createTimer() {
+		ActionListener action = new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				isSwording = false;
+				timer.stop();
+			}
+		};
+		return new Timer(100, action);
 	}
 }

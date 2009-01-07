@@ -15,6 +15,7 @@ import zelda.entity.characters.Ennemy;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
 import zelda.entity.characters.ZeldaPrincess;
+import zelda.entity.decors.Bomb;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.SuperPotion;
 import zelda.game.GameZeldaAWTImpl;
@@ -31,41 +32,42 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	private IntegerObservable score;
 	private IntegerObservable life;
 	private IntegerObservable win;
-	
-	public ZeldaOverlaps(Point linkPos, Point ePos, IntegerObservable life, IntegerObservable score, IntegerObservable win, Canvas canvas) {
+	private Canvas canvas;
+
+	public ZeldaOverlaps(Point linkPos, Point ePos, IntegerObservable life,
+			IntegerObservable score, IntegerObservable win, Canvas canvas) {
 		linkStartPos = (Point) linkPos.clone();
 		ennemyStartPos = (Point) ePos.clone();
 		this.life = life;
 		this.score = score;
 		this.win = win;
+		this.canvas = canvas;
 	}
-	
+
 	@Override
 	public void setUniverse(GameUniverse universe) {
 		this.universe = universe;
 	}
 
-	//TODO Définir les surperpositions, les mêmes que pacman avec des différences
-	
 	public void overlapRule(Link link, Bush bush) {
-		if(link.isSwording()) {
+		if (link.isSwording()) {
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(bush);
+			universe.addGameEntity(new Bomb(canvas, bush.getPosition()));
 		} else {
 			life.setValue(life.getValue() - 1);
 		}
-		//universe.addGameEntity(new Bomb(canvas, bush.getPosition()));
 	}
-	
+
 	public void overlapRule(Link link, Guard guard) {
-		if(link.isSwording()) {
+		if (link.isSwording()) {
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(guard);
 		} else {
 			life.setValue(life.getValue() - 1);
 		}
 	}
-	
+
 	public void overlapRule(Link link, SuperPotion superPotion) {
 		life.setValue(GameZeldaImpl.NUMBER_OF_LIVES);
 		universe.removeGameEntity(superPotion);
@@ -76,7 +78,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 			System.out.println("File not found");
 		}
 	}
-	
+
 	public void overlapRule(Link link, ZeldaPrincess zelda) {
 		win.setValue(GameZeldaAWTImpl.result.WIN.ordinal());
 	}

@@ -1,4 +1,4 @@
-package zelda;
+package zelda.levels;
 
 import gameframework.base.IntegerObservable;
 import gameframework.base.MoveStrategyKeyboard;
@@ -31,7 +31,7 @@ import zelda.game.GameZelda;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
-public class ZeldaGameLevel extends GameLevelDefaultImpl {
+public class ZeldaGameLevel2 extends GameLevelDefaultImpl {
 
 	Canvas canvas;
 
@@ -39,13 +39,14 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	public static final int NUMBER_OF_ENNEMYS = 2;
 	protected static final int NB_ROWS = 31;
 	protected static final int NB_COLUMNS = 50;
-	
+
 	protected IntegerObservable win;
-	
-	public static enum direction {UP, DOWN, RIGHT, LEFT};
 
+	public static enum direction {
+		UP, DOWN, RIGHT, LEFT
+	};
 
-	public ZeldaGameLevel(GameZelda g) {
+	public ZeldaGameLevel2(GameZelda g) {
 		super(g);
 		win = g.win();
 		canvas = g.getCanvas();
@@ -55,10 +56,12 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	protected void init() {
 		// TODO Mettre en place cette méthode et le tour est joué.
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
-		// TODO mieux définir les positions de départ et trouver des vrais variables !!!!
-		OverlapRuleApplier overlapRules = new ZeldaOverlaps(
-				new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE), new Point(
-						  14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0], win, canvas);
+		// TODO mieux définir les positions de départ et trouver des vrais
+		// variables !!!!
+		OverlapRuleApplier overlapRules = new ZeldaOverlaps(new Point(
+				14 * SPRITE_SIZE, 17 * SPRITE_SIZE), new Point(
+				14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0], win,
+				canvas);
 
 		overlapProcessor.setOverlapRules(overlapRules);
 
@@ -99,23 +102,18 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 			universe.addGameEntity(new Tree(canvas, new Point((NB_COLUMNS - 1)
 					* SPRITE_SIZE, j * SPRITE_SIZE)));
 		}
-		
-		/*for (int i = 0; i < NB_COLUMNS; ++i) {
-			for (int j = 0; j < NB_ROWS; ++j) {
-		// mur horizontal milieu
-		if ((j == (NB_ROWS / 2)) && (i != (NB_COLUMNS / 2 - 2))
-				&& (i != (NB_COLUMNS / 2 - 1)) && (i != (NB_COLUMNS / 2))
-				&& (i != (NB_COLUMNS / 2 + 1))
-				&& (i != (NB_COLUMNS / 2 + 2)))
-			universe.addGameEntity(new Tree(canvas, new Point(i
-					* SPRITE_SIZE, j * SPRITE_SIZE)));
-		// mur vertical milieu
-		if ((i == (NB_COLUMNS / 2)) && (j != (NB_ROWS / 2 - 1))
-				&& (j != (NB_ROWS / 2)) && (j != (NB_ROWS / 2 + 1)))
-			universe.addGameEntity(new Tree(canvas, new Point(i
-					* SPRITE_SIZE, j * SPRITE_SIZE)));
-			}
-		}*/
+
+		/*
+		 * for (int i = 0; i < NB_COLUMNS; ++i) { for (int j = 0; j < NB_ROWS;
+		 * ++j) { // mur horizontal milieu if ((j == (NB_ROWS / 2)) && (i !=
+		 * (NB_COLUMNS / 2 - 2)) && (i != (NB_COLUMNS / 2 - 1)) && (i !=
+		 * (NB_COLUMNS / 2)) && (i != (NB_COLUMNS / 2 + 1)) && (i != (NB_COLUMNS
+		 * / 2 + 2))) universe.addGameEntity(new Tree(canvas, new Point(i
+		 * SPRITE_SIZE, j SPRITE_SIZE))); // mur vertical milieu if ((i ==
+		 * (NB_COLUMNS / 2)) && (j != (NB_ROWS / 2 - 1)) && (j != (NB_ROWS / 2))
+		 * && (j != (NB_ROWS / 2 + 1))) universe.addGameEntity(new Tree(canvas,
+		 * new Point(i SPRITE_SIZE, j SPRITE_SIZE))); } }
+		 */
 
 		universe.addGameEntity(new ZeldaPrincess(canvas, new Point(
 				2 * SPRITE_SIZE, 2 * SPRITE_SIZE)));
@@ -139,11 +137,11 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		guard.setDriver(guardDriv);
 		universe.addGameEntity(guard);
 
-		addWalls(new Point(5, 5), direction.UP, 5);
+		//addWalls(new Point(5, 5), direction.UP, 5);
 	}
 
 	// TODO vérifier ce truc et le finir
-	private void addWalls(Point origin, direction dir, int num) {
+	/*private void addWalls(Point origin, direction dir, int num) {
 		if (dir.equals(direction.UP)) {
 			for (int i = 0; i < num; ++i) {
 				universe
@@ -153,5 +151,5 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 								* SPRITE_SIZE))));
 			}
 		}
-	}
+	}*/
 }
