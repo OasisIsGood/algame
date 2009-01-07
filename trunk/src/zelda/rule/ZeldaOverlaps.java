@@ -11,6 +11,7 @@ import java.util.Vector;
 import zelda.entity.characters.Ennemy;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
+import zelda.entity.characters.ZeldaPrincess;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.SuperPotion;
 import zelda.game.GameZeldaImpl;
@@ -63,5 +64,9 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	public void overlapRule(Link link, SuperPotion superPotion) {
 		life.setValue(GameZeldaImpl.NUMBER_OF_LIVES);
 		universe.removeGameEntity(superPotion);
+	}
+	
+	public void overlapRule(Link link, ZeldaPrincess zeldaPrincess) {
+		
 	}
 }

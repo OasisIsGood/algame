@@ -69,7 +69,8 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 
 	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle(0, 0, SPRITE_SIZE, SPRITE_SIZE));
+		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
+				SPRITE_SIZE , SPRITE_SIZE));
 	}
 
 	@Override

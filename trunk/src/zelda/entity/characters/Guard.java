@@ -15,7 +15,7 @@ public class Guard extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 	
 	protected static DrawableImage image = null;
-	public static final int SPRITE_SIZE = 16;
+	public static final int SPRITE_SIZE = 24;
 
 	public Guard(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
@@ -27,7 +27,7 @@ public class Guard extends GameMovable implements Drawable, GameEntity,
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(image.getImage(), (int) getPosition().getX(),
-				(int) getPosition().getY(), SPRITE_SIZE + 3, SPRITE_SIZE + 3, null);
+				(int) getPosition().getY(), SPRITE_SIZE, SPRITE_SIZE, null);
 	}
 
 	@Override
