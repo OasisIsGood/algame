@@ -1,8 +1,6 @@
 package zelda.base;
 
 import gameframework.base.MoveStrategyKeyboard;
-import gameframework.base.SpeedVector;
-
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
