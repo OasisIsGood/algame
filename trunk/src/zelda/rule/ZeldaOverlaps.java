@@ -8,12 +8,14 @@ import java.awt.Canvas;
 import java.awt.Point;
 import java.util.Vector;
 
+import zelda.ZeldaGameLevel;
 import zelda.entity.characters.Ennemy;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
 import zelda.entity.characters.ZeldaPrincess;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.SuperPotion;
+import zelda.game.GameZeldaAWTImpl;
 import zelda.game.GameZeldaImpl;
 
 public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
@@ -26,13 +28,14 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	protected boolean manageLinkDeath;
 	private IntegerObservable score;
 	private IntegerObservable life;
+	private IntegerObservable win;
 	
-	public ZeldaOverlaps(Point linkPos, Point ePos,
-			IntegerObservable life, IntegerObservable score, Canvas canvas) {
+	public ZeldaOverlaps(Point linkPos, Point ePos, IntegerObservable life, IntegerObservable score, IntegerObservable win, Canvas canvas) {
 		linkStartPos = (Point) linkPos.clone();
 		ennemyStartPos = (Point) ePos.clone();
 		this.life = life;
 		this.score = score;
+		this.win = win;
 	}
 	
 	@Override
@@ -66,7 +69,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 		universe.removeGameEntity(superPotion);
 	}
 	
-	public void overlapRule(Link link, ZeldaPrincess zeldaPrincess) {
-		
+	public void overlapRule(Link link, ZeldaPrincess zelda) {
+		win.setValue(GameZeldaAWTImpl.result.WIN.ordinal());
 	}
 }

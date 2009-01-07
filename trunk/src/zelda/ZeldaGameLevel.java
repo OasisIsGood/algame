@@ -1,5 +1,6 @@
 package zelda;
 
+import gameframework.base.IntegerObservable;
 import gameframework.base.MoveStrategyKeyboard;
 import gameframework.base.MoveStrategyRandom;
 import gameframework.game.CanvasDefaultImpl;
@@ -27,6 +28,7 @@ import zelda.entity.decors.Bush;
 import zelda.entity.decors.Hammer;
 import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Tree;
+import zelda.game.GameZelda;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
@@ -38,13 +40,15 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	public static final int NUMBER_OF_ENNEMYS = 2;
 	protected static final int NB_ROWS = 31;
 	protected static final int NB_COLUMNS = 50;
+	
+	protected IntegerObservable win;
+	
+	public static enum direction {UP, DOWN, RIGHT, LEFT};
 
-	public static enum direction {
-		UP, DOWN, RIGHT, LEFT
-	};
 
-	public ZeldaGameLevel(Game g) {
+	public ZeldaGameLevel(GameZelda g) {
 		super(g);
+		win = g.win();
 		canvas = g.getCanvas();
 	}
 
@@ -52,11 +56,11 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	protected void init() {
 		// TODO Mettre en place cette méthode et le tour est joué.
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
-		// TODO mieux définir les positions de départ et trouver des vrais
-		// variables !!!!
-		OverlapRuleApplier overlapRules = new ZeldaOverlaps(new Point(
-				14 * SPRITE_SIZE, 17 * SPRITE_SIZE), new Point(
-				14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0], canvas);
+		// TODO mieux définir les positions de départ et trouver des vrais variables !!!!
+		OverlapRuleApplier overlapRules = new ZeldaOverlaps(
+				new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE), new Point(
+						  14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0], win, canvas);
+
 		overlapProcessor.setOverlapRules(overlapRules);
 
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();

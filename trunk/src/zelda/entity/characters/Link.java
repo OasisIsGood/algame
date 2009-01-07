@@ -38,19 +38,14 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 			// TODO : Afficher l'image de link en train de sworder
 		}
 		if (tmp.getX() == 1) {
-			System.out.println("DROITE");
 			spriteType = 0;
 		} else if (tmp.getX() == -1) {
-			System.out.println("GAUCHE");
 			spriteType = 1;
 		} else if (tmp.getY() == -1) {
-			System.out.println("HAUT");
 			spriteType = 2;
 		} else if (tmp.getY() == 1) {
-			System.out.println("BAS");
 			spriteType = 3;
 		} else {
-			// System.out.println("DE FACE");
 			spriteType = 3;
 			spriteNumber = 0;
 			movable = false;
