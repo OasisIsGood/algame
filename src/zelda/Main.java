@@ -4,11 +4,12 @@ import gameframework.game.GameLevel;
 
 import java.util.ArrayList;
 
-import zelda.game.GameZeldaImpl;
+import zelda.game.GameZeldaAWTImpl;
 
 public class Main {
 	public static void main(String[] args) {
-		GameZeldaImpl g = new GameZeldaImpl();
+		//GameZeldaImpl g = new GameZeldaImpl();
+		GameZeldaAWTImpl g = new GameZeldaAWTImpl();
 		ArrayList<GameLevel> levels = new ArrayList<GameLevel>();
 
 		levels.add(new ZeldaGameLevel(g));
