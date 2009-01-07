@@ -173,6 +173,8 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		win.addObserver(this);
 		win.setValue(result.NOT_WIN.ordinal());
 		
+		informationValue.setText("Playing");
+		
 		itLevel = gameLevels.iterator();
 		levelNumber = 0;
 		try {
@@ -242,7 +244,15 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 			if(win.getValue() == result.WIN.ordinal()) {
 				informationValue.setText("Win");
 				currentPlayedLevel.interrupt();
-				currentPlayedLevel.end();
+				
+				nextLevel();
+				currentPlayedLevel.start();
+				try {
+					currentPlayedLevel.join();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -267,5 +277,11 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				scoreValue.setText(Integer.toString(observable.getValue()));
 			}
 		}
+	}
+	
+	private void nextLevel() {
+		currentPlayedLevel = (GameLevelDefaultImpl) itLevel.next();
+		levelNumber++;
+		currentLevelValue.setText(Integer.toString(levelNumber));
 	}
 }
