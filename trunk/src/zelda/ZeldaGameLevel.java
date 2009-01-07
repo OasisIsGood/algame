@@ -17,10 +17,6 @@ import gameframework.game.OverlapRuleApplier;
 import java.awt.Canvas;
 import java.awt.Point;
 
-import pacman.PacmanGhostMovableDriver;
-import pacman.entity.Ghost;
-import pacman.rule.PacmanOverlaps;
-
 import zelda.base.GuardMovableDriver;
 import zelda.base.LinkMoveStrategy;
 import zelda.entity.characters.Guard;
