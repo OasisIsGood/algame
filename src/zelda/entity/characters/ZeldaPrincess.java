@@ -17,11 +17,11 @@ public class ZeldaPrincess implements Drawable, GameEntity, Overlappable {
 
 	protected static DrawableImage image = null;
 	protected Point position;
-	public static final int SPRITE_SIZE = 16;
+	public static final int SPRITE_SIZE = 20;
 
 	public ZeldaPrincess(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
-			image = new DrawableImage("images/decor/z3_lady.gif", defaultCanvas);
+			image = new DrawableImage("images/characters/zeldaPrincess.gif", defaultCanvas);
 		}
 		position = pos;
 	}
@@ -29,7 +29,7 @@ public class ZeldaPrincess implements Drawable, GameEntity, Overlappable {
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(image.getImage(), (int) getPosition().getX(),
-				(int) getPosition().getY(), SPRITE_SIZE + 5, SPRITE_SIZE + 5, null);
+				(int) getPosition().getY(), SPRITE_SIZE, SPRITE_SIZE, null);
 	}
 
 	@Override
