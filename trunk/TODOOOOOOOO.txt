@@ -1,0 +1,25 @@
+Les grands TODOS du moment 
+
+***
+
+* faire un générateur aléatoire de terrain ( BUILDER ?!? ) avec 
+	- murs extérieurs de bases
+	- murs en plus aléatoires
+	- zeldaPrincess dans un endroit, là où la sauver avec au mojns un gros boss à coté
+	- link de l'autre côté
+ 
+* Créer un décor avec un fichier contenant la liste des éléments à ajouter et monstres et boss courants
+ 
+* compter le nombre de boss en cours, afin de valider la victoire si tout les boss tués par ex
+
+* Afficher 
+	- un texte au départ pour indication (1sec...) 
+	- un texte de "Victoire !"
+	- un texte "new Level !"
+	- un texte "You Lost !"
+	
+* faire un sprite d'épée pour Link
+
+* 
+
+***
