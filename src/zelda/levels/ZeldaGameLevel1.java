@@ -27,6 +27,7 @@ import zelda.entity.decors.Hammer;
 import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Tree;
 import zelda.game.GameZelda;
+import zelda.levels.ZeldaGameLevel2.direction;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
@@ -134,19 +135,34 @@ public class ZeldaGameLevel1 extends GameLevelDefaultImpl {
 		guard.setDriver(guardDriv);
 		universe.addGameEntity(guard);
 
-		addWalls(new Point(5, 5), direction.UP, 5);
+		addWalls(new Point(05, 18), direction.UP, 16);
+		addWalls(new Point(10, 10), direction.DOWN, 4);
+		addWalls(new Point(10, 10), direction.RIGHT, 4);
+		addWalls(new Point(5, 5), direction.LEFT, 4);
 	}
 
-	// TODO vérifier ce truc et le finir
 	private void addWalls(Point origin, direction dir, int num) {
 		if (dir.equals(direction.UP)) {
-			for (int i = 0; i < num; ++i) {
-				universe
-						.addGameEntity(new Tree(canvas, new Point((int) origin
-								.getX()
-								* SPRITE_SIZE, (int) (origin.getY() + i
-								* SPRITE_SIZE))));
+			for (int i = num; i > 0; --i) {
+				universe.addGameEntity(new Tree(canvas, 
+						new Point((int) origin.getX() * SPRITE_SIZE,
+								(int) ((origin.getY() - i) * SPRITE_SIZE))));
 			}
+		}
+		if (dir.equals(direction.DOWN)) {
+			addWalls(new Point((int) origin.getX(), (int) origin.getY() + num),
+					direction.UP, num);
+		}
+		if (dir.equals(direction.LEFT)) {
+			for (int i = 0; i < num; ++i) {
+				universe.addGameEntity(new Tree(canvas, 
+						new Point((int) (origin.getX() - i) * SPRITE_SIZE,
+								(int) (origin.getY() * SPRITE_SIZE))));
+			}
+		}
+		if (dir.equals(direction.RIGHT)) {
+			addWalls(new Point((int) origin.getX() + num, (int) origin.getY()),
+					direction.LEFT, num);
 		}
 	}
 }
