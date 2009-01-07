@@ -8,7 +8,6 @@ import java.awt.Canvas;
 import java.awt.Point;
 import java.util.Vector;
 
-import zelda.ZeldaGameLevel;
 import zelda.entity.characters.Ennemy;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
