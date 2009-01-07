@@ -4,7 +4,6 @@ import gameframework.base.IntegerObservable;
 import gameframework.base.MoveStrategyKeyboard;
 import gameframework.base.MoveStrategyRandom;
 import gameframework.game.CanvasDefaultImpl;
-import gameframework.game.Game;
 import gameframework.game.GameLevelDefaultImpl;
 import gameframework.game.GameMovableDriverDefaultImpl;
 import gameframework.game.GameUniverseDefaultImpl;

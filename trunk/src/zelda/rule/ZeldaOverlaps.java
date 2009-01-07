@@ -6,8 +6,11 @@ import gameframework.game.OverlapRuleApplierDefaultImpl;
 
 import java.awt.Canvas;
 import java.awt.Point;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Vector;
 
+import zelda.base.Sound;
 import zelda.entity.characters.Ennemy;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
@@ -66,6 +69,12 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	public void overlapRule(Link link, SuperPotion superPotion) {
 		life.setValue(GameZeldaImpl.NUMBER_OF_LIVES);
 		universe.removeGameEntity(superPotion);
+		try {
+			Sound sound = new Sound(new File("sounds/explosion.wav"));
+			sound.play();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		}
 	}
 	
 	public void overlapRule(Link link, ZeldaPrincess zelda) {
