@@ -244,7 +244,6 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				informationValue.setText("Win");
 				currentPlayedLevel.interrupt();
 				
-				
 				try {
 					nextLevel();
 					currentPlayedLevel.start();
