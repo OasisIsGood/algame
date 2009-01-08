@@ -27,7 +27,6 @@ import zelda.entity.decors.Hammer;
 import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Tree;
 import zelda.game.GameZelda;
-import zelda.levels.ZeldaGameLevel2.direction;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
@@ -135,10 +134,10 @@ public class ZeldaGameLevel1 extends GameLevelDefaultImpl {
 		guard.setDriver(guardDriv);
 		universe.addGameEntity(guard);
 
-		addWalls(new Point(05, 18), direction.UP, 16);
+		addWalls(new Point(18, 18), direction.UP, 16);
 		addWalls(new Point(10, 10), direction.DOWN, 4);
 		addWalls(new Point(10, 10), direction.RIGHT, 4);
-		addWalls(new Point(5, 5), direction.LEFT, 4);
+		addWalls(new Point(15, 15), direction.LEFT, 4);
 	}
 
 	private void addWalls(Point origin, direction dir, int num) {

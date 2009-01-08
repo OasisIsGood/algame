@@ -28,7 +28,6 @@ import zelda.entity.decors.Hammer;
 import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Tree;
 import zelda.game.GameZelda;
-import zelda.levels.ZeldaGameLevel1.direction;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
