@@ -26,6 +26,7 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 public class GameZeldaAWTImpl implements GameZelda, Observer {
+	private static final long serialVersionUID = -3150854596831664346L;
 	protected static final int NB_ROWS = 31;
 	protected static final int NB_COLUMNS = 50;
 	protected static final int SPRITE_SIZE = 16;
@@ -201,12 +202,12 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 
 	public void pause() {
 		System.out.println("pause(): Unimplemented operation");
-		// currentPlayedLevel.suspend();
+		 currentPlayedLevel.suspend();
 	}
 
 	public void resume() {
 		System.out.println("resume(): Unimplemented operation");
-		// currentPlayedLevel.resume();
+		 currentPlayedLevel.resume();
 	}
 
 	public IntegerObservable[] score() {
