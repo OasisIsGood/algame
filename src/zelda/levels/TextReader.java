@@ -31,7 +31,7 @@ public class TextReader implements LevelReader {
 		this.universe = universe;
 		this.reader = new BufferedReader(new FileReader(file));
 
-		Class c = EntityFactory.class;
+		Class<EntityFactory> c = EntityFactory.class;
 		try {
 			map.put("link", c.getDeclaredMethod("createLink", Point.class,
 					Canvas.class, GameUniverse.class));
@@ -63,8 +63,6 @@ public class TextReader implements LevelReader {
 
 	@Override
 	public void read() throws IOException {
-		// TODO ici doivent être créer les objets et placer dans le canvas et
-		// dans l'univers
 		String line;
 		int numberLine = 0;
 
@@ -73,44 +71,31 @@ public class TextReader implements LevelReader {
 			String[] t = line.split(" ");
 			if (t.length >= 3) {
 				t[2] = t[2].toLowerCase();
-				if (t[2].equals("wall")) {
-					try {
-						map.get(t[2])
-								.invoke(
-										null,
-										new Point(Integer.parseInt(t[0]),
-												Integer.parseInt(t[1])),
-										direction.valueOf(t[3]),
-										Integer.parseInt(t[4]));
-					} catch (NumberFormatException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						e.printStackTrace();
-					} catch (ArrayIndexOutOfBoundsException e) {
-						e.printStackTrace();
-					}
-				} else {
-					try {
+
+				try {
+					if (t[2].equals("wall"))
+						map.get(t[2]).invoke(
+								null,
+								new Point(Integer.parseInt(t[0]), Integer
+										.parseInt(t[1])),
+								direction.valueOf(t[3]),
+								Integer.parseInt(t[4]), canvas, universe);
+					else
 						map.get(t[2]).invoke(
 								null,
 								new Point(Integer.parseInt(t[0]), Integer
 										.parseInt(t[1])), canvas, universe);
-					} catch (NumberFormatException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						e.printStackTrace();
-					}
+				} catch (NumberFormatException e) {
+					throw new IOException("Invalid file, line : " + numberLine);
+				} catch (IllegalArgumentException e) {
+					throw new IOException("Invalid file, line : " + numberLine);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				} catch (ArrayIndexOutOfBoundsException e) {
+					throw new IOException("Invalid file, line : " + numberLine);
 				}
-			} else {
-				throw new IOException("Invalid file, line : " + numberLine);
 			}
 		}
 	}

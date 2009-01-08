@@ -1,11 +1,8 @@
 package zelda.levels;
 
 import gameframework.base.IntegerObservable;
-import gameframework.base.MoveStrategyKeyboard;
-import gameframework.base.MoveStrategyRandom;
 import gameframework.game.CanvasDefaultImpl;
 import gameframework.game.GameLevelDefaultImpl;
-import gameframework.game.GameMovableDriverDefaultImpl;
 import gameframework.game.GameUniverseDefaultImpl;
 import gameframework.game.GameUniverseViewPortDefaultImpl;
 import gameframework.game.MoveBlockerChecker;
@@ -20,18 +17,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import zelda.base.GuardMovableDriver;
-import zelda.base.LinkMoveStrategy;
-import zelda.entity.EntityFactory;
-import zelda.entity.characters.Guard;
-import zelda.entity.characters.Link;
-import zelda.entity.characters.ZeldaPrincess;
-import zelda.entity.decors.Bush;
-import zelda.entity.decors.Hammer;
-import zelda.entity.decors.SuperPotion;
-import zelda.entity.decors.Tree;
 import zelda.game.GameZelda;
-import zelda.levels.ZeldaGameLevel1.direction;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
@@ -60,7 +46,6 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 
 	@Override
 	protected void init() {
-		// TODO Mettre en place cette méthode et le tour est joué.
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
 		// TODO mieux définir les positions de départ et trouver des vrais
 		// variables !!!!
@@ -84,16 +69,21 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
 		
 		try {
-			LevelReader reader = new TextReader(canvas, universe, f);
+			LevelReader reader = checkExtension(f);
 			reader.read();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+	}
+
+	private LevelReader checkExtension(File f) throws IOException {
+		if(f.getName().endsWith(".xml"))
+			return new XMLReader(canvas, universe, f);
+		else
+			return new TextReader(canvas, universe, f);
 	}
 
 	/*private void addWalls(Point origin, direction dir, int num) {
