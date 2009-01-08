@@ -14,6 +14,7 @@ import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -25,14 +26,18 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import zelda.entity.decors.NextLevelImage;
+import zelda.entity.decors.Tree;
+
 public class GameZeldaAWTImpl implements GameZelda, Observer {
 	private static final long serialVersionUID = -3150854596831664346L;
-	protected static final int NB_ROWS = 31;
-	protected static final int NB_COLUMNS = 50;
 	protected static final int SPRITE_SIZE = 16;
 	public static final int MAX_NUMBER_OF_PLAYER = 2;
 	public static final int NUMBER_OF_LIVES = 100;
 	public enum result {NOT_WIN, WIN};
+	
+	public static final int NB_ROWS = 50; 	
+	public static final int NB_COLUMNS = 70;
 
 	protected CanvasDefaultImpl defaultCanvas = null;
 	protected IntegerObservable score[] = new IntegerObservable[MAX_NUMBER_OF_PLAYER];
@@ -200,11 +205,13 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		System.out.println("save(): Unimplemented operation");
 	}
 
+	@SuppressWarnings("deprecation")
 	public void pause() {
 		System.out.println("pause(): Unimplemented operation");
 		 currentPlayedLevel.suspend();
 	}
 
+	@SuppressWarnings("deprecation")
 	public void resume() {
 		System.out.println("resume(): Unimplemented operation");
 		 currentPlayedLevel.resume();
