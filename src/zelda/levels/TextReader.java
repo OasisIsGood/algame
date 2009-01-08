@@ -35,7 +35,7 @@ public class TextReader implements LevelReader {
 		try {
 			map.put("link", c.getDeclaredMethod("createLink", Point.class,
 					Canvas.class, GameUniverse.class));
-			/*map.put("zelda", c.getDeclaredMethod("createZelda", Point.class,
+			map.put("zelda", c.getDeclaredMethod("createZelda", Point.class,
 					Canvas.class, GameUniverse.class));
 			map.put("potion", c.getDeclaredMethod("createPotion", Point.class,
 					Canvas.class, GameUniverse.class));
@@ -53,7 +53,7 @@ public class TextReader implements LevelReader {
 					Canvas.class, GameUniverse.class));
 			map.put("wall", c.getDeclaredMethod("createWall", Point.class,
 					direction.class, int.class, Canvas.class,
-					GameUniverse.class));*/
+					GameUniverse.class));
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
