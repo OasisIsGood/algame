@@ -16,11 +16,13 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 	
 	@Override
 	public void keyPressed(KeyEvent event) {
-		super.keyPressed(event);
 		int keycode = event.getKeyCode();
+		if(keycode != KeyEvent.VK_SPACE && !link.isSwording())
+			super.keyPressed(event);
 		switch (keycode) {
 		case KeyEvent.VK_SPACE:
 			link.swording();
+			getSpeedVector().setDir(new Point(0, 0));
 			break;
 		}
 	}

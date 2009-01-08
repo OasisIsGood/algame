@@ -18,7 +18,8 @@ import gameframework.game.GameMovable;
 public class Link extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 
-	public static final int SPRITE_SIZE = 24;
+	public static int SPRITE_SIZE = 30;
+	
 	protected static DrawableImage image = null;
 	protected Canvas defaultCanvas;
 	protected int spriteNumber = 0;
@@ -30,21 +31,21 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 
 	public Link(Canvas defaultCanvas) {
 		if (image == null) {
-			image = new DrawableImage("images/characters/zeldaa.gif",
-					defaultCanvas);
+			//image = new DrawableImage("images/characters/zeldaa.gif",
+					//defaultCanvas);
+			image = new DrawableImage("images/characters/zeldaSword.gif",
+							defaultCanvas);
+			spriteType = 0;
 		}
 		timer = createTimer();
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		Point tmp = getSpeedVector().getDir();
+		//Point tmp = getSpeedVector().getDir();
 		movable = true;
-		if (isSwording) {
-			//isSwording = false;
-			// TODO : Afficher l'image de link en train de sworder
-		}
-		if (tmp.getX() == 1) {
+	
+		/*if (tmp.getX() == 1) {
 			spriteType = 0;
 		} else if (tmp.getX() == -1) {
 			spriteType = 1;
@@ -52,37 +53,41 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 			spriteType = 2;
 		} else if (tmp.getY() == 1) {
 			spriteType = 3;
-		} else {
+		} else {  
 			spriteType = 3;
 			spriteNumber = 0;
 			movable = false;
-		}
+		}*/
 
 		g.drawImage(
 				image.getImage(),
 				(int) getPosition().getX(),
 				(int) getPosition().getY(),
-				(int) getPosition().getX() + SPRITE_SIZE, // ++ ou -- selon
-				// agrandissement ou
-				// retrecissement
-				(int) getPosition().getY() + SPRITE_SIZE, // ici aussi
-				spriteNumber * SPRITE_SIZE * 2 + 4, spriteType * SPRITE_SIZE
-						* 2 + 4, (spriteNumber + 1) * SPRITE_SIZE * 2 + 4,
-				(spriteType + 1) * SPRITE_SIZE * 2 + 4, null);
+				(int) getPosition().getX() + SPRITE_SIZE,				
+				(int) getPosition().getY() + SPRITE_SIZE,
+				spriteNumber * 30, 
+				spriteType * 40, 
+				(spriteNumber + 1) * 30,
+				(spriteType + 1) * 40, 
+				null);
 	}
 
 	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle((int) getPosition().getX(), (int) getPosition()
-				.getY(), SPRITE_SIZE, SPRITE_SIZE));
+		return (new Rectangle((int) getPosition().getX(), 
+				(int) getPosition().getY(), SPRITE_SIZE, SPRITE_SIZE));
 	}
 
 	@Override
 	public void oneStepMoveHandler() {
-		if (movable) {
+		if(timer.isRunning()) {
+			spriteNumber++;
+			spriteNumber = spriteNumber % 6;
+		}
+		/*else if (movable) {
 			spriteNumber++;
 			spriteNumber = spriteNumber % 3;
-		}
+		}*/
 	}
 
 	public void swording() {
@@ -99,8 +104,9 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 			public void actionPerformed(ActionEvent event) {
 				isSwording = false;
 				timer.stop();
+				spriteNumber = 0;
 			}
 		};
-		return new Timer(100, action);
+		return new Timer(600, action);
 	}
 }
