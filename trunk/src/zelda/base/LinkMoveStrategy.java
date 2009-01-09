@@ -24,6 +24,10 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 			link.swording();
 			getSpeedVector().setDir(new Point(0, 0));
 			break;
+		case KeyEvent.VK_D:
+			link.deathing();
+			getSpeedVector().setDir(new Point(0, 0));
+			break;
 		}
 	}
 	
