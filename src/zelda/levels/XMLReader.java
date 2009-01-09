@@ -17,8 +17,11 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 
 import zelda.entity.EntityFactory;
 import zelda.levels.ZeldaGameLevel1.direction;
@@ -36,19 +39,7 @@ public class XMLReader implements LevelReader {
 		this.canvas = canvas;
 		this.universe = universe;
 
-		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder constructor = factory.newDocumentBuilder();
-			Document document = constructor.parse(file);
-			root = document.getDocumentElement();
-			
-			System.out.println(root.getTextContent());
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
+		
 
 		Class<EntityFactory> c = EntityFactory.class;
 		try {
@@ -82,19 +73,13 @@ public class XMLReader implements LevelReader {
 
 	@Override
 	public void read() throws IOException {
-		NodeList nodeList = root.getElementsByTagName("entities");
+		NodeList nodeList = root.getChildNodes();
 		int length = nodeList.getLength();
-System.out.println("On lit jusqu'a " + length);
 		for (int i = 0; i < length; ++i) {
-			System.out.println(i + " sur " + length);
-			Element node = (Element) nodeList.item(i);
-System.out.println(node);
+			Node node = nodeList.item(i);
 			Map<String, String> hashMap = new Hashtable<String, String>();
 			NodeList list = node.getChildNodes();
-			System.out.println(list.item(0));
 			int size = list.getLength();
-			System.out.println(node);
-System.out.println("Tout va bien pour l'instant, " + size);
 			for (int j = 0; j < size; ++j) {
 				Element n = (Element) list.item(j);
 				System.out.println(n.getNodeName().toLowerCase() + " et " + n.getNodeValue().toLowerCase());

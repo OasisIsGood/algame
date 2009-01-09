@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import zelda.game.GameZelda;
+import zelda.game.GameZeldaUniverseDefaultImpl;
 import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
@@ -59,7 +60,7 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
 		moveBlockerChecker.setMoveBlockerRules(new ZeldaMoveBlockers());
 
-		universe = new GameUniverseDefaultImpl(moveBlockerChecker,
+		universe = new GameZeldaUniverseDefaultImpl(moveBlockerChecker,
 				overlapProcessor);
 		overlapRules.setUniverse(universe);
 
@@ -72,9 +73,10 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 			LevelReader reader = checkExtension(f);
 			reader.read();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
+			System.exit(0);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 		
 	}
