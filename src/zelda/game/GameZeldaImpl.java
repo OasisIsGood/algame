@@ -25,7 +25,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import zelda.levels.*;
+import zelda.level.*;
 
 
 public class GameZeldaImpl implements Game, Observer {

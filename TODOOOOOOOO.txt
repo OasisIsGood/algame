@@ -8,7 +8,7 @@ Les grands TODOS du moment
 	- zeldaPrincess dans un endroit, là où la sauver avec au mojns un gros boss à coté
 	- link de l'autre côté
  
-* Créer un décor avec un fichier contenant la liste des éléments à ajouter et monstres et boss courants
+* Créer un décor avec un fichier contenant la liste des éléments à ajouter et monstres et boss courants //OK
  
 * compter le nombre de boss en cours, afin de valider la victoire si tout les boss tués par ex
 
@@ -30,14 +30,14 @@ Les grands TODOS du moment
 
 * changer l'état de link ( STATE ?!?) s'il chope un super pouvoir ou une terrible maladie sur un objet overlappé
 
-* faire une fabrique pour Link et tout ça comme il dit benoit
+* faire une fabrique pour Link et tout ça comme il dit benoit //OK
 
 * FAIRE DES TESTS UNITAIRES DE BONNES PERTES DE VIE des entités lors de combat, ou autres tests...
 
-* Ne plus changer awt en swing, merci
+* Ne plus changer awt en swing, merci //OK
 
 * Gérer la sauvegarde du jeu par un bo serializable par exemple...à voir
 
-* Gérer la PAUSE et REPRISE du jeu 
+* Gérer la PAUSE et REPRISE du jeu //OK
 
 ***

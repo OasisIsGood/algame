@@ -1,4 +1,4 @@
-package zelda.levels;
+package zelda.level;
 
 import gameframework.game.GameUniverse;
 
@@ -24,7 +24,7 @@ import org.xml.sax.SAXException;
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 
 import zelda.entity.EntityFactory;
-import zelda.levels.ZeldaGameLevel1.direction;
+import zelda.level.ZeldaGameLevel1.direction;
 
 public class XMLReader implements LevelReader {
 

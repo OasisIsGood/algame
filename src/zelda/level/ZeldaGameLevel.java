@@ -1,9 +1,8 @@
-package zelda.levels;
+package zelda.level;
 
 import gameframework.base.IntegerObservable;
 import gameframework.game.CanvasDefaultImpl;
 import gameframework.game.GameLevelDefaultImpl;
-import gameframework.game.GameUniverseDefaultImpl;
 import gameframework.game.GameUniverseViewPortDefaultImpl;
 import gameframework.game.MoveBlockerChecker;
 import gameframework.game.MoveBlockerCheckerDefaultImpl;
@@ -87,29 +86,4 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		else
 			return new TextReader(canvas, universe, f);
 	}
-
-	/*private void addWalls(Point origin, direction dir, int num) {
-		if (dir.equals(direction.UP)) {
-			for (int i = num; i > 0; --i) {
-				universe.addGameEntity(new Tree(canvas, 
-						new Point((int) origin.getX() * SPRITE_SIZE,
-								(int) ((origin.getY() - i) * SPRITE_SIZE))));
-			}
-		}
-		if (dir.equals(direction.DOWN)) {
-			addWalls(new Point((int) origin.getX(), (int) origin.getY() + num),
-					direction.UP, num);
-		}
-		if (dir.equals(direction.LEFT)) {
-			for (int i = 0; i < num; ++i) {
-				universe.addGameEntity(new Tree(canvas, 
-						new Point((int) (origin.getX() - i) * SPRITE_SIZE,
-								(int) (origin.getY() * SPRITE_SIZE))));
-			}
-		}
-		if (dir.equals(direction.RIGHT)) {
-			addWalls(new Point((int) origin.getX() + num, (int) origin.getY()),
-					direction.LEFT, num);
-		}
-	}*/
 }

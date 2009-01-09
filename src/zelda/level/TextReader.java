@@ -1,4 +1,4 @@
-package zelda.levels;
+package zelda.level;
 
 import gameframework.game.GameUniverse;
 
@@ -16,7 +16,7 @@ import java.util.Map;
 
 import zelda.entity.EntityFactory;
 import zelda.game.GameZeldaUniverse;
-import zelda.levels.ZeldaGameLevel1.direction;
+import zelda.level.ZeldaGameLevel1.direction;
 
 public class TextReader implements LevelReader {
 
