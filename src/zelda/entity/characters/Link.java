@@ -26,6 +26,7 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	protected int spriteType = 0;
 	protected boolean movable = true;
 	private boolean isSwording = false;
+	private boolean takeSword = false;
 	private Timer timer;
 
 	protected static DrawableImageSprite image = null;
@@ -70,28 +71,31 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	
 		if (tmp.getX() == 1) {	
 			//System.out.println("droite");
-			if(isSwording)
+			if(takeSword)
 				image = imageGetSwordRight;
 			else
 				image = imageRight;
 		} else if (tmp.getX() == -1) {
 			//System.out.println("gauche");
-			if(isSwording)
+			if(takeSword)
 				image = imageGetSwordLeft;
 			else
 				image = imageLeft;
 		} else if (tmp.getY() == -1) {
 			//System.out.println("haut");
-			if(isSwording)
+			if(takeSword)
 				image = imageGetSwordBack;
 			else
 				image = imageBack;
 		} else if (tmp.getY() == 1) {
 			//System.out.println("bas");
-		
+			if(takeSword)
+				image = imageGetSwordFace;
+			else
+				image = imageFace;
 		} else {  
 			//System.out.println("de Face");
-			if(isSwording)
+			if(takeSword)
 				image = imageGetSwordFace;
 			else
 				image = imageFace;
