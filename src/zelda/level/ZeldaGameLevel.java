@@ -25,7 +25,9 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	Canvas canvas;
 
 	public static final int SPRITE_SIZE = 16;
-	public static final int NUMBER_OF_ENNEMYS = 2;
+	public int NUMBER_OF_ENNEMYS = 0; // Faire en sorte que cette valeur est
+										// une raison d'être et corresponde à
+										// quelque chose
 	protected static final int NB_ROWS = 31;
 	protected static final int NB_COLUMNS = 50;
 
@@ -34,7 +36,7 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	public static enum direction {
 		UP, DOWN, RIGHT, LEFT
 	};
-	
+
 	private File f;
 
 	public ZeldaGameLevel(GameZelda g, File f) {
@@ -65,9 +67,9 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 
 		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);
 		((GameUniverseViewPortDefaultImpl) gameBoard)
-				.setBackground("images/background/background_image_zelda.gif");
+				.setBackground("images/background/background_image_zelda2.gif");
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
-		
+
 		try {
 			LevelReader reader = checkExtension(f);
 			reader.read();
@@ -77,11 +79,11 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
-		
+
 	}
 
 	private LevelReader checkExtension(File f) throws IOException {
-		if(f.getName().endsWith(".xml"))
+		if (f.getName().endsWith(".xml"))
 			return new XMLReader(canvas, universe, f);
 		else
 			return new TextReader(canvas, universe, f);

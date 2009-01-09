@@ -36,7 +36,7 @@ Les grands TODOS du moment
 
 * Ne plus changer awt en swing, merci //OK
 
-* Gérer la sauvegarde du jeu par un bo serializable par exemple...à voir
+* Gérer la sauvegarde du jeu par un bo serializable par exemple...à voir. //JE NE TROUVE PAS DE SOLUTIONS
 
 * Gérer la PAUSE et REPRISE du jeu //OK
 

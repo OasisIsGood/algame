@@ -65,7 +65,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(guard);
 		} else {
-			life.setValue(life.getValue() - 1);
+			life.setValue(life.getValue() - 5);
 		}
 	}
 
