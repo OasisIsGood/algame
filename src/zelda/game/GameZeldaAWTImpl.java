@@ -14,7 +14,6 @@ import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -25,9 +24,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
-
-import zelda.entity.decors.NextLevelImage;
-import zelda.entity.decors.Tree;
 
 public class GameZeldaAWTImpl implements GameZelda, Observer {
 	private static final long serialVersionUID = -3150854596831664346L;
