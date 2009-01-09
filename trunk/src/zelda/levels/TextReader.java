@@ -23,6 +23,7 @@ public class TextReader implements LevelReader {
 	private GameUniverse universe;
 	private BufferedReader reader;
 
+	// Associer le nom de l'objet instancié à une méthode
 	private Map<String, Method> map = new Hashtable<String, Method>();
 
 	public TextReader(Canvas canvas, GameUniverse universe, File file)
