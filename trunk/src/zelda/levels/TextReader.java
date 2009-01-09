@@ -15,6 +15,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import zelda.entity.EntityFactory;
+import zelda.game.GameZeldaUniverse;
 import zelda.levels.ZeldaGameLevel1.direction;
 
 public class TextReader implements LevelReader {
@@ -35,26 +36,26 @@ public class TextReader implements LevelReader {
 		Class<EntityFactory> c = EntityFactory.class;
 		try {
 			map.put("link", c.getDeclaredMethod("createLink", Point.class,
-					Canvas.class, GameUniverse.class));
+					Canvas.class, GameZeldaUniverse.class));
 			map.put("zelda", c.getDeclaredMethod("createZelda", Point.class,
-					Canvas.class, GameUniverse.class));
+					Canvas.class, GameZeldaUniverse.class));
 			map.put("potion", c.getDeclaredMethod("createPotion", Point.class,
-					Canvas.class, GameUniverse.class));
+					Canvas.class, GameZeldaUniverse.class));
 			map.put("guard", c.getDeclaredMethod("createGuard", Point.class,
-					Canvas.class, GameUniverse.class));
+					Canvas.class, GameZeldaUniverse.class));
 			map.put("bomb", c.getDeclaredMethod("createBomb", Point.class,
-					Canvas.class, GameUniverse.class));
+					Canvas.class, GameZeldaUniverse.class));
 			map.put("bush", c.getDeclaredMethod("createBush", Point.class,
-					Canvas.class, GameUniverse.class));
+					Canvas.class, GameZeldaUniverse.class));
 			map.put("superpotion", c.getDeclaredMethod("createSuperPotion",
-					Point.class, Canvas.class, GameUniverse.class));
+					Point.class, Canvas.class, GameZeldaUniverse.class));
 			map.put("tree", c.getDeclaredMethod("createTree", Point.class,
-					Canvas.class, GameUniverse.class));
+					Canvas.class, GameZeldaUniverse.class));
 			map.put("hammer", c.getDeclaredMethod("createHammer", Point.class,
-					Canvas.class, GameUniverse.class));
+					Canvas.class, GameZeldaUniverse.class));
 			map.put("wall", c.getDeclaredMethod("createWall", Point.class,
 					direction.class, int.class, Canvas.class,
-					GameUniverse.class));
+					GameZeldaUniverse.class));
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
@@ -73,31 +74,37 @@ public class TextReader implements LevelReader {
 			if (t.length >= 3) {
 				t[2] = t[2].toLowerCase();
 
-				try {
-					if (t[2].equals("wall"))
-						map.get(t[2]).invoke(
-								null,
-								new Point(Integer.parseInt(t[0]), Integer
-										.parseInt(t[1])),
-								direction.valueOf(t[3]),
-								Integer.parseInt(t[4]), canvas, universe);
-					else
-						map.get(t[2]).invoke(
-								null,
-								new Point(Integer.parseInt(t[0]), Integer
-										.parseInt(t[1])), canvas, universe);
-				} catch (NumberFormatException e) {
-					throw new IOException("Invalid file, line : " + numberLine);
-				} catch (IllegalArgumentException e) {
-					throw new IOException("Invalid file, line : " + numberLine);
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				} catch (ArrayIndexOutOfBoundsException e) {
-					throw new IOException("Invalid file, line : " + numberLine);
+				if (map.get(t[2]) != null) {
+					try {
+						if (t[2].equals("wall"))
+							map.get(t[2]).invoke(
+									null,
+									new Point(Integer.parseInt(t[0]), Integer
+											.parseInt(t[1])),
+									direction.valueOf(t[3].toUpperCase()),
+									Integer.parseInt(t[4]), canvas, universe);
+						else
+							map.get(t[2]).invoke(
+									null,
+									new Point(Integer.parseInt(t[0]), Integer
+											.parseInt(t[1])), canvas, universe);
+					} catch (NumberFormatException e) {
+						throw new IOException("Invalid file, line : "
+								+ numberLine);
+					} catch (IllegalArgumentException e) {
+						throw new IOException("Invalid file, line : "
+								+ numberLine);
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						e.printStackTrace();
+					} catch (ArrayIndexOutOfBoundsException e) {
+						throw new IOException("Invalid file, line : "
+								+ numberLine);
+					}
 				}
-			}
+			} else if(!line.isEmpty())
+				throw new IOException("Invalid file, line : " + numberLine + "\nText is : " + line);
 		}
 	}
 }
