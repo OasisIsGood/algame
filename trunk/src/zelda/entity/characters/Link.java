@@ -26,7 +26,7 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	protected int spriteType = 0;
 	protected boolean movable = true;
 	private boolean isSwording = false;
-	private boolean takeSword = false;
+	private boolean takeSword = true;
 	private Timer timer;
 
 	protected static DrawableImageSprite image = null;
@@ -51,13 +51,13 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 		if (imageBack == null) 
 			imageBack = new DrawableImageSprite("images/characters/linkBack.gif", defaultCanvas, 20, 25, 10);
 		if (imageGetSwordRight == null) 
-			imageGetSwordRight = new DrawableImageSprite("images/characters/linkGetSwordRight.gif", defaultCanvas, 25, 30, 5);
+			imageGetSwordRight = new DrawableImageSprite("images/characters/linkGetSwordRight.gif", defaultCanvas, 35, 30, 5);
 		if (imageGetSwordLeft == null) 
-			imageGetSwordLeft = new DrawableImageSprite("images/characters/linkGetSwordLeft.gif", defaultCanvas, 25, 30, 5);
+			imageGetSwordLeft = new DrawableImageSprite("images/characters/linkGetSwordLeft.gif", defaultCanvas, 35, 30, 5);
 		if (imageGetSwordFace == null) 
-			imageGetSwordFace = new DrawableImageSprite("images/characters/linkGetSwordFace.gif", defaultCanvas, 25, 30, 5);
+			imageGetSwordFace = new DrawableImageSprite("images/characters/linkGetSwordFace.gif", defaultCanvas, 20, 35, 5);
 		if (imageGetSwordBack == null) 
-			imageGetSwordBack = new DrawableImageSprite("images/characters/linkGetSwordBack.gif", defaultCanvas, 25, 30, 5);
+			imageGetSwordBack = new DrawableImageSprite("images/characters/linkGetSwordBack.gif", defaultCanvas, 20, 30, 5);
 		
 		spriteNumber = 0;
 		spriteType = 0;
