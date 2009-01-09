@@ -25,9 +25,10 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
 	protected boolean movable = true;
+	private Timer timer;
 	private boolean isSwording = false;
 	private boolean takeSword = false;
-	private Timer timer;
+	private boolean isDeathing = false;
 
 	protected static DrawableImageSprite image = null;
 	protected static DrawableImageSprite imageFace = null;
@@ -38,6 +39,7 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	protected static DrawableImageSprite imageGetSwordLeft = null;
 	protected static DrawableImageSprite imageGetSwordFace = null;
 	protected static DrawableImageSprite imageGetSwordBack = null;
+	protected static DrawableImageSprite imageDeath = null;
 
 	public Link(Canvas defaultCanvas) {
 		if (image == null)
@@ -58,6 +60,8 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 			imageGetSwordFace = new DrawableImageSprite("images/characters/linkGetSwordFace.gif", defaultCanvas, 20, 35, 5);
 		if (imageGetSwordBack == null) 
 			imageGetSwordBack = new DrawableImageSprite("images/characters/linkGetSwordBack.gif", defaultCanvas, 20, 30, 5);
+		if (imageDeath == null) 
+			imageDeath = new DrawableImageSprite("images/characters/linkDeath.gif", defaultCanvas, 25, 30, 6);
 		
 		spriteNumber = 0;
 		spriteType = 0;
@@ -69,7 +73,10 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 		Point tmp = getSpeedVector().getDir();
 		movable = true;
 	
-		if (tmp.getX() == 1) {	
+		if(isDeathing) {
+			image = imageDeath;
+		}
+		else if (tmp.getX() == 1) {	
 			//System.out.println("droite");
 			if(takeSword)
 				image = imageGetSwordRight;
@@ -100,7 +107,6 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 			else
 				image = imageFace;
 			spriteNumber = 0;
-			spriteType = 0;
 			movable = false;
 		}
 
@@ -125,11 +131,7 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 
 	@Override
 	public void oneStepMoveHandler() {
-		if(timer.isRunning() && isSwording) {
-			spriteNumber++;
-			spriteNumber = spriteNumber % image.getNumberOfSprites();
-		}
-		else if (movable) {
+		if(movable || (timer.isRunning() && isSwording)) {
 			spriteNumber++;
 			spriteNumber = spriteNumber % image.getNumberOfSprites();
 		}
@@ -151,6 +153,15 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	
 	public boolean isTakingSword() {
 		return takeSword;
+	}
+	
+	public void deathing() {
+		spriteNumber = 0;
+		isDeathing = true;
+	}
+	
+	public boolean isDeathing() {
+		return isDeathing;
 	}
 
 	private Timer createTimer() {
