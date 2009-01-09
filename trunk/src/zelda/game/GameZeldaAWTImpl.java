@@ -19,7 +19,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -48,7 +47,6 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 
 	protected int levelNumber;
 	protected ArrayList<GameLevel> gameLevels;
-	protected Iterator<GameLevel> itLevel;
 
 	protected Label lifeText, scoreText;
 	protected Label information;
@@ -179,15 +177,13 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 
 		informationValue.setText("Playing");
 
-		itLevel = gameLevels.iterator();
 		levelNumber = 0;
 		try {
 			if (currentPlayedLevel != null && currentPlayedLevel.isAlive()) {
 				currentPlayedLevel.interrupt();
 				currentPlayedLevel = null;
 			}
-			currentPlayedLevel = (GameLevelDefaultImpl) itLevel.next();
-			levelNumber++;
+			currentPlayedLevel = (GameLevelDefaultImpl) gameLevels.get(levelNumber++);
 			currentLevelValue.setText(Integer.toString(levelNumber));
 			currentPlayedLevel.start();
 			currentPlayedLevel.join();
@@ -250,7 +246,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				currentPlayedLevel.interrupt();
 
 				try {
-					if (itLevel.hasNext()) {
+					if (levelNumber < gameLevels.size()) {
 						nextLevel();
 						win.setValue(result.NOT_WIN.ordinal());
 						currentPlayedLevel.start();
@@ -288,8 +284,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	}
 
 	private void nextLevel() {
-		currentPlayedLevel = (GameLevelDefaultImpl) itLevel.next();
-		levelNumber++;
+		currentPlayedLevel = (GameLevelDefaultImpl) gameLevels.get(levelNumber++);
 		currentLevelValue.setText(Integer.toString(levelNumber));
 
 	}
