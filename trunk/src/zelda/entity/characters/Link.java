@@ -26,7 +26,7 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	protected int spriteType = 0;
 	protected boolean movable = true;
 	private boolean isSwording = false;
-	private boolean takeSword = true;
+	private boolean takeSword = false;
 	private Timer timer;
 
 	protected static DrawableImageSprite image = null;
@@ -143,6 +143,14 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 
 	public boolean isSwording() {
 		return isSwording;
+	}
+	
+	public void takingSword(boolean haveSword) {
+		takeSword = haveSword;
+	}
+	
+	public boolean isTakingSword() {
+		return takeSword;
 	}
 
 	private Timer createTimer() {

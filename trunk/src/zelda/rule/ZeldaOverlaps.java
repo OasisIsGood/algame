@@ -18,6 +18,7 @@ import zelda.entity.characters.ZeldaPrincess;
 import zelda.entity.decors.Bomb;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.SuperPotion;
+import zelda.entity.decors.Sword;
 import zelda.game.GameZeldaAWTImpl;
 import zelda.game.GameZeldaImpl;
 
@@ -81,5 +82,10 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
 	public void overlapRule(Link link, ZeldaPrincess zelda) {
 		win.setValue(GameZeldaAWTImpl.result.WIN.ordinal());
+	}
+	
+	public void overlapRule(Link link, Sword sword) {
+		link.takingSword(true);
+		universe.removeGameEntity(sword);
 	}
 }

@@ -25,6 +25,7 @@ import zelda.entity.characters.ZeldaPrincess;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.Hammer;
 import zelda.entity.decors.SuperPotion;
+import zelda.entity.decors.Sword;
 import zelda.entity.decors.Tree;
 import zelda.game.GameZelda;
 import zelda.game.GameZeldaAWTImpl;
@@ -115,6 +116,8 @@ public class ZeldaGameLevel1 extends GameLevelDefaultImpl {
 
 		universe.addGameEntity(new ZeldaPrincess(canvas, new Point(
 				2 * SPRITE_SIZE, 2 * SPRITE_SIZE)));
+		universe.addGameEntity(new Sword(canvas, new Point(
+				38 * SPRITE_SIZE, 20 * SPRITE_SIZE)));
 		universe.addGameEntity(new Hammer(canvas, new Point(20 * SPRITE_SIZE,
 				20 * SPRITE_SIZE)));
 		universe.addGameEntity(new Bush(canvas, new Point(14 * SPRITE_SIZE,
