@@ -1,6 +1,5 @@
 package zelda.game;
 
-import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameEntity;
 import gameframework.game.GameUniverse;
 import gameframework.game.GameUniverseDefaultImpl;

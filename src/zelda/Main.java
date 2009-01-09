@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import zelda.game.GameZeldaAWTImpl;
 import zelda.level.ZeldaGameLevel;
 import zelda.level.ZeldaGameLevel1;
-import zelda.level.ZeldaGameLevel2;
 
 public class Main {
 	public static void main(String[] args) {
