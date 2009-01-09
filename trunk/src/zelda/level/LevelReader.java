@@ -1,4 +1,4 @@
-package zelda.levels;
+package zelda.level;
 
 import java.io.IOException;
 

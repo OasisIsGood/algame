@@ -30,9 +30,12 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	protected static final int SPRITE_SIZE = 16;
 	public static final int MAX_NUMBER_OF_PLAYER = 2;
 	public static final int NUMBER_OF_LIVES = 100;
-	public enum result {NOT_WIN, WIN};
-	
-	public static final int NB_ROWS = 50; 	
+
+	public enum result {
+		NOT_WIN, WIN
+	};
+
+	public static final int NB_ROWS = 50;
 	public static final int NB_COLUMNS = 70;
 
 	protected CanvasDefaultImpl defaultCanvas = null;
@@ -70,7 +73,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	public void createGUI() {
 		f = new Frame("Default Game");
 		f.dispose();
-		
+
 		createMenuBar();
 		Container c = createStatusBar();
 
@@ -173,9 +176,9 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		}
 		win.addObserver(this);
 		win.setValue(result.NOT_WIN.ordinal());
-		
+
 		informationValue.setText("Playing");
-		
+
 		itLevel = gameLevels.iterator();
 		levelNumber = 0;
 		try {
@@ -203,14 +206,12 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 
 	@SuppressWarnings("deprecation")
 	public void pause() {
-		System.out.println("pause(): Unimplemented operation");
-		 currentPlayedLevel.suspend();
+		currentPlayedLevel.suspend();
 	}
 
 	@SuppressWarnings("deprecation")
 	public void resume() {
-		System.out.println("resume(): Unimplemented operation");
-		 currentPlayedLevel.resume();
+		currentPlayedLevel.resume();
 	}
 
 	public IntegerObservable[] score() {
@@ -220,8 +221,8 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	public IntegerObservable[] life() {
 		return life;
 	}
-	
-	public IntegerObservable win(){
+
+	public IntegerObservable win() {
 		return win;
 	}
 
@@ -230,8 +231,8 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	}
 
 	/*
-	 * update method so as to make Game as an updatable Observer
-	 * (TODO Handle 2 or more players)
+	 * update method so as to make Game as an updatable Observer (TODO Handle 2
+	 * or more players)
 	 */
 	public void update(Observable o, Object arg) {
 		if (o instanceof IntegerObservable) {
@@ -244,17 +245,23 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 
 	private void handleWinObservable(IntegerObservable observable) {
 		if (observable == win) {
-			if(win.getValue() == result.WIN.ordinal()) {
+			if (win.getValue() == result.WIN.ordinal()) {
 				informationValue.setText("Win");
 				currentPlayedLevel.interrupt();
-				
+
 				try {
-					nextLevel();
-					currentPlayedLevel.start();
-					currentPlayedLevel.join();
+					if (itLevel.hasNext()) {
+						nextLevel();
+						win.setValue(result.NOT_WIN.ordinal());
+						currentPlayedLevel.start();
+						currentPlayedLevel.join();
+					} else {
+						currentPlayedLevel.end();
+					}
 				} catch (InterruptedException e) {
 				}
-			}
+			} else
+				informationValue.setText("Playing");
 		}
 	}
 
@@ -262,9 +269,9 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		for (IntegerObservable lifeObservable : life) {
 			if (observable == lifeObservable) {
 				int lives = observable.getValue();
- 				lifeValue.setText(Integer.toString(lives));
- 				if (lives == 0) {
- 					informationValue.setText("Defeat");
+				lifeValue.setText(Integer.toString(lives));
+				if (lives == 0) {
+					informationValue.setText("Defeat");
 					currentPlayedLevel.interrupt();
 					currentPlayedLevel.end();
 				}
@@ -279,10 +286,11 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 			}
 		}
 	}
-	
+
 	private void nextLevel() {
 		currentPlayedLevel = (GameLevelDefaultImpl) itLevel.next();
 		levelNumber++;
 		currentLevelValue.setText(Integer.toString(levelNumber));
+
 	}
 }
