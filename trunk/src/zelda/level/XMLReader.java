@@ -11,17 +11,9 @@ import java.lang.reflect.Method;
 import java.util.Hashtable;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 
 import zelda.entity.EntityFactory;
 import zelda.level.ZeldaGameLevel1.direction;
