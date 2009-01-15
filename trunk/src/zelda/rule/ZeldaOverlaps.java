@@ -62,7 +62,6 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
 	public void overlapRule(Link link, Guard guard) {
 		guard.swording(true);
-		System.out.println();
 		if (link.isSwording()) {
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(guard);

@@ -27,7 +27,7 @@ import javax.swing.JPanel;
 public class GameZeldaAWTImpl implements GameZelda, Observer {
 	private static final long serialVersionUID = -3150854596831664346L;
 	protected static final int SPRITE_SIZE = 16;
-	public static final int MAX_NUMBER_OF_PLAYER = 2;
+	public static final int MAX_NUMBER_OF_PLAYER = 1;
 	public static final int NUMBER_OF_LIVES = 100;
 
 	public enum result {
@@ -94,6 +94,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		MenuBar menuBar = new MenuBar();
 		Menu file = new Menu("file");
 		MenuItem start = new MenuItem("new game");
+		MenuItem redo = new MenuItem("re-do level");
 		MenuItem save = new MenuItem("save");
 		MenuItem restore = new MenuItem("load");
 		MenuItem quit = new MenuItem("quit");
@@ -106,8 +107,13 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				newGame();
 				start();
+			}
+		});
+		redo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				run();
 			}
 		});
 		save.addActionListener(new ActionListener() {
@@ -137,11 +143,16 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		});
 
 		file.add(start);
+		file.add(redo);
 		file.add(save);
 		file.add(restore);
 		file.add(quit);
 		game.add(pause);
 		game.add(resume);
+		
+		start.setEnabled(false);
+		save.setEnabled(false);
+		restore.setEnabled(false);
 	}
 
 	private Container createStatusBar() {
@@ -166,6 +177,24 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		return defaultCanvas;
 	}
 
+	private void run(){
+		win.setValue(result.NOT_WIN.ordinal());
+
+		informationValue.setText("Playing");
+
+		try {
+			if (currentPlayedLevel != null && currentPlayedLevel.isAlive()) {
+				currentPlayedLevel.interrupt();
+				currentPlayedLevel = null;
+			}
+			currentPlayedLevel = (GameLevelDefaultImpl) gameLevels.get(levelNumber-1);
+			currentLevelValue.setText(Integer.toString(levelNumber));
+			currentPlayedLevel.start();
+			currentPlayedLevel.join();
+		} catch (Exception ex) {
+		}
+	}
+	
 	public void start() {
 		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i) {
 			score[i].addObserver(this);
@@ -174,23 +203,9 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 			score[i].setValue(0);
 		}
 		win.addObserver(this);
-		win.setValue(result.NOT_WIN.ordinal());
-
-		informationValue.setText("Playing");
-
-		levelNumber = 0;
-		try {
-			if (currentPlayedLevel != null && currentPlayedLevel.isAlive()) {
-				currentPlayedLevel.interrupt();
-				currentPlayedLevel = null;
-			}
-			currentPlayedLevel = (GameLevelDefaultImpl) gameLevels.get(levelNumber++);
-			currentLevelValue.setText(Integer.toString(levelNumber));
-			currentPlayedLevel.start();
-			currentPlayedLevel.join();
-		} catch (Exception e) {
-		}
-
+		
+		levelNumber = 1;
+		run();
 	}
 
 	public void restore() {
@@ -245,7 +260,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 			if (win.getValue() == result.WIN.ordinal()) {
 				informationValue.setText("Win");
 				currentPlayedLevel.interrupt();
-
+				
 				try {
 					if (levelNumber < gameLevels.size()) {
 						nextLevel();
@@ -291,7 +306,6 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	
 	private void newGame() {
 		levelNumber = 0;
-		currentPlayedLevel = (GameLevelDefaultImpl) gameLevels.get(levelNumber);
-		currentLevelValue.setText(Integer.toString(levelNumber));
+		nextLevel();
 	}
 }
