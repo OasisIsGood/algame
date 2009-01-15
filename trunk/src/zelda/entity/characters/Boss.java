@@ -21,7 +21,7 @@ public class Boss extends GameMovable implements Drawable, GameEntity,
 	protected int spriteType = 0;
 	protected boolean movable = true;
 	private boolean isSwording = false;
-	private int life = 2;
+	private int life = 20;
 
 	public Boss(Canvas defaultCanvas, Point pos) {
 		if (image == null) {

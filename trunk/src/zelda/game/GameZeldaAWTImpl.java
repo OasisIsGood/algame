@@ -303,9 +303,4 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		currentPlayedLevel = (GameLevelDefaultImpl) gameLevels.get(levelNumber++);
 		currentLevelValue.setText(Integer.toString(levelNumber));
 	}
-	
-	private void newGame() {
-		levelNumber = 0;
-		nextLevel();
-	}
 }

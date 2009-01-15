@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import zelda.base.Sound;
+import zelda.entity.characters.Boss;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
 import zelda.entity.characters.ZeldaPrincess;
@@ -75,16 +76,34 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 			Sound sound = new Sound(new File("sounds/explosion.wav"));
 			sound.play();
 		} catch (FileNotFoundException e) {
-			System.out.println("File not found");
+			System.out.println("Sound file not found");
 		}
 	}
 
 	public void overlapRule(Link link, ZeldaPrincess zelda) {
+		score.setValue(score.getValue() + 100);
 		win.setValue(GameZeldaAWTImpl.result.WIN.ordinal());
 	}
 	
 	public void overlapRule(Link link, Sword sword) {
 		link.takingSword(true);
 		universe.removeGameEntity(sword);
+	}
+	
+	public void overlapRule(Link link, Boss boss) {
+		boss.swording(true);
+		System.out.println("Bouh");
+		if (link.isSwording()) {
+			if(link.isTakingSword())
+				boss.isAttacked(5);
+			else
+				boss.isAttacked(2);
+			if(boss.isDead()) {
+				score.setValue(score.getValue() + 40);
+				universe.removeGameEntity(boss);
+			}
+		} else {
+			life.setValue(life.getValue() - 5);
+		}
 	}
 }
