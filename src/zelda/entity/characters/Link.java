@@ -28,7 +28,10 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	private boolean isSwording = false;
 	private boolean takeSword = false;
 	private boolean isDeathing = false;
-
+	
+	public static int HAND_STRENGH = 2;
+	public static int SWORD_STRENGH = 5;
+	
 	protected static DrawableImageSprite image = null;
 	protected static DrawableImageSprite imageFace = null;
 	protected static DrawableImageSprite imageRight = null;

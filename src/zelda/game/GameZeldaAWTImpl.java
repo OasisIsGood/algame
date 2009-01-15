@@ -18,11 +18,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import sun.java2d.pipe.DrawImage;
 
 public class GameZeldaAWTImpl implements GameZelda, Observer {
 	private static final long serialVersionUID = -3150854596831664346L;
@@ -79,6 +84,13 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		defaultCanvas.setSize(SPRITE_SIZE * NB_COLUMNS, SPRITE_SIZE * NB_ROWS);
 		f.add(defaultCanvas);
 		f.add(c, BorderLayout.NORTH);
+		
+		try {
+			f.setIconImage(ImageIO.read(new File("images/characters/zeldaPrincess.gif")));
+		} catch (IOException e1) {
+			System.out.println(e1.getMessage());
+		}
+		
 		f.pack();
 		f.setVisible(true);
 
@@ -94,7 +106,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		MenuBar menuBar = new MenuBar();
 		Menu file = new Menu("file");
 		MenuItem start = new MenuItem("new game");
-		MenuItem redo = new MenuItem("re-do level");
+		MenuItem redo = new MenuItem("restart level");
 		MenuItem save = new MenuItem("save");
 		MenuItem restore = new MenuItem("load");
 		MenuItem quit = new MenuItem("quit");
@@ -281,7 +293,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		for (IntegerObservable lifeObservable : life) {
 			if (observable == lifeObservable) {
 				int lives = observable.getValue();
-				lifeValue.setText(Integer.toString(lives));
+				lifeValue.setText(Integer.toString(lives <= 0 ? 0 : lives));
 				if (lives <= 0) {
 					informationValue.setText("Defeat");
 					currentPlayedLevel.interrupt();
