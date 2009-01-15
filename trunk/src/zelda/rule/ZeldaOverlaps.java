@@ -8,10 +8,8 @@ import java.awt.Canvas;
 import java.awt.Point;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Vector;
 
 import zelda.base.Sound;
-import zelda.entity.characters.Ennemy;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
 import zelda.entity.characters.ZeldaPrincess;
@@ -25,7 +23,7 @@ import zelda.game.GameZeldaImpl;
 public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
 	protected GameUniverse universe;
-	protected Vector<Ennemy> vEnnemies = new Vector<Ennemy>();
+	//protected Vector<Ennemy> vEnnemies = new Vector<Ennemy>();
 
 	protected Point linkStartPos;
 	protected Point ennemyStartPos;
