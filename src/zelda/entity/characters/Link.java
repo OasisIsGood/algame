@@ -18,9 +18,8 @@ import zelda.entity.DrawableImageSprite;
 
 public class Link extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
-
-	public static int SPRITE_SIZE = 32;
 	
+	public static final int SPRITE_SIZE = 24;
 	protected Canvas defaultCanvas;
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
@@ -40,7 +39,8 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 	protected static DrawableImageSprite imageGetSwordFace = null;
 	protected static DrawableImageSprite imageGetSwordBack = null;
 	protected static DrawableImageSprite imageDeath = null;
-
+	protected static DrawableImageSprite imageSwording = null;
+	
 	public Link(Canvas defaultCanvas) {
 		if (image == null)
 			image	  = new DrawableImageSprite("images/characters/linkFace.gif", defaultCanvas, 25, 25, 7);
@@ -60,6 +60,8 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 			imageGetSwordFace = new DrawableImageSprite("images/characters/linkGetSwordFace.gif", defaultCanvas, 20, 35, 5);
 		if (imageGetSwordBack == null) 
 			imageGetSwordBack = new DrawableImageSprite("images/characters/linkGetSwordBack.gif", defaultCanvas, 20, 30, 5);
+		if (imageSwording == null) 
+			imageSwording = new DrawableImageSprite("images/characters/linkSwording.gif", defaultCanvas, 35, 35, 8);
 		if (imageDeath == null) 
 			imageDeath = new DrawableImageSprite("images/characters/linkDeath.gif", defaultCanvas, 25, 30, 6);
 		
@@ -135,6 +137,10 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 			spriteNumber++;
 			spriteNumber = spriteNumber % image.getNumberOfSprites();
 		}
+	}
+	
+	public DrawableImageSprite getImage() {
+		return image;
 	}
 
 	public void swording() {

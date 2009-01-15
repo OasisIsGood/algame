@@ -15,8 +15,8 @@ import zelda.entity.DrawableImageSprite;
 public class Guard extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 	
+	public static final int SPRITE_SIZE = 16;
 	protected static DrawableImageSprite image = null;
-	public static final int SPRITE_SIZE = 24;
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
 	protected boolean movable = true;
@@ -69,8 +69,12 @@ public class Guard extends GameMovable implements Drawable, GameEntity,
 
 	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
-				SPRITE_SIZE , SPRITE_SIZE));
+		return (new Rectangle((int) getPosition().getX(), 
+				(int) getPosition().getY(), image.getSpriteSizeX(),image.getSpriteSizeY()));
+	}
+	
+	public DrawableImageSprite getImage() {
+		return image;
 	}
 
 	@Override
