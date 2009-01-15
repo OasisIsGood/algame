@@ -27,8 +27,6 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import sun.java2d.pipe.DrawImage;
-
 public class GameZeldaAWTImpl implements GameZelda, Observer {
 	private static final long serialVersionUID = -3150854596831664346L;
 	protected static final int SPRITE_SIZE = 16;

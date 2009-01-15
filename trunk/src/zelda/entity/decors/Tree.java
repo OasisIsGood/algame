@@ -26,8 +26,10 @@ public class Tree implements Drawable, MoveBlocker, GameEntity {
 
 	@Override
 	public void draw(Graphics g) {
-		g.drawImage(image.getImage(), (int) getPosition().getX(),
-				(int) getPosition().getY(), SPRITE_SIZE, SPRITE_SIZE, null);
+		g.drawImage(image.getImage(), 
+				(int) getPosition().getX(),
+				(int) getPosition().getY(), 
+				SPRITE_SIZE, SPRITE_SIZE, null);
 	}
 
 	@Override
