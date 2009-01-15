@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import zelda.entity.decors.NextLevelImage;
 import zelda.game.GameZelda;
 import zelda.game.GameZeldaUniverseDefaultImpl;
 import zelda.rule.ZeldaMoveBlockers;
@@ -26,7 +27,7 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 
 	public static final int SPRITE_SIZE = 16;
 	public int NUMBER_OF_ENNEMYS = 0; // Faire en sorte que cette valeur est
-										// une raison d'être et corresponde à
+										// une raison d'ï¿½tre et corresponde ï¿½
 										// quelque chose
 	protected static final int NB_ROWS = 31;
 	protected static final int NB_COLUMNS = 50;
@@ -69,7 +70,9 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		((GameUniverseViewPortDefaultImpl) gameBoard)
 				.setBackground("images/background/background_image_zelda2.gif");
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
-
+		
+		universe.addGameEntity(new NextLevelImage(canvas, new Point(100, 50)));
+		
 		try {
 			LevelReader reader = checkExtension(f);
 			reader.read();

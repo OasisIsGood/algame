@@ -22,6 +22,8 @@ import zelda.level.ZeldaGameLevel1.direction;
 
 public class EntityFactory {
 
+	private static final int SPRITE_SIZE = 20;
+
 	public static void createLink(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
 
@@ -32,15 +34,15 @@ public class EntityFactory {
 		pacDriver.setmoveBlockerChecker(universe.getMoveBlockerChecker());
 		canvas.addKeyListener(keyStr);
 		link.setDriver(pacDriver);
-		link.setPosition(new Point(p.x * Link.SPRITE_SIZE, p.y
-				* Link.SPRITE_SIZE));
+		link.setPosition(new Point(p.x * SPRITE_SIZE, p.y
+				* SPRITE_SIZE));
 		universe.addGameEntity(link);
 	}
 
 	public static void createZelda(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
 		universe.addGameEntity(new ZeldaPrincess(canvas, new Point(p.x
-				* ZeldaPrincess.SPRITE_SIZE, p.y * ZeldaPrincess.SPRITE_SIZE)));
+				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
 	}
 
 	public static void createPotion(Point p, Canvas canvas,
@@ -51,8 +53,8 @@ public class EntityFactory {
 	public static void createGuard(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
 
-		Guard guard = new Guard(canvas, new Point(p.x * Guard.SPRITE_SIZE, p.y
-				* Guard.SPRITE_SIZE));
+		Guard guard = new Guard(canvas, new Point(p.x * SPRITE_SIZE, p.y
+				* SPRITE_SIZE));
 		GameMovableDriverDefaultImpl guardDriv = new GuardMovableDriver();
 		MoveStrategyRandom ranStr = new MoveStrategyRandom();
 		guardDriv.setStrategy(ranStr);
@@ -69,13 +71,13 @@ public class EntityFactory {
 	public static void createBush(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
 		universe.addGameEntity(new Bush(canvas, new Point(p.x
-				* Bush.SPRITE_SIZE, p.y * Bush.SPRITE_SIZE)));
+				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
 	}
 
 	public static void createSuperPotion(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
 		universe.addGameEntity(new SuperPotion(canvas, new Point(p.x
-				* SuperPotion.SPRITE_SIZE, p.y * SuperPotion.SPRITE_SIZE)));
+				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
 	}
 
 	public static void createTree(Point p, Canvas canvas,
@@ -86,7 +88,7 @@ public class EntityFactory {
 	public static void createHammer(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
 		universe.addGameEntity(new Hammer(canvas, new Point(p.x
-				* Hammer.SPRITE_SIZE, p.y * Hammer.SPRITE_SIZE)));
+				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
 	}
 
 	public static void createWall(Point p, direction dir, int num,
@@ -95,8 +97,8 @@ public class EntityFactory {
 			for (int i = num; i > 0; --i) {
 				universe.addGameEntity(new Tree(canvas, new Point((int) p
 						.getX()
-						* Tree.SPRITE_SIZE,
-						(int) ((p.getY() - i) * Tree.SPRITE_SIZE))));
+						* SPRITE_SIZE,
+						(int) ((p.getY() - i) * SPRITE_SIZE))));
 			}
 		}
 		if (dir.equals(direction.DOWN)) {
@@ -106,8 +108,8 @@ public class EntityFactory {
 		if (dir.equals(direction.LEFT)) {
 			for (int i = 0; i < num; ++i) {
 				universe.addGameEntity(new Tree(canvas,
-						new Point((int) (p.getX() - i) * Tree.SPRITE_SIZE,
-								(int) (p.getY() * Tree.SPRITE_SIZE))));
+						new Point((int) (p.getX() - i) * SPRITE_SIZE,
+								(int) (p.getY() * SPRITE_SIZE))));
 			}
 		}
 		if (dir.equals(direction.RIGHT)) {
@@ -119,6 +121,6 @@ public class EntityFactory {
 	public static void createBoss(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
 		universe.addGameEntity(new Boss(canvas, new Point(p.x
-				* Boss.SPRITE_SIZE, p.y * Boss.SPRITE_SIZE)));
+				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
 	}
 }
