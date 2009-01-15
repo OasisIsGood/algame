@@ -16,7 +16,7 @@ public class Boss extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 	
 	protected static DrawableImageSprite image = null;
-	public static final int SPRITE_SIZE = 24;
+	public static final int SPRITE_SIZE = 16;
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
 	protected boolean movable = true;
@@ -71,19 +71,19 @@ public class Boss extends GameMovable implements Drawable, GameEntity,
 	@Override
 	public Rectangle getBoundingBox() {
 		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
-				SPRITE_SIZE , SPRITE_SIZE));
+				image.getSpriteSizeX() , image.getSpriteSizeY()));
 	}
 
 	@Override
 	public void oneStepMoveHandler() {
 		if (movable) {
-			if(isSwording ) {
+			//if(isSwording ) {
 				spriteNumber++;
 				spriteNumber = spriteNumber % image.getNumberOfSprites();
-				if (spriteNumber >= image.getNumberOfSprites() - 1) {
+				//if (spriteNumber >= image.getNumberOfSprites() - 1) {
 					//isSwording = false;
-				}
-			}
+				///}
+			//}
 		}
 	}
 	
