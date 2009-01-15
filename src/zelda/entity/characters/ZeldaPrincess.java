@@ -17,7 +17,7 @@ import zelda.entity.DrawableImageSprite;
  */
 public class ZeldaPrincess extends GameMovable implements Drawable, GameEntity, Overlappable {
 
-	public static final int SPRITE_SIZE = 20;
+	public static final int SPRITE_SIZE = 22;
 	protected static DrawableImageSprite image = null;
 	protected Point position;
 	private boolean movable = true;
@@ -39,12 +39,12 @@ public class ZeldaPrincess extends GameMovable implements Drawable, GameEntity, 
 				image.getImage(),
 				(int) getPosition().getX(),
 				(int) getPosition().getY(),
-				(int) getPosition().getX() + image.getSpriteSizeX(),				
-				(int) getPosition().getY() + image.getSpriteSizeY(),
-				spriteNumber 		* image.getSpriteSizeX(), 
-				spriteType 			* image.getSpriteSizeY(), 
-				(spriteNumber + 1)  * image.getSpriteSizeX(),
-				(spriteType + 1) 	* image.getSpriteSizeY(), 
+				(int) getPosition().getX() + SPRITE_SIZE,				
+				(int) getPosition().getY() + SPRITE_SIZE,
+				spriteNumber 		* image.getPixelsLenght(), 
+				spriteType	 		* image.getPixelsHeight(), 
+				(spriteNumber + 1) 	* image.getPixelsLenght(),
+				(spriteType + 1) 	* image.getPixelsHeight(), 
 				null);
 	}
 
@@ -59,8 +59,8 @@ public class ZeldaPrincess extends GameMovable implements Drawable, GameEntity, 
 
 	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle((int) getPosition().getX(), 
-				(int) getPosition().getY(), image.getSpriteSizeX(),image.getSpriteSizeY()));
+		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
+				SPRITE_SIZE , SPRITE_SIZE));
 	}
 
 	@Override

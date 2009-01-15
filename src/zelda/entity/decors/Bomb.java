@@ -17,7 +17,7 @@ public class Bomb implements Drawable, GameEntity, Overlappable {
 
 	protected static DrawableImage image = null;
 	protected Point position;
-	public static final int SPRITE_SIZE = 12;
+	public static final int SPRITE_SIZE = 16;
 
 	public Bomb(Canvas defaultCanvas, Point pos) {
 		if (image == null) {

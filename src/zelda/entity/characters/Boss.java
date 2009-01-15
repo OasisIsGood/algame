@@ -15,8 +15,8 @@ import zelda.entity.DrawableImageSprite;
 public class Boss extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 	
+	public static final int SPRITE_SIZE = 24;
 	protected static DrawableImageSprite image = null;
-	public static final int SPRITE_SIZE = 16;
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
 	protected boolean movable = true;
@@ -59,19 +59,19 @@ public class Boss extends GameMovable implements Drawable, GameEntity,
 				image.getImage(),
 				(int) getPosition().getX(),
 				(int) getPosition().getY(),
-				(int) getPosition().getX() + image.getSpriteSizeX(),				
-				(int) getPosition().getY() + image.getSpriteSizeY(),
-				spriteNumber 		* image.getSpriteSizeX(), 
-				spriteType	 		* image.getSpriteSizeY(), 
-				(spriteNumber + 1) 	* image.getSpriteSizeX(),
-				(spriteType + 1) 	* image.getSpriteSizeY(), 
+				(int) getPosition().getX() + SPRITE_SIZE,				
+				(int) getPosition().getY() + SPRITE_SIZE,
+				spriteNumber 		* image.getPixelsLenght(), 
+				spriteType	 		* image.getPixelsHeight(), 
+				(spriteNumber + 1) 	* image.getPixelsLenght(),
+				(spriteType + 1) 	* image.getPixelsHeight(), 
 				null);
 	}
 
 	@Override
 	public Rectangle getBoundingBox() {
 		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
-				image.getSpriteSizeX() , image.getSpriteSizeY()));
+				SPRITE_SIZE , SPRITE_SIZE));
 	}
 
 	@Override

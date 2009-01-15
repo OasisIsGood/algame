@@ -6,38 +6,38 @@ import gameframework.base.DrawableImage;
 
 public class DrawableImageSprite extends DrawableImage {
 
-	private int spriteSizeX;
-	private int spriteSizeY;
+	private int pixelsLenght;
+	private int pixelsHeight;
 	private int numberOfSprites;
 
-	public DrawableImageSprite(String filename, Canvas canvas, int spriteX, int spriteY, int nbSprites) {
+	public DrawableImageSprite(String filename, Canvas canvas, int imageLenght, int imageHeight, int nbSprites) {
 		super(filename, canvas);
-		setSpriteSizeX(spriteX); 	
-		setSpriteSizeY(spriteY); 
+		setPixelsLenght(imageLenght); 	
+		setPixelsHeight(imageHeight); 
 		setNumberOfSprites(nbSprites);
 	}
 
 	public void setNumberOfSprites(int numberOfSprites) {
 		this.numberOfSprites = numberOfSprites;
 	}
-
+	
 	public int getNumberOfSprites() {
 		return numberOfSprites;
 	}
+
+	public void setPixelsLenght(int pixelsLenght) {
+		this.pixelsLenght = pixelsLenght;
+	}
 	
-	public void setSpriteSizeX(int spriteSizeX) {
-		this.spriteSizeX = spriteSizeX;
+	public int getPixelsLenght() {
+		return pixelsLenght;
 	}
 
-	public int getSpriteSizeX() {
-		return spriteSizeX;
+	public void setPixelsHeight(int pixelsHeight) {
+		this.pixelsHeight = pixelsHeight;
 	}
 
-	public void setSpriteSizeY(int spriteSizeY) {
-		this.spriteSizeY = spriteSizeY;
-	}
-
-	public int getSpriteSizeY() {
-		return spriteSizeY;
+	public int getPixelsHeight() {
+		return pixelsHeight;
 	}
 }
