@@ -15,7 +15,7 @@ import zelda.entity.DrawableImageSprite;
 public class Boss extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 	
-	public static final int SPRITE_SIZE = 24;
+	public static final int SPRITE_SIZE = 30;
 	protected static DrawableImageSprite image = null;
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
@@ -25,7 +25,7 @@ public class Boss extends GameMovable implements Drawable, GameEntity,
 
 	public Boss(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
-				image = new DrawableImageSprite("images/characters/UnGuard.gif", defaultCanvas, 30, 35, 6);
+				image = new DrawableImageSprite("images/characters/boss1.gif", defaultCanvas, 50, 50, 7);
 		}
 		spriteNumber = 0;
 		spriteType = 0;
@@ -34,27 +34,6 @@ public class Boss extends GameMovable implements Drawable, GameEntity,
 	
 	@Override
 	public void draw(Graphics g) {
-		Point tmp = getSpeedVector().getDir();
-		movable = true;
-	
-		if (tmp.getX() == 1) {			// "droite"
-			spriteType = 1;
-			//spriteNumber = 0;
-		} else if (tmp.getX() == -1) { 	// "gauche"
-			spriteType = 2;
-			//spriteNumber = image.getNumberOfSprites()-1;
-		} else if (tmp.getY() == -1) { 	// "haut");
-			spriteType = 3;
-			//spriteNumber = 0;
-		} else if (tmp.getY() == 1) { 	// "bas");
-			spriteType = 0;
-			//spriteNumber = 0;
-		} else {  						// "de Face");
-			spriteType = 0;
-			spriteNumber = 0;
-			movable = false;
-		}
-		
 		g.drawImage(
 				image.getImage(),
 				(int) getPosition().getX(),
@@ -64,26 +43,23 @@ public class Boss extends GameMovable implements Drawable, GameEntity,
 				spriteNumber 		* image.getPixelsLenght(), 
 				spriteType	 		* image.getPixelsHeight(), 
 				(spriteNumber + 1) 	* image.getPixelsLenght(),
-				(spriteType + 1) 	* image.getPixelsHeight(), 
+				(spriteType + 1) 	* image.getPixelsHeight(),
 				null);
 	}
 
 	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
+		return (new Rectangle(
+				(int) getPosition().getX(), 
+				(int) getPosition().getY(),
 				SPRITE_SIZE , SPRITE_SIZE));
 	}
 
 	@Override
 	public void oneStepMoveHandler() {
 		if (movable) {
-			//if(isSwording ) {
-				spriteNumber++;
-				spriteNumber = spriteNumber % image.getNumberOfSprites();
-				//if (spriteNumber >= image.getNumberOfSprites() - 1) {
-					//isSwording = false;
-				///}
-			//}
+			spriteNumber++;
+			spriteNumber = spriteNumber % image.getNumberOfSprites();
 		}
 	}
 	
