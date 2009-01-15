@@ -53,6 +53,8 @@ public class TextReader implements LevelReader {
 					Canvas.class, GameZeldaUniverse.class));
 			map.put("hammer", c.getDeclaredMethod("createHammer", Point.class,
 					Canvas.class, GameZeldaUniverse.class));
+			map.put("boss", c.getDeclaredMethod("createBoss", Point.class,
+					Canvas.class, GameZeldaUniverse.class));
 			map.put("wall", c.getDeclaredMethod("createWall", Point.class,
 					direction.class, int.class, Canvas.class,
 					GameZeldaUniverse.class));
@@ -89,22 +91,23 @@ public class TextReader implements LevelReader {
 									new Point(Integer.parseInt(t[0]), Integer
 											.parseInt(t[1])), canvas, universe);
 					} catch (NumberFormatException e) {
-						throw new IOException("Invalid file, line : "
-								+ numberLine);
+						System.out.println("Invalid file, line : "
+								+ numberLine + "\n\tText is : " + line);
 					} catch (IllegalArgumentException e) {
-						throw new IOException("Invalid file, line : "
-								+ numberLine);
+						System.out.println("Invalid file, line : "
+								+ numberLine + "\n\tText is : " + line);
 					} catch (IllegalAccessException e) {
 						e.printStackTrace();
 					} catch (InvocationTargetException e) {
 						e.printStackTrace();
 					} catch (ArrayIndexOutOfBoundsException e) {
-						throw new IOException("Invalid file, line : "
-								+ numberLine);
+						System.out.println("Invalid file, line : "
+								+ numberLine + "\n\tText is : " + line);
 					}
 				}
-			} else if(!line.isEmpty())
-				throw new IOException("Invalid file, line : " + numberLine + "\nText is : " + line);
+			} else if (!line.isEmpty())
+				throw new IOException("Invalid file, line : " + numberLine
+						+ "\n\tText is : " + line);
 		}
 	}
 }
