@@ -294,8 +294,9 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				lifeValue.setText(Integer.toString(lives <= 0 ? 0 : lives));
 				if (lives <= 0) {
 					informationValue.setText("Defeat");
-					currentPlayedLevel.interrupt();
-					currentPlayedLevel.end();
+					//currentPlayedLevel.interrupt();
+					//currentPlayedLevel.end();
+					run();
 				}
 			}
 		}

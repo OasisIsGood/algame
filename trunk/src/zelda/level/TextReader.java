@@ -91,17 +91,17 @@ public class TextReader implements LevelReader {
 									new Point(Integer.parseInt(t[0]), Integer
 											.parseInt(t[1])), canvas, universe);
 					} catch (NumberFormatException e) {
-						System.out.println("Invalid file, line : "
+						System.err.println("Invalid file, line : "
 								+ numberLine + "\n\tText is : " + line);
 					} catch (IllegalArgumentException e) {
-						System.out.println("Invalid file, line : "
+						System.err.println("Invalid file, line : "
 								+ numberLine + "\n\tText is : " + line);
 					} catch (IllegalAccessException e) {
 						e.printStackTrace();
 					} catch (InvocationTargetException e) {
 						e.printStackTrace();
 					} catch (ArrayIndexOutOfBoundsException e) {
-						System.out.println("Invalid file, line : "
+						System.err.println("Invalid file, line : "
 								+ numberLine + "\n\tText is : " + line);
 					}
 				}
