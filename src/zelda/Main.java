@@ -22,9 +22,10 @@ public class Main {
 		//levels.add(new ZeldaGameLevel(g, new File("level1.xml")));
 		levels.add(new ZeldaGameLevel1(g));
 		levels.add(new ZeldaGameLevel2(g));
+		levels.add(new ZeldaGameLevel(g, new File("levels/lastLevel")));
 		
 		g.setLevels(levels);
 		g.start();
-//		g.pause();
+		g.pause();
 	}
 }

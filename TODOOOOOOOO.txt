@@ -26,7 +26,7 @@ Les grands TODOS du moment
 
 * faire un sprite des arbres...des buissons...etc du décor	// MANQUE LES CHAMPIGNONS  !!!
 
-* gérer les vies des boss pour qu'ils soient plus longs à tuer ces bougres
+* gérer les vies des boss pour qu'ils soient plus longs à tuer ces bougres // OK
 
 * changer l'état de link ( STATE ?!?) s'il chope un super pouvoir ou une terrible maladie sur un objet overlappé
 
