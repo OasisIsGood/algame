@@ -106,6 +106,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				newGame();
 				start();
 			}
 		});
@@ -266,7 +267,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 			if (observable == lifeObservable) {
 				int lives = observable.getValue();
 				lifeValue.setText(Integer.toString(lives));
-				if (lives == 0) {
+				if (lives <= 0) {
 					informationValue.setText("Defeat");
 					currentPlayedLevel.interrupt();
 					currentPlayedLevel.end();
@@ -286,6 +287,11 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	private void nextLevel() {
 		currentPlayedLevel = (GameLevelDefaultImpl) gameLevels.get(levelNumber++);
 		currentLevelValue.setText(Integer.toString(levelNumber));
-
+	}
+	
+	private void newGame() {
+		levelNumber = 0;
+		currentPlayedLevel = (GameLevelDefaultImpl) gameLevels.get(levelNumber);
+		currentLevelValue.setText(Integer.toString(levelNumber));
 	}
 }
