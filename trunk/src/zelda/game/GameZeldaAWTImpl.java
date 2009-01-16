@@ -87,9 +87,9 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		f.add(c, BorderLayout.NORTH);
 		
 		try {
-			f.setIconImage(ImageIO.read(new File("images/characters/zeldaPrincess.gif")));
+			f.setIconImage(ImageIO.read(new File("images/background/zeldaIcon.gif")));
 		} catch (IOException e1) {
-			System.out.println(e1.getMessage());
+			System.err.println(e1.getMessage() + " Default Java icon is displayed");
 		}
 		
 		f.pack();

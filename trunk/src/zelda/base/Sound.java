@@ -38,7 +38,7 @@ public class Sound implements Runnable {
       }
       catch(Exception e)
       {
-    	  System.out.println("Exception when initialize sound!");
+    	  System.err.println("Exception when initialize sound!");
       }
    }
    

@@ -10,9 +10,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import zelda.base.Sound;
+import zelda.entity.characters.AbstractLink;
 import zelda.entity.characters.Boss;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.Link;
+import zelda.entity.characters.SwordedLink;
 import zelda.entity.characters.ZeldaPrincess;
 import zelda.entity.decors.Bomb;
 import zelda.entity.decors.Bush;
@@ -25,7 +27,6 @@ import zelda.observer.EnnemyObserver;
 public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
 	protected GameUniverse universe;
-	//protected Vector<Ennemy> vEnnemies = new Vector<Ennemy>();
 
 	protected Point linkStartPos;
 	protected Point ennemyStartPos;
@@ -50,7 +51,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 		this.universe = universe;
 	}
 
-	public void overlapRule(Link link, Bush bush) {
+	public void overlapRule(AbstractLink link, Bush bush) {
 		if (link.isSwording()) {
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(bush);
@@ -60,10 +61,11 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 		}
 	}
 
-	public void overlapRule(Link link, Guard guard) {
+	public void overlapRule(AbstractLink link, Guard guard) {
 		guard.swording(true);
 		if (link.isSwording()) {
-			EnnemyObserver.getInstance().setValue(EnnemyObserver.getInstance().getValue() - 1);
+			EnnemyObserver.getInstance().setValue(
+					EnnemyObserver.getInstance().getValue() - 1);
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(guard);
 		} else {
@@ -71,7 +73,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 		}
 	}
 
-	public void overlapRule(Link link, SuperPotion superPotion) {
+	public void overlapRule(AbstractLink link, SuperPotion superPotion) {
 		life.setValue(GameZeldaImpl.NUMBER_OF_LIVES);
 		universe.removeGameEntity(superPotion);
 		try {
@@ -82,28 +84,25 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 		}
 	}
 
-	public void overlapRule(Link link, ZeldaPrincess zelda) {
-		if(EnnemyObserver.getInstance().getValue() <= 0) {
+	public void overlapRule(AbstractLink link, ZeldaPrincess zelda) {
+		if (EnnemyObserver.getInstance().getValue() <= 0) {
 			score.setValue(score.getValue() + 100);
 			win.setValue(GameZeldaAWTImpl.result.WIN.ordinal());
 		}
 	}
-	
-	public void overlapRule(Link link, Sword sword) {
-		//link.takingSword(true);
+
+	public void overlapRule(AbstractLink link, Sword sword) {
+		link = new SwordedLink(canvas);
 		universe.removeGameEntity(sword);
 	}
-	
-	public void overlapRule(Link link, Boss boss) {
+
+	public void overlapRule(AbstractLink link, Boss boss) {
 		boss.swording(true);
 		if (link.isSwording()) {
-			//TODO Penser que link a une épée
-			/*if(link.isTakingSword())
-				boss.isAttacked(Link.SWORD_STRENGH);
-			else
-				boss.isAttacked(Link.HAND_STRENGH);*/
-			if(boss.isDead()) {
-				EnnemyObserver.getInstance().setValue(EnnemyObserver.getInstance().getValue() - 1);
+			boss.isAttacked(link.strengh());
+			if (boss.isDead()) {
+				EnnemyObserver.getInstance().setValue(
+						EnnemyObserver.getInstance().getValue() - 1);
 				score.setValue(score.getValue() + 40);
 				universe.removeGameEntity(boss);
 			}
@@ -111,4 +110,12 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 			life.setValue(life.getValue() - 5);
 		}
 	}
+	
+	/*public void overlapRule(Link link, Boss boss) {
+		overlapRule((AbstractLink)link, boss);
+	}
+	
+	public void overlapRule(SwordedLink link, Boss boss) {
+		overlapRule((AbstractLink)link, boss);
+	}*/
 }
