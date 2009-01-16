@@ -49,9 +49,7 @@ public class Boss extends GameMovable implements Drawable, GameEntity,
 
 	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle(
-				(int) getPosition().getX(), 
-				(int) getPosition().getY(),
+		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
 				SPRITE_SIZE , SPRITE_SIZE));
 	}
 

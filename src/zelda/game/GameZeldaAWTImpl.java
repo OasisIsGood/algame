@@ -27,6 +27,8 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import zelda.observer.EnnemyObserver;
+
 public class GameZeldaAWTImpl implements GameZelda, Observer {
 	private static final long serialVersionUID = -3150854596831664346L;
 	protected static final int SPRITE_SIZE = 16;
@@ -44,6 +46,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	protected IntegerObservable score[] = new IntegerObservable[MAX_NUMBER_OF_PLAYER];
 	protected IntegerObservable life[] = new IntegerObservable[MAX_NUMBER_OF_PLAYER];
 	protected IntegerObservable win = new IntegerObservable();
+	protected EnnemyObserver ennemy = EnnemyObserver.getInstance();
 
 	private Frame f;
 	private GameLevelDefaultImpl currentPlayedLevel = null;
@@ -247,6 +250,10 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	public IntegerObservable win() {
 		return win;
 	}
+	
+	public IntegerObservable nbEnnemys() {
+		return ennemy;
+	}
 
 	public void setLevels(ArrayList<GameLevel> levels) {
 		gameLevels = levels;
@@ -262,6 +269,13 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 			handleScoreObservable(observable);
 			handleLifeObservable(observable);
 			handleWinObservable(observable);
+			handleEnnemyObservable(observable);
+		}
+	}
+
+	private void handleEnnemyObservable(IntegerObservable observable) {
+		if (observable == ennemy) {
+			
 		}
 	}
 
@@ -296,6 +310,8 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 					informationValue.setText("Defeat");
 					//currentPlayedLevel.interrupt();
 					//currentPlayedLevel.end();
+					for(int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i)
+						life[i].setValue(NUMBER_OF_LIVES);
 					run();
 				}
 			}
