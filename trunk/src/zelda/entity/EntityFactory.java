@@ -16,6 +16,7 @@ import zelda.entity.characters.ZeldaPrincess;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.Hammer;
 import zelda.entity.decors.SuperPotion;
+import zelda.entity.decors.Sword;
 import zelda.entity.decors.Tree;
 import zelda.game.GameZeldaUniverse;
 import zelda.level.ZeldaGameLevel1.direction;
@@ -96,6 +97,12 @@ public class EntityFactory {
 	public static void createHammer(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
 		universe.addGameEntity(new Hammer(canvas, new Point(p.x
+				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
+	}
+	
+	public static void createSword(Point p, Canvas canvas,
+			GameZeldaUniverse universe) {
+		universe.addGameEntity(new Sword(canvas, new Point(p.x
 				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
 	}
 

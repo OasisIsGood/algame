@@ -90,17 +90,18 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	}
 	
 	public void overlapRule(Link link, Sword sword) {
-		link.takingSword(true);
+		//link.takingSword(true);
 		universe.removeGameEntity(sword);
 	}
 	
 	public void overlapRule(Link link, Boss boss) {
 		boss.swording(true);
 		if (link.isSwording()) {
-			if(link.isTakingSword())
+			//TODO Penser que link a une épée
+			/*if(link.isTakingSword())
 				boss.isAttacked(Link.SWORD_STRENGH);
 			else
-				boss.isAttacked(Link.HAND_STRENGH);
+				boss.isAttacked(Link.HAND_STRENGH);*/
 			if(boss.isDead()) {
 				EnnemyObserver.getInstance().setValue(EnnemyObserver.getInstance().getValue() - 1);
 				score.setValue(score.getValue() + 40);

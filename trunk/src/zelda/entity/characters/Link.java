@@ -1,50 +1,17 @@
 package zelda.entity.characters;
 
-import gameframework.base.Drawable;
-import gameframework.base.Overlappable;
-import gameframework.game.GameEntity;
-import gameframework.game.GameMovable;
-
 import java.awt.Canvas;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
 
 import zelda.entity.DrawableImageSprite;
 
-public class Link extends GameMovable implements Drawable, GameEntity,
-		Overlappable {
+public class Link extends AbstractLink {
 	
-	public static final int SPRITE_SIZE = 24;
-	protected Canvas defaultCanvas;
-	protected int spriteNumber = 0;
-	protected int spriteType = 0;
-	protected boolean movable = true;
-	private Timer timer;
-	private boolean isSwording = false;
-	private boolean takeSword = false;
-	private boolean isDeathing = false;
+	//private boolean takeSword = false;
 	
-	public static int HAND_STRENGH = 2;
-	public static int SWORD_STRENGH = 5;
-	
-	protected static DrawableImageSprite image = null;
-	protected static DrawableImageSprite imageFace = null;
-	protected static DrawableImageSprite imageRight = null;
-	protected static DrawableImageSprite imageLeft = null;
-	protected static DrawableImageSprite imageBack = null;
-	protected static DrawableImageSprite imageGetSwordRight = null;
-	protected static DrawableImageSprite imageGetSwordLeft = null;
-	protected static DrawableImageSprite imageGetSwordFace = null;
-	protected static DrawableImageSprite imageGetSwordBack = null;
-	protected static DrawableImageSprite imageDeath = null;
-	protected static DrawableImageSprite imageSwording = null;
+	public static int STRENGH = 2;
 	
 	public Link(Canvas defaultCanvas) {
+		super(defaultCanvas);
 		if (image == null)
 			image	  = new DrawableImageSprite("images/characters/linkFace.gif", defaultCanvas, 25, 25, 7);
 		if (imageFace == null) 
@@ -55,7 +22,7 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 			imageLeft = new DrawableImageSprite("images/characters/linkLeft.gif", defaultCanvas, 25, 25, 5);
 		if (imageBack == null) 
 			imageBack = new DrawableImageSprite("images/characters/linkBack.gif", defaultCanvas, 20, 25, 10);
-		if (imageGetSwordRight == null) 
+		/*if (imageGetSwordRight == null) 
 			imageGetSwordRight = new DrawableImageSprite("images/characters/linkGetSwordRight.gif", defaultCanvas, 35, 30, 5);
 		if (imageGetSwordLeft == null) 
 			imageGetSwordLeft = new DrawableImageSprite("images/characters/linkGetSwordLeft.gif", defaultCanvas, 35, 30, 5);
@@ -64,123 +31,17 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 		if (imageGetSwordBack == null) 
 			imageGetSwordBack = new DrawableImageSprite("images/characters/linkGetSwordBack.gif", defaultCanvas, 20, 30, 5);
 		if (imageSwording == null) 
-			imageSwording = new DrawableImageSprite("images/characters/linkSwording.gif", defaultCanvas, 35, 35, 8);
-		if (imageDeath == null) 
-			imageDeath = new DrawableImageSprite("images/characters/linkDeath.gif", defaultCanvas, 25, 30, 6);
+			imageSwording = new DrawableImageSprite("images/characters/linkSwording.gif", defaultCanvas, 35, 35, 8);*/
 		
-		spriteNumber = 0;
-		spriteType = 0;
-		timer = createTimer();
-	}
-
-	@Override
-	public void draw(Graphics g) {
-		Point tmp = getSpeedVector().getDir();
-		movable = true;
-	
-		if(isDeathing) {
-			image = imageDeath;
-		}
-		else if (tmp.getX() == 1) {	
-			//System.out.println("droite");
-			if(takeSword)
-				image = imageGetSwordRight;
-			else
-				image = imageRight;
-		} else if (tmp.getX() == -1) {
-			//System.out.println("gauche");
-			if(takeSword)
-				image = imageGetSwordLeft;
-			else
-				image = imageLeft;
-		} else if (tmp.getY() == -1) {
-			//System.out.println("haut");
-			if(takeSword)
-				image = imageGetSwordBack;
-			else
-				image = imageBack;
-		} else if (tmp.getY() == 1) {
-			//System.out.println("bas");
-			if(takeSword)
-				image = imageGetSwordFace;
-			else
-				image = imageFace;
-		} else {  
-			//System.out.println("de Face");
-			if(takeSword)
-				image = imageGetSwordFace;
-			else
-				image = imageFace;
-			spriteNumber = 0;
-			movable = false;
-		}
-
-		g.drawImage(
-				image.getImage(),
-				(int) getPosition().getX(),
-				(int) getPosition().getY(),
-				(int) getPosition().getX() + SPRITE_SIZE,				
-				(int) getPosition().getY() + SPRITE_SIZE,
-				spriteNumber 		* image.getPixelsLenght(), 
-				spriteType	 		* image.getPixelsHeight(), 
-				(spriteNumber + 1) 	* image.getPixelsLenght(),
-				(spriteType + 1) 	* image.getPixelsHeight(), 
-				null);
-	}
-
-	@Override
-	public Rectangle getBoundingBox() {
-		return (new Rectangle((int) getPosition().getX(), (int) getPosition().getY(),
-				SPRITE_SIZE , SPRITE_SIZE));
-	}
-
-	@Override
-	public void oneStepMoveHandler() {
-		if(movable || (timer.isRunning() && isSwording)) {
-			spriteNumber++;
-			spriteNumber = spriteNumber % image.getNumberOfSprites();
-		}
 	}
 	
-	public DrawableImageSprite getImage() {
-		return image;
-	}
-
-	public void swording() {
-		spriteNumber = 0;
-		isSwording = true;
-		timer.start();
-	}
-
-	public boolean isSwording() {
-		return isSwording;
-	}
-	
-	public void takingSword(boolean haveSword) {
+	/*public void takingSword(boolean haveSword) {
 		takeSword = haveSword;
 	}
 	
 	public boolean isTakingSword() {
 		return takeSword;
-	}
-	
-	public void deathing() {
-		spriteNumber = 0;
-		isDeathing = true;
-	}
-	
-	public boolean isDeathing() {
-		return isDeathing;
-	}
+	}*/
 
-	private Timer createTimer() {
-		ActionListener action = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				isSwording = false;
-				timer.stop();
-				spriteNumber = 0;
-			}
-		};
-		return new Timer(600, action);
-	}
+	
 }
