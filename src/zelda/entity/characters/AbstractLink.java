@@ -1,5 +1,10 @@
 package zelda.entity.characters;
 
+import gameframework.base.Drawable;
+import gameframework.base.Overlappable;
+import gameframework.game.GameEntity;
+import gameframework.game.GameMovable;
+
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -11,15 +16,11 @@ import javax.swing.Timer;
 
 import zelda.entity.DrawableImageSprite;
 
-import gameframework.base.Drawable;
-import gameframework.base.Overlappable;
-import gameframework.game.GameEntity;
-import gameframework.game.GameMovable;
-
 public abstract class AbstractLink extends GameMovable implements Drawable,
 		GameEntity, Overlappable {
 
-	public static final int SPRITE_SIZE = 24;
+	public static final int SPRITE_SIZE = 26;
+
 
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
@@ -47,29 +48,24 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 	public void draw(Graphics g) {
 		Point tmp = getSpeedVector().getDir();
 		movable = true;
-
-		/*if (isDeathing) {
-			image = imageDeath;
-		} else */if (tmp.getX() == 1) {
-			// System.out.println("droite");
+		
+		if (isDeathing) {
+			spriteType = 4;
+			movable = false;
+		} else if (tmp.getX() == 1) {	// "droite"
 			spriteType = 1;
-		} else if (tmp.getX() == -1) {
-			// System.out.println("gauche");
+		} else if (tmp.getX() == -1) { 	// "gauche"
 			spriteType = 2;
-		} else if (tmp.getY() == -1) {
-			// System.out.println("haut");
+		} else if (tmp.getY() == -1) { 	// "haut");
 			spriteType = 3;
-		} else if (tmp.getY() == 1) {
-			// System.out.println("bas");
+		} else if (tmp.getY() == 1) { 	// "bas");
 			spriteType = 0;
-		} else {
-			// System.out.println("de Face");
-
+		} else {  						// "de Face");
 			spriteType = 0;
 			spriteNumber = 0;
 			movable = false;
 		}
-
+		
 		g.drawImage(image.getImage(), (int) getPosition().getX(),
 				(int) getPosition().getY(), (int) getPosition().getX()
 						+ SPRITE_SIZE,
@@ -95,7 +91,6 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 	}
 
 	public void deathing() {
-		spriteNumber = 0;
 		isDeathing = true;
 	}
 
@@ -116,7 +111,6 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 
 	public void swording() {
 		isSwording = true;
-		spriteNumber = 0;
 		timer.start();
 	}
 
