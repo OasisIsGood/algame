@@ -1,16 +1,16 @@
 package zelda.base;
 
 import gameframework.base.MoveStrategyKeyboard;
+
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
-import zelda.entity.characters.Link;
+import zelda.entity.characters.AbstractLink;
 
 public class LinkMoveStrategy extends MoveStrategyKeyboard {
-	//private SpeedVector currentMove = getSpeedVector();
-	Link link;
+	AbstractLink link;
 	
-	public LinkMoveStrategy(Link link) {
+	public LinkMoveStrategy(AbstractLink link) {
 		this.link = link;
 	}
 	

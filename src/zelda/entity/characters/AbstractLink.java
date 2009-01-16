@@ -115,6 +115,7 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 	}
 
 	public void swording() {
+		isSwording = true;
 		spriteNumber = 0;
 		timer.start();
 	}
@@ -122,4 +123,6 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 	public boolean isSwording() {
 		return isSwording;
 	}
+	
+	public abstract int strengh();
 }
