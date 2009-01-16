@@ -20,6 +20,7 @@ import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Sword;
 import zelda.game.GameZeldaAWTImpl;
 import zelda.game.GameZeldaImpl;
+import zelda.observer.EnnemyObserver;
 
 public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
@@ -62,6 +63,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	public void overlapRule(Link link, Guard guard) {
 		guard.swording(true);
 		if (link.isSwording()) {
+			EnnemyObserver.getInstance().setValue(EnnemyObserver.getInstance().getValue() - 1);
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(guard);
 		} else {
@@ -81,8 +83,10 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	}
 
 	public void overlapRule(Link link, ZeldaPrincess zelda) {
-		score.setValue(score.getValue() + 100);
-		win.setValue(GameZeldaAWTImpl.result.WIN.ordinal());
+		if(EnnemyObserver.getInstance().getValue() <= 0) {
+			score.setValue(score.getValue() + 100);
+			win.setValue(GameZeldaAWTImpl.result.WIN.ordinal());
+		}
 	}
 	
 	public void overlapRule(Link link, Sword sword) {
@@ -92,13 +96,13 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	
 	public void overlapRule(Link link, Boss boss) {
 		boss.swording(true);
-		System.out.println("Bouh");
 		if (link.isSwording()) {
 			if(link.isTakingSword())
 				boss.isAttacked(Link.SWORD_STRENGH);
 			else
 				boss.isAttacked(Link.HAND_STRENGH);
 			if(boss.isDead()) {
+				EnnemyObserver.getInstance().setValue(EnnemyObserver.getInstance().getValue() - 1);
 				score.setValue(score.getValue() + 40);
 				universe.removeGameEntity(boss);
 			}

@@ -19,6 +19,7 @@ import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Tree;
 import zelda.game.GameZeldaUniverse;
 import zelda.level.ZeldaGameLevel1.direction;
+import zelda.observer.EnnemyObserver;
 
 public class EntityFactory {
 
@@ -47,12 +48,11 @@ public class EntityFactory {
 
 	public static void createPotion(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
-
+		
 	}
 
 	public static void createGuard(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
-
 		Guard guard = new Guard(canvas, new Point(p.x * SPRITE_SIZE, p.y
 				* SPRITE_SIZE));
 		GameMovableDriverDefaultImpl guardDriv = new GuardMovableDriver();
@@ -61,6 +61,14 @@ public class EntityFactory {
 		guardDriv.setmoveBlockerChecker(universe.getMoveBlockerChecker());
 		guard.setDriver(guardDriv);
 		universe.addGameEntity(guard);
+		EnnemyObserver.getInstance().setValue(EnnemyObserver.getInstance().getValue() + 1);
+	}
+	
+	public static void createBoss(Point p, Canvas canvas,
+			GameZeldaUniverse universe) {
+		universe.addGameEntity(new Boss(canvas, new Point(p.x
+				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
+		EnnemyObserver.getInstance().setValue(EnnemyObserver.getInstance().getValue() + 1);
 	}
 
 	public static void createBomb(Point p, Canvas canvas,
@@ -116,11 +124,5 @@ public class EntityFactory {
 			createWall(new Point((int) p.getX() + num, (int) p.getY()),
 					direction.LEFT, num, canvas, universe);
 		}
-	}
-
-	public static void createBoss(Point p, Canvas canvas,
-			GameZeldaUniverse universe) {
-		universe.addGameEntity(new Boss(canvas, new Point(p.x
-				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
 	}
 }
