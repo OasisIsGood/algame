@@ -19,7 +19,7 @@ import gameframework.game.GameMovable;
 public abstract class AbstractLink extends GameMovable implements Drawable,
 		GameEntity, Overlappable {
 
-	public static final int SPRITE_SIZE = 35;
+	public static final int SPRITE_SIZE = 24;
 
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
@@ -37,7 +37,7 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 
 		if (image == null)
 			image = new DrawableImageSprite(
-					"images/characters/LINK.gif", defaultCanvas, 35, 35, 8);
+					"images/characters/LINK.gif", defaultCanvas, 25, 25, 8);
 		spriteNumber = 0;
 		spriteType = 0;
 		timer = createTimer();
@@ -52,16 +52,16 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 			image = imageDeath;
 		} else */if (tmp.getX() == 1) {
 			// System.out.println("droite");
-
+			spriteType = 1;
 		} else if (tmp.getX() == -1) {
 			// System.out.println("gauche");
-
+			spriteType = 2;
 		} else if (tmp.getY() == -1) {
 			// System.out.println("haut");
-			
+			spriteType = 3;
 		} else if (tmp.getY() == 1) {
 			// System.out.println("bas");
-	
+			spriteType = 0;
 		} else {
 			// System.out.println("de Face");
 
