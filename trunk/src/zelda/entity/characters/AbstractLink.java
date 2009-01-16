@@ -19,7 +19,7 @@ import gameframework.game.GameMovable;
 public abstract class AbstractLink extends GameMovable implements Drawable,
 		GameEntity, Overlappable {
 
-	public static final int SPRITE_SIZE = 24;
+	public static final int SPRITE_SIZE = 35;
 
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
@@ -27,11 +27,6 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 	protected boolean movable = true;
 
 	protected static DrawableImageSprite image = null;
-	protected static DrawableImageSprite imageFace = null;
-	protected static DrawableImageSprite imageRight = null;
-	protected static DrawableImageSprite imageLeft = null;
-	protected static DrawableImageSprite imageBack = null;
-	protected static DrawableImageSprite imageDeath = null;
 
 	private boolean isSwording = false;
 	protected Timer timer;
@@ -40,10 +35,9 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 	public AbstractLink(Canvas defaultCanvas) {
 		super();
 
-		if (imageDeath == null)
-			imageDeath = new DrawableImageSprite(
-					"images/characters/linkDeath.gif", defaultCanvas, 25, 30, 6);
-
+		if (image == null)
+			image = new DrawableImageSprite(
+					"images/characters/LINK.gif", defaultCanvas, 35, 35, 8);
 		spriteNumber = 0;
 		spriteType = 0;
 		timer = createTimer();
@@ -54,28 +48,24 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 		Point tmp = getSpeedVector().getDir();
 		movable = true;
 
-		if (isDeathing) {
+		/*if (isDeathing) {
 			image = imageDeath;
-		} else if (tmp.getX() == 1) {
+		} else */if (tmp.getX() == 1) {
 			// System.out.println("droite");
 
-			image = imageRight;
 		} else if (tmp.getX() == -1) {
 			// System.out.println("gauche");
 
-			image = imageLeft;
 		} else if (tmp.getY() == -1) {
 			// System.out.println("haut");
-
-			image = imageBack;
+			
 		} else if (tmp.getY() == 1) {
 			// System.out.println("bas");
-
-			image = imageFace;
+	
 		} else {
 			// System.out.println("de Face");
 
-			image = imageFace;
+			spriteType = 0;
 			spriteNumber = 0;
 			movable = false;
 		}
@@ -122,10 +112,6 @@ public abstract class AbstractLink extends GameMovable implements Drawable,
 			}
 		};
 		return new Timer(600, action);
-	}
-
-	public DrawableImageSprite getImage() {
-		return image;
 	}
 
 	public void swording() {
