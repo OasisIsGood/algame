@@ -22,7 +22,7 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 		switch (keycode) {
 		case KeyEvent.VK_SPACE:
 			link.swording();
-			getSpeedVector().setDir(new Point(0, 0));
+			//getSpeedVector().setDir(new Point(0, 0));
 			break;
 		case KeyEvent.VK_D:
 			link.deathing();
