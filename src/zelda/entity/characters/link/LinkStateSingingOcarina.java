@@ -7,17 +7,17 @@ import java.awt.Rectangle;
 
 import zelda.entity.DrawableImageSprite;
 
-public class LinkStateDeath extends LinkStateAbstract {
+public class LinkStateSingingOcarina extends LinkStateAbstract {
 
 	private int SpriteSize = 24;
 	private int STRENGH = 0;
 	
-	public LinkStateDeath(Canvas canvas, Link link) {
+	public LinkStateSingingOcarina(Canvas canvas, Link link) {
 		super(link);
 		if(image == null){ 
 			image = new DrawableImageSprite("images/characters/LINK.gif", canvas, 25, 25, 8);
 		}
-		spriteType = 11;
+		spriteType = 10;
 		spriteNumber = 0;
 	}
 
@@ -45,7 +45,9 @@ public class LinkStateDeath extends LinkStateAbstract {
 			spriteNumber++;
 			spriteNumber = spriteNumber % image.getNumberOfSprites();
 			if(spriteNumber >= image.getNumberOfSprites() - 1)
-				movable = false; // ça y est il est vraiment mort là, il ne bouge plus
+				movable = false; // ça y est il a fini de chanter là, il ne bouge plus
+			//link.setState("LinkStateNotArmed");
+			// TODO GROSSE EXCEPTION LA !!!
 		}
 	}
 

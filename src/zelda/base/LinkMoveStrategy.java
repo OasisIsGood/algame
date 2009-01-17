@@ -17,11 +17,11 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 	@Override
 	public void keyPressed(KeyEvent event) {
 		int keycode = event.getKeyCode();
-		if(keycode != KeyEvent.VK_SPACE && !link.isSwording())
+		if(keycode != KeyEvent.VK_SPACE && !link.isFighting())
 			super.keyPressed(event);
 		switch (keycode) {
 		case KeyEvent.VK_SPACE:
-			link.setSwording(true);
+			link.setFighting(true);
 			break;
 		case KeyEvent.VK_ESCAPE:
 			link.setState("LinkStateDeath"); 
@@ -31,13 +31,17 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 			link.setState("LinkStateHaveSword"); 
 			getSpeedVector().setDir(new Point(0, 0));
 			break;
-		case KeyEvent.VK_H:
-			link.setState("LinkStateHaveHammer"); // TODO !!! 
+		case KeyEvent.VK_O:
+			link.setState("LinkStateSingingOcarina");
 			getSpeedVector().setDir(new Point(0, 0));
-			break;
-		case KeyEvent.VK_M:
-			link.setState("LinkStateHaveMagicalBaguet"); // TODO !!! 
-			getSpeedVector().setDir(new Point(0, 0));
+			// TODO CE QUI SUIT FAIT TOUT BUGGER
+			/*try {
+				Sound sound = new Sound(new File("sounds/LOZ_Recorder.wav"));
+				sound.play();
+			} catch (FileNotFoundException e) {
+				System.out.println("(ZeldaOverlaps) Explosion Sound file not found");
+			}*/
+			//link.setState("LinkStateNotArmed");
 			break;
 		}
 	}

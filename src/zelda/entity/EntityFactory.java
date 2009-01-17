@@ -13,6 +13,7 @@ import zelda.entity.characters.Boss;
 import zelda.entity.characters.Guard;
 import zelda.entity.characters.ZeldaPrincess;
 import zelda.entity.characters.link.Link;
+import zelda.entity.decors.Bomb;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.Hammer;
 import zelda.entity.decors.SuperPotion;
@@ -33,6 +34,8 @@ public class EntityFactory {
 
 	public static void createBomb(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
+		universe.addGameEntity(new Bomb(canvas, new Point(p.x
+				* SPRITE_SIZE, p.y * SPRITE_SIZE)));
 	}
 
 	public static void createBoss(Point p, Canvas canvas,
