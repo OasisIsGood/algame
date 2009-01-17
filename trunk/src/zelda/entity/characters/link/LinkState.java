@@ -9,4 +9,6 @@ public interface LinkState {
 	public void draw(Graphics g, Point pos);
 	public void oneStepMoveHandler();
 	public Rectangle getBoundingBox();
+	public int getStrengh();
+	public int getSpriteSize();
 }

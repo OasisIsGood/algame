@@ -14,9 +14,7 @@ import java.lang.reflect.Constructor;
 
 public class Link extends GameMovable implements Drawable,
 GameEntity, Overlappable {
-	
-	private static int SPRITE_SIZE = 24;
-	private int STRENGH = 2;
+
 	private Canvas canvas = null;
 	private LinkState state  = null;
 	
@@ -39,12 +37,12 @@ GameEntity, Overlappable {
 		state.oneStepMoveHandler();
 	}
 	
-	public static int getSpriteSize() {
-		return SPRITE_SIZE;
+	public int getSpriteSize() {
+		return state.getSpriteSize();
 	}
 
 	public int getStrengh() {
-		return STRENGH;
+		return state.getStrengh();
 	}
 	
 	public SpeedVector getLinkSpeedVector() {
@@ -58,7 +56,6 @@ GameEntity, Overlappable {
 	
 	public void setState(String stateString){
 		try {
-			//Class<?> linkStateClass = Class.forName("linkStates." + stateString);
 			Class<?> linkStateClass = Class.forName("zelda.entity.characters.link." + stateString);
 			Constructor<?> make = linkStateClass.getConstructor(Canvas.class, Link.class);
 			LinkState linkState = (LinkState) make.newInstance(canvas, this);
