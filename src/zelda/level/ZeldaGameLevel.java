@@ -50,8 +50,6 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	@Override
 	protected void init() {
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
-		// TODO mieux définir les positions de départ et trouver des vrais
-		// variables !!!!
 		OverlapRuleApplier overlapRules = new ZeldaOverlaps(new Point(
 				14 * SPRITE_SIZE, 17 * SPRITE_SIZE), new Point(
 				14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0], win,
@@ -70,8 +68,6 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		((GameUniverseViewPortDefaultImpl) gameBoard)
 				.setBackground("images/background/background_image_zelda2.gif");
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
-		
-		universe.addGameEntity(new NextLevelImage(canvas, new Point(100, 50)));
 		
 		try {
 			LevelReader reader = checkExtension(f);
