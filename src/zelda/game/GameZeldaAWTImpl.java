@@ -122,6 +122,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		MenuItem resume = new MenuItem("resume");
 		Menu about = new Menu("about");
 		MenuItem help = new MenuItem("help");
+		MenuItem commands = new MenuItem("commands");
 		menuBar.add(file);
 		menuBar.add(game);
 		menuBar.add(about);
@@ -168,6 +169,11 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				help();
 			}
 		});
+		commands.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				commands();
+			}
+		});
 
 		file.add(start);
 		file.add(redo);
@@ -177,6 +183,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		game.add(pause);
 		game.add(resume);
 		about.add(help);
+		about.add(commands);
 
 		start.setEnabled(false);
 		// save.setEnabled(false);
@@ -277,6 +284,25 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	public void resume() {
 		currentPlayedLevel.resume();
 	}
+	
+	public void help() {
+		JOptionPane.showMessageDialog(null,
+				"The CREMI Legend Of Zelda\n" +
+				"Utilisez les ''contr�les fl�ch�s'' pour d�placer LinkAuber\n" +
+				"Appuyez sur la touche ''Espace'' pour taper sur vos ennemis!\n" +
+				"Tuez les tous, puis sauvez Zelda !\n" +
+				"\nBonne partie...");
+	}
+	
+	private void commands() {
+		JOptionPane.showMessageDialog(null,
+				"SPACE  : attack your ennemy\n" +
+				"ESCAPE : kill your Link (snif)\n" +
+				"S      : give a Sword  to Link\n" +
+				"H      : give a Hammer to Link\n" +
+				"- / +  : Previous / Next level !\n" +
+				"  *** Use it with caution ! *** \n");
+	}
 
 	public IntegerObservable[] score() {
 		return score;
@@ -314,7 +340,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 
 	private void handleEnnemyObservable(IntegerObservable observable) {
 		if (observable == ennemy) {
-
+			// TODO ?!?
 		}
 	}
 
@@ -370,15 +396,5 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		currentPlayedLevel = (GameLevelDefaultImpl) gameLevels
 				.get(levelNumber++);
 		currentLevelValue.setText(Integer.toString(levelNumber));
-	}
-	
-	public void help() {
-		// TODO a explanation of the level ! 
-		JOptionPane.showMessageDialog(null,
-				"The CREMI Legend Of Zelda\n" +
-				"Utilisez les ''contr�les fl�ch�s'' pour d�placer LinkAuber\n" +
-				"Appuyez sur la touche ''Espace'' pour taper sur vos ennemis!\n" +
-				"Tuez les tous, puis sauvez Zelda !\n" +
-				"\nBonne partie...");
 	}
 }
