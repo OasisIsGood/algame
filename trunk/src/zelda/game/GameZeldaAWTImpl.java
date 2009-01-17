@@ -41,7 +41,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	};
 
 	public static final int NB_ROWS = 50;
-	public static final int NB_COLUMNS = 70;
+	public static final int NB_COLUMNS = 60;
 
 	protected CanvasDefaultImpl defaultCanvas = null;
 	protected IntegerObservable score[] = new IntegerObservable[MAX_NUMBER_OF_PLAYER];
@@ -291,7 +291,8 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				"Utilisez les ''controles fleches'' pour deplacer LinkAuber\n" +
 				"Appuyez sur la touche ''Espace'' pour taper sur vos ennemis!\n" +
 				"Tuez les tous, puis sauvez Zelda !\n" +
-				"\nBonne partie...");
+				"                       --- \n" +
+				"Bonne partie...(Ne sautez pas sur les bombes !)");
 	}
 	
 	private void commands() {

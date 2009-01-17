@@ -10,7 +10,7 @@ import zelda.entity.DrawableImageSprite;
 public class LinkStateNotArmed extends LinkStateAbstract {
 	
 	private int STRENGH = 0;
-	private int SpriteSize = 24;
+	private int SpriteSize = 25;
 
 	public LinkStateNotArmed(Canvas canvas, Link link) {
 		super(link);

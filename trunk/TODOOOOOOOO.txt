@@ -1,43 +1,20 @@
-Les grands TODOS du moment 
-
-***
-
-* faire un générateur aléatoire de terrain ( BUILDER ?!? ) avec 
-	- murs extérieurs de bases
-	- murs en plus aléatoires
-	- zeldaPrincess dans un endroit, là où la sauver avec au mojns un gros boss à coté
-	- link de l'autre côté
- 
-* Créer un décor avec un fichier contenant la liste des éléments à ajouter et monstres et boss courants //OK
- 
-* compter le nombre de boss en cours, afin de valider la victoire si tout les boss tués par ex
-
-* Afficher 
-	- un texte au départ pour indication (1sec...) 
-	- un texte de "Victoire !"
-	- un texte "new Level !"
-	- un texte "You Lost !"
+TODO
 	
-* faire un sprite d'épée pour Link
+########################################################
 
-* faire un sprite meilleur pour le boss qui move son body // OK MAIS FAUT LUI ACTIVER SON EPEE KAN IL TAPE
+* Gérer le sprite de Link pour quand il se fight
+ ---> si épée sur LINKSWORDING.gif
+ ---> fighting sur sprite LINK.gif sinon
 
-* faire un sprite de zelda qui crie "au secouuuuuuurs" et plus gross 	// EN COURS
+########################################################
 
-* faire un sprite des arbres...des buissons...etc du décor	// MANQUE LES CHAMPIGNONS  !!!
+* Tests JUnit ?!?
+########################################################
 
-* gérer les vies des boss pour qu'ils soient plus longs à tuer ces bougres // OK
+* Bug des sons qui stop tout
 
-* changer l'état de link ( STATE ?!?) s'il chope un super pouvoir ou une terrible maladie sur un objet overlappé
+########################################################
 
-* faire une fabrique pour Link et tout ça comme il dit benoit //OK
+* Bug des états qui sort une grosse exception
 
-* FAIRE DES TESTS UNITAIRES DE BONNES PERTES DE VIE des entités lors de combat, ou autres tests...
-
-* Ne plus changer awt en swing, merci //OK
-
-* Gérer la sauvegarde du jeu par un bo serializable par exemple...à voir. //JE NE TROUVE PAS DE SOLUTIONS
-
-* Gérer la PAUSE et REPRISE du jeu //OK
-
-***
+########################################################
