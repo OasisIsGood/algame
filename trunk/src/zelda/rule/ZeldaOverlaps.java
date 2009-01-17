@@ -115,14 +115,6 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 		}
 	}
 	
-	/*public void overlapRule(Link link, Boss boss) {
-		overlapRule((AbstractLink)link, boss);
-	}
-	
-	public void overlapRule(SwordedLink link, Boss boss) {
-		overlapRule((AbstractLink)link, boss);
-	}*/
-	
 	@Override
 	public void applyOverlapRules(Vector<Overlap> overlaps) {
 		for (Overlap col : overlaps) {
