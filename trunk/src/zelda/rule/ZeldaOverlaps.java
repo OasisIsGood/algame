@@ -27,8 +27,9 @@ import zelda.observer.EnnemyObserver;
  */
 public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
+	protected int MAX_LIFE = 100;
+	
 	protected GameUniverse universe;
-
 	protected Point linkStartPos;
 	protected Point ennemyStartPos;
 	protected boolean manageLinkDeath;
@@ -53,19 +54,25 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	}
 
 	public void overlapRule(Link link, Bomb bomb) {
-		link.setState("LinkStateNotArmed");
-		universe.removeGameEntity(bomb);
+		life.setValue(life.getValue() - 15);
+		if (life.getValue() <= 0)
+			link.setState("LinkStateDeath");
+		
+		
 		try {
 			Sound sound = new Sound(new File("sounds/explosion.wav"));
 			sound.play();
 		} catch (FileNotFoundException e) {
 			System.out.println("(ZeldaOverlaps) Explosion Sound file not found");
 		}
+		
+		link.setState("LinkStateNotArmed");
+		universe.removeGameEntity(bomb);
 	}
 	
 	public void overlapRule(Link link, Boss boss) {
 		boss.swording(true);
-		if (link.isSwording()) {
+		if (link.isFighting()) {
 			boss.isAttacked(link.getStrengh());
 			if (boss.isDead()) {
 				EnnemyObserver.getInstance().setValue(
@@ -75,28 +82,34 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 			}
 		} else {
 			life.setValue(life.getValue() - 5);
+			if (life.getValue() <= 0)
+				link.setState("LinkStateDeath");
 		}
 	}
 	
 	public void overlapRule(Link link, Bush bush) {
-		if (link.isSwording()) {
+		if (link.isFighting()) {
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(bush);
 			universe.addGameEntity(new Bomb(canvas, bush.getPosition()));
 		} else {
 			life.setValue(life.getValue() - 1);
+			if (life.getValue() <= 0)
+				link.setState("LinkStateDeath");
 		}
 	}
 
 	public void overlapRule(Link link, Guard guard) {
 		guard.swording(true);
-		if (link.isSwording()) {
+		if (link.isFighting()) {
 			EnnemyObserver.getInstance().setValue(
 					EnnemyObserver.getInstance().getValue() - 1);
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(guard);
 		} else {
 			life.setValue(life.getValue() - 5);
+			if (life.getValue() <= 0)
+				link.setState("LinkStateDeath");
 		}
 	}
 
@@ -112,7 +125,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
 	public void overlapRule(Link link, ZeldaPrincess zelda) {
 		if (EnnemyObserver.getInstance().getValue() <= 0) {
-			score.setValue(score.getValue() + 100);
+			score.setValue(score.getValue() + MAX_LIFE);
 			win.setValue(GameZeldaAWTImpl.result.WIN.ordinal());
 		}
 	}

@@ -288,7 +288,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	public void help() {
 		JOptionPane.showMessageDialog(null,
 				"The CREMI Legend Of Zelda\n" +
-				"Utilisez les ''contr�les fl�ch�s'' pour d�placer LinkAuber\n" +
+				"Utilisez les ''controles fleches'' pour deplacer LinkAuber\n" +
 				"Appuyez sur la touche ''Espace'' pour taper sur vos ennemis!\n" +
 				"Tuez les tous, puis sauvez Zelda !\n" +
 				"\nBonne partie...");
@@ -299,8 +299,8 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				"SPACE  : attack your ennemy\n" +
 				"ESCAPE : kill your Link (snif)\n" +
 				"S      : give a Sword  to Link\n" +
-				"H      : give a Hammer to Link\n" +
-				"- / +  : Previous / Next level !\n" +
+				"O      : let Link to Sing for you\n" +
+				"- / +  : Previous / Next level ! (TODO si ya le temps!)\n" +
 				"  *** Use it with caution ! *** \n");
 	}
 
