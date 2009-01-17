@@ -17,6 +17,7 @@ GameEntity, Overlappable {
 
 	private Canvas canvas = null;
 	private LinkState state  = null;
+	private boolean isSwording = false;
 	
 	public Link(Canvas defaultCanvas) {
 		canvas = defaultCanvas;
@@ -48,6 +49,14 @@ GameEntity, Overlappable {
 	public SpeedVector getLinkSpeedVector() {
 		return getSpeedVector();
 	}
+	
+	public void setSwording(boolean isSwording) {
+		this.isSwording = isSwording;
+	}
+
+	public boolean isSwording() {
+		return isSwording;
+	}
 
 	public void setState(LinkState state, Link link){
 		state.setLink(link);
@@ -70,7 +79,11 @@ GameEntity, Overlappable {
 		return state;
 	}
 	
-	public boolean isTakingSword(){
+	public boolean isNotArmed(){
+		return (state instanceof LinkStateNotArmed); 
+	}
+	
+	public boolean isHaveSword(){
 		return (state instanceof LinkStateHaveSword); 
 	}
 

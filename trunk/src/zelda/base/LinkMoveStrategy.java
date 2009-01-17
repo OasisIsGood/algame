@@ -17,15 +17,26 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 	@Override
 	public void keyPressed(KeyEvent event) {
 		int keycode = event.getKeyCode();
-		if(keycode != KeyEvent.VK_SPACE /*&& !link.isSwording()*/) // TODO !!!!!!!!!!!!!!!!!!
+		if(keycode != KeyEvent.VK_SPACE && !link.isSwording())
 			super.keyPressed(event);
 		switch (keycode) {
 		case KeyEvent.VK_SPACE:
-			//link.swording(); // TODO !!!!!!!!!!!!!!!!!!
-			//getSpeedVector().setDir(new Point(0, 0));
+			link.setSwording(true);
 			break;
-		case KeyEvent.VK_D:
+		case KeyEvent.VK_ESCAPE:
 			link.setState("LinkStateDeath"); 
+			getSpeedVector().setDir(new Point(0, 0));
+			break;
+		case KeyEvent.VK_S:
+			link.setState("LinkStateHaveSword"); 
+			getSpeedVector().setDir(new Point(0, 0));
+			break;
+		case KeyEvent.VK_H:
+			link.setState("LinkStateHaveHammer"); // TODO !!! 
+			getSpeedVector().setDir(new Point(0, 0));
+			break;
+		case KeyEvent.VK_M:
+			link.setState("LinkStateHaveMagicalBaguet"); // TODO !!! 
 			getSpeedVector().setDir(new Point(0, 0));
 			break;
 		}

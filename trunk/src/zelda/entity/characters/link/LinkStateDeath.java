@@ -41,7 +41,7 @@ public class LinkStateDeath extends LinkStateAbstract {
 
 	@Override
 	public void oneStepMoveHandler() {
-		if (movable /*|| (timer.isRunning() && isSwording)*/) {
+		if (movable) {
 			spriteNumber++;
 			spriteNumber = spriteNumber % image.getNumberOfSprites();
 			if(spriteNumber >= image.getNumberOfSprites() - 1)
