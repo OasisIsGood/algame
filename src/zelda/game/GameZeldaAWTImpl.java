@@ -25,6 +25,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import zelda.observer.EnnemyObserver;
@@ -119,8 +120,11 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		Menu game = new Menu("game");
 		MenuItem pause = new MenuItem("pause");
 		MenuItem resume = new MenuItem("resume");
+		Menu about = new Menu("about");
+		MenuItem help = new MenuItem("help");
 		menuBar.add(file);
 		menuBar.add(game);
+		menuBar.add(about);
 		f.setMenuBar(menuBar);
 
 		start.addActionListener(new ActionListener() {
@@ -159,6 +163,11 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				resume();
 			}
 		});
+		help.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				help();
+			}
+		});
 
 		file.add(start);
 		file.add(redo);
@@ -167,6 +176,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		file.add(quit);
 		game.add(pause);
 		game.add(resume);
+		about.add(help);
 
 		start.setEnabled(false);
 		// save.setEnabled(false);
@@ -360,5 +370,15 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		currentPlayedLevel = (GameLevelDefaultImpl) gameLevels
 				.get(levelNumber++);
 		currentLevelValue.setText(Integer.toString(levelNumber));
+	}
+	
+	public void help() {
+		// TODO a explanation of the level ! 
+		JOptionPane.showMessageDialog(null,
+				"The CREMI Legend Of Zelda\n" +
+				"Utilisez les ''contrôles fléchés'' pour déplacer LinkAuber\n" +
+				"Appuyez sur la touche ''Espace'' pour taper sur vos ennemis!\n" +
+				"Tuez les tous, puis sauvez Zelda !\n" +
+				"\nBonne partie...");
 	}
 }
