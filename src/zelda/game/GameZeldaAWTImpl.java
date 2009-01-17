@@ -4,6 +4,7 @@ import gameframework.base.IntegerObservable;
 import gameframework.game.CanvasDefaultImpl;
 import gameframework.game.GameLevel;
 import gameframework.game.GameLevelDefaultImpl;
+import gameframework.game.GameUniverseViewPortDefaultImpl;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -28,10 +29,13 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import zelda.level.ZeldaGameLevel;
 import zelda.observer.EnnemyObserver;
 
 public class GameZeldaAWTImpl implements GameZelda, Observer {
+	
 	private static final long serialVersionUID = -3150854596831664346L;
+	
 	protected static final int SPRITE_SIZE = 16;
 	public static final int MAX_NUMBER_OF_PLAYER = 1;
 	public static final int NUMBER_OF_LIVES = 100;
@@ -349,6 +353,12 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		if (observable == win) {
 			if (win.getValue() == result.WIN.ordinal()) {
 				informationValue.setText("Win");
+				
+				// TODO Gael Ajout...Je peux meme pas vérifier ca passe jms en WIN
+				((GameUniverseViewPortDefaultImpl) 
+						((ZeldaGameLevel) currentPlayedLevel).getGameBoard())
+						.setBackground("images/background/Zelda_kiss.jpg");
+				
 				currentPlayedLevel.interrupt();
 
 				try {
