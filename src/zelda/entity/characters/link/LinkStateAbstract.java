@@ -28,4 +28,6 @@ public abstract class LinkStateAbstract implements LinkState {
 	public abstract void draw(Graphics g, Point pos);
 	public abstract Rectangle getBoundingBox();
 	public abstract void oneStepMoveHandler();
+	public abstract int getStrengh();
+	public abstract int getSpriteSize();
 }

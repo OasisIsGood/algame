@@ -9,6 +9,9 @@ import zelda.entity.DrawableImageSprite;
 
 public class LinkStateDeath extends LinkStateAbstract {
 
+	private int SpriteSize = 24;
+	private int STRENGH = 0;
+	
 	public LinkStateDeath(Canvas canvas, Link link) {
 		super(link);
 		if(image == null){ 
@@ -22,8 +25,8 @@ public class LinkStateDeath extends LinkStateAbstract {
 	public void draw(Graphics g, Point pos) {
 		position = pos;
 		g.drawImage(image.getImage(), pos.x, pos.y, 
-				pos.x + Link.getSpriteSize(), 
-				pos.y + Link.getSpriteSize(),
+				pos.x + SpriteSize, 
+				pos.y + SpriteSize,
 				spriteNumber * image.getPixelsLenght(), 
 				spriteType * image.getPixelsHeight(), 
 				(spriteNumber + 1) * image.getPixelsLenght(), 
@@ -33,7 +36,7 @@ public class LinkStateDeath extends LinkStateAbstract {
 	@Override
 	public Rectangle getBoundingBox() {
 		return (new Rectangle(position.x, position.y, 
-				Link.getSpriteSize(), Link.getSpriteSize()));
+				SpriteSize, SpriteSize));
 	}
 
 	@Override
@@ -44,5 +47,15 @@ public class LinkStateDeath extends LinkStateAbstract {
 			if(spriteNumber >= image.getNumberOfSprites() - 1)
 				movable = false; // ça y est il est vraiment mort là, il ne bouge plus
 		}
+	}
+
+	@Override
+	public int getStrengh() {
+		return STRENGH ;
+	}
+
+	@Override
+	public int getSpriteSize() {
+		return SpriteSize;
 	}
 }

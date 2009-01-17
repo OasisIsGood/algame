@@ -9,6 +9,9 @@ import zelda.entity.DrawableImageSprite;
 
 public class LinkStateNotArmed extends LinkStateAbstract {
 	
+	private int STRENGH = 0;
+	private int SpriteSize = 24;
+
 	public LinkStateNotArmed(Canvas canvas, Link link) {
 		super(link);
 		if(image == null){ 
@@ -39,8 +42,8 @@ public class LinkStateNotArmed extends LinkStateAbstract {
 		}
 		
 		g.drawImage(image.getImage(), pos.x, pos.y, 
-				pos.x + Link.getSpriteSize(), 
-				pos.y + Link.getSpriteSize(),
+				pos.x + SpriteSize, 
+				pos.y + SpriteSize,
 				spriteNumber * image.getPixelsLenght(), 
 				spriteType * image.getPixelsHeight(), 
 				(spriteNumber + 1) * image.getPixelsLenght(), 
@@ -50,7 +53,7 @@ public class LinkStateNotArmed extends LinkStateAbstract {
 	@Override
 	public Rectangle getBoundingBox() {
 		return (new Rectangle(position.x, position.y, 
-				Link.getSpriteSize(), Link.getSpriteSize()));
+				SpriteSize, SpriteSize ));
 	}
 
 	@Override
@@ -59,5 +62,15 @@ public class LinkStateNotArmed extends LinkStateAbstract {
 			spriteNumber++;
 			spriteNumber = spriteNumber % image.getNumberOfSprites();
 		}
+	}
+	
+	@Override
+	public int getStrengh() {
+		return STRENGH;
+	}
+
+	@Override
+	public int getSpriteSize() {
+		return SpriteSize;
 	}
 }

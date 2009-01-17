@@ -10,6 +10,7 @@ import zelda.entity.DrawableImageSprite;
 public class LinkStateHaveSword extends LinkStateAbstract {
 
 	private static int STRENGH = 5;
+	private int SpriteSize = 24;
 	
 	public LinkStateHaveSword(Canvas canvas, Link link) {
 		super(link);
@@ -41,18 +42,18 @@ public class LinkStateHaveSword extends LinkStateAbstract {
 		}
 		
 		g.drawImage(image.getImage(), pos.x, pos.y, 
-				pos.x + Link.getSpriteSize(), 
-				pos.y + Link.getSpriteSize(),
-				spriteNumber * image.getPixelsLenght(), 
-				spriteType * image.getPixelsHeight(), 
-				(spriteNumber + 1) * image.getPixelsLenght(), 
-				(spriteType + 1) * image.getPixelsHeight(), null);
-	}
+					pos.x + SpriteSize, 
+					pos.y + SpriteSize,
+					spriteNumber * image.getPixelsLenght(), 
+					spriteType * image.getPixelsHeight(), 
+					(spriteNumber + 1) * image.getPixelsLenght(), 
+					(spriteType + 1) * image.getPixelsHeight(), null);
+		}
 
 	@Override
 	public Rectangle getBoundingBox() {
 		return (new Rectangle(position.x, position.y, 
-				Link.getSpriteSize(), Link.getSpriteSize()));
+					SpriteSize, SpriteSize ));
 	}
 
 	@Override
@@ -62,8 +63,14 @@ public class LinkStateHaveSword extends LinkStateAbstract {
 			spriteNumber = spriteNumber % image.getNumberOfSprites();
 		}
 	}
-	
-	public int strengh() {
+
+	@Override
+	public int getStrengh() {
 		return STRENGH;
+	}
+
+	@Override
+	public int getSpriteSize() {
+		return SpriteSize;
 	}
 }
