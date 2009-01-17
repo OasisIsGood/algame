@@ -10,22 +10,29 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionListener;
 import java.lang.reflect.Constructor;
 
-public class Link extends GameMovable implements Drawable,
-GameEntity, Overlappable {
+import java.awt.event.ActionEvent;
+import javax.swing.Timer;
+
+public class Link extends GameMovable implements Drawable, GameEntity,
+		Overlappable {
 
 	private Canvas canvas = null;
-	private LinkState state  = null;
+	private LinkState state = null;
 	private boolean isFighting = false;
-	
+	private Timer timer;
+
 	public Link(Canvas defaultCanvas) {
 		canvas = defaultCanvas;
+		timer = createTimer();
 	}
-	
+
 	@Override
 	public void draw(Graphics g) {
-		state.draw(g, new Point((int) getPosition().getX(), (int) getPosition().getY()));
+		state.draw(g, new Point((int) getPosition().getX(), (int) getPosition()
+				.getY()));
 	}
 
 	@Override
@@ -37,7 +44,7 @@ GameEntity, Overlappable {
 	public void oneStepMoveHandler() {
 		state.oneStepMoveHandler();
 	}
-	
+
 	public int getSpriteSize() {
 		return state.getSpriteSize();
 	}
@@ -45,49 +52,68 @@ GameEntity, Overlappable {
 	public int getStrengh() {
 		return state.getStrengh();
 	}
-	
+
 	public SpeedVector getLinkSpeedVector() {
 		return getSpeedVector();
 	}
-	
+
 	public void setFighting(boolean isFighting) {
 		this.isFighting = isFighting;
+		if (isFighting)
+			timer.start();
 	}
 
 	public boolean isFighting() {
 		return isFighting;
 	}
 
-	public void setState(LinkState state, Link link){
+	private Timer createTimer() {
+		ActionListener action = new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				isFighting = false;
+				timer.stop();
+			}
+		};
+		return new Timer(300, action);
+	}
+	
+	public boolean isTimerRunning() {
+		return timer.isRunning();
+	}
+
+	public void setState(LinkState state, Link link) {
 		state.setLink(link);
 		this.state = state;
 	}
-	
-	public void setState(String stateString){
+
+	public void setState(String stateString) {
 		try {
-			Class<?> linkStateClass = Class.forName("zelda.entity.characters.link." + stateString);
-			Constructor<?> make = linkStateClass.getConstructor(Canvas.class, Link.class);
+			Class<?> linkStateClass = Class
+					.forName("zelda.entity.characters.link." + stateString);
+			Constructor<?> make = linkStateClass.getConstructor(Canvas.class,
+					Link.class);
 			LinkState linkState = (LinkState) make.newInstance(canvas, this);
 			this.state = linkState;
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("(Class Link) : the " + stateString + " don't exist!");
+			System.out.println("(Class Link) : the " + stateString
+					+ " don't exist!");
 		}
 	}
 
-	public LinkState getState(){
+	public LinkState getState() {
 		return state;
 	}
-	
-	public boolean isNotArmed(){
-		return (state instanceof LinkStateNotArmed); 
-	}
-	
-	public boolean isHaveSword(){
-		return (state instanceof LinkStateHaveSword); 
+
+	public boolean isNotArmed() {
+		return (state instanceof LinkStateNotArmed);
 	}
 
-	public boolean isDeath(){
-		return (state instanceof LinkStateDeath); 
+	public boolean isHaveSword() {
+		return (state instanceof LinkStateHaveSword);
+	}
+
+	public boolean isDeath() {
+		return (state instanceof LinkStateDeath);
 	}
 }
