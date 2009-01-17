@@ -17,7 +17,7 @@ import zelda.entity.DrawableImageSprite;
  */
 public class ZeldaPrincess extends GameMovable implements Drawable, GameEntity, Overlappable {
 
-	public static final int SPRITE_SIZE = 28;
+	public static final int SPRITE_SIZE = 25;
 	protected static DrawableImageSprite image = null;
 	protected Point position;
 	private boolean movable = true;
