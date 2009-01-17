@@ -40,6 +40,8 @@ public class LinkStateHaveSword extends LinkStateAbstract {
 			spriteNumber = 0;
 			movable = false;
 		}
+		if(link.isTimerRunning())
+			spriteType += 4;
 		
 		g.drawImage(image.getImage(), pos.x, pos.y, 
 					pos.x + SpriteSize, 
@@ -58,7 +60,7 @@ public class LinkStateHaveSword extends LinkStateAbstract {
 
 	@Override
 	public void oneStepMoveHandler() {
-		if (movable) {
+		if (movable || link.isTimerRunning()) {
 			spriteNumber++;
 			spriteNumber = spriteNumber % image.getNumberOfSprites();
 		}
