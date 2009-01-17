@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import zelda.entity.decors.NextLevelImage;
 import zelda.game.GameZelda;
 import zelda.game.GameZeldaUniverseDefaultImpl;
 import zelda.rule.ZeldaMoveBlockers;
@@ -78,7 +77,6 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
-
 	}
 
 	private LevelReader checkExtension(File f) throws IOException {

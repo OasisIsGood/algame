@@ -376,7 +376,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		// TODO a explanation of the level ! 
 		JOptionPane.showMessageDialog(null,
 				"The CREMI Legend Of Zelda\n" +
-				"Utilisez les ''contrôles fléchés'' pour déplacer LinkAuber\n" +
+				"Utilisez les ''contrï¿½les flï¿½chï¿½s'' pour dï¿½placer LinkAuber\n" +
 				"Appuyez sur la touche ''Espace'' pour taper sur vos ennemis!\n" +
 				"Tuez les tous, puis sauvez Zelda !\n" +
 				"\nBonne partie...");

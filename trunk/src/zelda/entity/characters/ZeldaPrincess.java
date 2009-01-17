@@ -17,7 +17,7 @@ import zelda.entity.DrawableImageSprite;
  */
 public class ZeldaPrincess extends GameMovable implements Drawable, GameEntity, Overlappable {
 
-	public static final int SPRITE_SIZE = 36;
+	public static final int SPRITE_SIZE = 28;
 	protected static DrawableImageSprite image = null;
 	protected Point position;
 	private boolean movable = true;
@@ -26,7 +26,7 @@ public class ZeldaPrincess extends GameMovable implements Drawable, GameEntity, 
 
 	public ZeldaPrincess(Canvas defaultCanvas, Point pos) {
 		if (image == null) {
-			image = new DrawableImageSprite("images/characters/ZELDA.gif", defaultCanvas, 35, 35, 6);
+			image = new DrawableImageSprite("images/characters/ZELDA.gif", defaultCanvas, 25, 25, 6);
 		}
 		spriteNumber = 0;
 		spriteType = 0;

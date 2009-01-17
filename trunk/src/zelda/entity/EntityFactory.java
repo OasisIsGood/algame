@@ -9,11 +9,10 @@ import java.awt.Point;
 
 import zelda.base.GuardMovableDriver;
 import zelda.base.LinkMoveStrategy;
-import zelda.entity.characters.AbstractLink;
 import zelda.entity.characters.Boss;
 import zelda.entity.characters.Guard;
-import zelda.entity.characters.Link;
 import zelda.entity.characters.ZeldaPrincess;
+import zelda.entity.characters.link.Link;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.Hammer;
 import zelda.entity.decors.SuperPotion;
@@ -30,7 +29,8 @@ public class EntityFactory {
 	public static void createLink(Point p, Canvas canvas,
 			GameZeldaUniverse universe) {
 
-		AbstractLink link = new Link(canvas);
+		Link link = new Link(canvas);
+		link.setState("LinkStateNotArmed");
 		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
 		MoveStrategyKeyboard keyStr = new LinkMoveStrategy(link);
 		pacDriver.setStrategy(keyStr);
