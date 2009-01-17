@@ -58,7 +58,8 @@ GameEntity, Overlappable {
 	
 	public void setState(String stateString){
 		try {
-			Class<?> linkStateClass = Class.forName("linkStates." + stateString);
+			//Class<?> linkStateClass = Class.forName("linkStates." + stateString);
+			Class<?> linkStateClass = Class.forName("zelda.entity.characters.link." + stateString);
 			Constructor<?> make = linkStateClass.getConstructor(Canvas.class, Link.class);
 			LinkState linkState = (LinkState) make.newInstance(canvas, this);
 			this.state = linkState;
