@@ -35,30 +35,30 @@ public class TextReader implements LevelReader {
 
 		Class<EntityFactory> c = EntityFactory.class;
 		try {
-			map.put("link", c.getDeclaredMethod("createLink", Point.class,
-					Canvas.class, GameZeldaUniverse.class));
-			map.put("zelda", c.getDeclaredMethod("createZelda", Point.class,
-					Canvas.class, GameZeldaUniverse.class));
-			map.put("potion", c.getDeclaredMethod("createPotion", Point.class,
-					Canvas.class, GameZeldaUniverse.class));
-			map.put("guard", c.getDeclaredMethod("createGuard", Point.class,
-					Canvas.class, GameZeldaUniverse.class));
 			map.put("bomb", c.getDeclaredMethod("createBomb", Point.class,
+					Canvas.class, GameZeldaUniverse.class));
+			map.put("boss", c.getDeclaredMethod("createBoss", Point.class,
 					Canvas.class, GameZeldaUniverse.class));
 			map.put("bush", c.getDeclaredMethod("createBush", Point.class,
 					Canvas.class, GameZeldaUniverse.class));
-			map.put("superpotion", c.getDeclaredMethod("createSuperPotion",
-					Point.class, Canvas.class, GameZeldaUniverse.class));
-			map.put("tree", c.getDeclaredMethod("createTree", Point.class,
+			map.put("guard", c.getDeclaredMethod("createGuard", Point.class,
 					Canvas.class, GameZeldaUniverse.class));
 			map.put("hammer", c.getDeclaredMethod("createHammer", Point.class,
 					Canvas.class, GameZeldaUniverse.class));
-			map.put("boss", c.getDeclaredMethod("createBoss", Point.class,
+			map.put("link", c.getDeclaredMethod("createLink", Point.class,
+					Canvas.class, GameZeldaUniverse.class));
+			map.put("potion", c.getDeclaredMethod("createPotion", Point.class,
+					Canvas.class, GameZeldaUniverse.class));
+			map.put("superpotion", c.getDeclaredMethod("createSuperPotion",
+					Point.class, Canvas.class, GameZeldaUniverse.class));
+			map.put("sword", c.getDeclaredMethod("createSword", Point.class,
+					Canvas.class, GameZeldaUniverse.class));
+			map.put("tree", c.getDeclaredMethod("createTree", Point.class,
 					Canvas.class, GameZeldaUniverse.class));
 			map.put("wall", c.getDeclaredMethod("createWall", Point.class,
 					direction.class, int.class, Canvas.class,
 					GameZeldaUniverse.class));
-			map.put("sword", c.getDeclaredMethod("createSword", Point.class,
+			map.put("zelda", c.getDeclaredMethod("createZelda", Point.class,
 					Canvas.class, GameZeldaUniverse.class));
 		} catch (SecurityException e) {
 			e.printStackTrace();

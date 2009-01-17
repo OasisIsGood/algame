@@ -16,7 +16,7 @@ public class Main {
 
 		//levels.add(new ZeldaGameLevel(g, new File("levels/levelTuto")));
 		levels.add(new ZeldaGameLevel(g, new File("levels/level1")));
-		levels.add(new ZeldaGameLevel(g, new File("levels/level2")));
+		//levels.add(new ZeldaGameLevel(g, new File("levels/level2")));
 		levels.add(new ZeldaGameLevel(g, new File("levels/lastLevel")));
 		
 		g.setLevels(levels);
