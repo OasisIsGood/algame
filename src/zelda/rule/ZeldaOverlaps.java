@@ -1,8 +1,6 @@
 package zelda.rule;
 
 import gameframework.base.IntegerObservable;
-import gameframework.base.Overlap;
-import gameframework.base.Overlappable;
 import gameframework.game.GameUniverse;
 import gameframework.game.OverlapRuleApplierDefaultImpl;
 
@@ -10,17 +8,12 @@ import java.awt.Canvas;
 import java.awt.Point;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Method;
-import java.util.Vector;
 
 import zelda.base.Sound;
-import zelda.entity.characters.AbstractLink;
 import zelda.entity.characters.Boss;
 import zelda.entity.characters.Guard;
-import zelda.entity.characters.Link;
-import zelda.entity.characters.SwordedLink;
 import zelda.entity.characters.ZeldaPrincess;
-import zelda.entity.decors.Bomb;
+import zelda.entity.characters.link.Link;
 import zelda.entity.decors.Bush;
 import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Sword;
@@ -38,7 +31,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	private IntegerObservable score;
 	private IntegerObservable life;
 	private IntegerObservable win;
-	private Canvas canvas;
+	//private Canvas canvas;
 
 	public ZeldaOverlaps(Point linkPos, Point ePos, IntegerObservable life,
 			IntegerObservable score, IntegerObservable win, Canvas canvas) {
@@ -47,7 +40,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 		this.life = life;
 		this.score = score;
 		this.win = win;
-		this.canvas = canvas;
+		//this.canvas = canvas;
 	}
 
 	@Override
@@ -55,55 +48,55 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 		this.universe = universe;
 	}
 
-	public void overlapRule(AbstractLink link, Bush bush) {
-		if (link.isSwording()) {
+	public void overlapRule(Link link, Bush bush) {
+		/*if (link.isSwording()) {
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(bush);
 			universe.addGameEntity(new Bomb(canvas, bush.getPosition()));
 		} else {
 			life.setValue(life.getValue() - 1);
-		}
+		}*/
 	}
 
-	public void overlapRule(AbstractLink link, Guard guard) {
+	public void overlapRule(Link link, Guard guard) {
 		guard.swording(true);
-		if (link.isSwording()) {
+		/*if (link.isSwording()) {
 			EnnemyObserver.getInstance().setValue(
 					EnnemyObserver.getInstance().getValue() - 1);
 			score.setValue(score.getValue() + 5);
 			universe.removeGameEntity(guard);
 		} else {
 			life.setValue(life.getValue() - 5);
-		}
+		}*/
 	}
 
-	public void overlapRule(AbstractLink link, SuperPotion superPotion) {
+	public void overlapRule(Link link, SuperPotion superPotion) {
 		life.setValue(GameZeldaImpl.NUMBER_OF_LIVES);
 		universe.removeGameEntity(superPotion);
 		try {
 			Sound sound = new Sound(new File("sounds/explosion.wav"));
 			sound.play();
 		} catch (FileNotFoundException e) {
-			System.out.println("Sound file not found");
+			System.out.println("(ZeldaOverlaps) Explosion Sound file not found");
 		}
 	}
 
-	public void overlapRule(AbstractLink link, ZeldaPrincess zelda) {
+	public void overlapRule(Link link, ZeldaPrincess zelda) {
 		if (EnnemyObserver.getInstance().getValue() <= 0) {
 			score.setValue(score.getValue() + 100);
 			win.setValue(GameZeldaAWTImpl.result.WIN.ordinal());
 		}
 	}
 
-	public void overlapRule(AbstractLink link, Sword sword) {
-		link = new SwordedLink(canvas);
+	public void overlapRule(Link link, Sword sword) {
+		link.setState("LinkStateHaveSword");
 		universe.removeGameEntity(sword);
 	}
 
-	public void overlapRule(AbstractLink link, Boss boss) {
+	public void overlapRule(Link link, Boss boss) {
 		boss.swording(true);
-		if (link.isSwording()) {
-			boss.isAttacked(link.strengh());
+		/*if (link.isSwording()) {
+			boss.isAttacked(link.getStrengh());
 			if (boss.isDead()) {
 				EnnemyObserver.getInstance().setValue(
 						EnnemyObserver.getInstance().getValue() - 1);
@@ -112,10 +105,10 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 			}
 		} else {
 			life.setValue(life.getValue() - 5);
-		}
+		}*/
 	}
 	
-	@Override
+	/*@Override
 	public void applyOverlapRules(Vector<Overlap> overlaps) {
 		for (Overlap col : overlaps) {
 			try {
@@ -150,5 +143,5 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 			m = receiverClass.getMethod("overlapRule", paramClass);
 			m.invoke(this, param);
 		}
-	}
+	}*/
 }

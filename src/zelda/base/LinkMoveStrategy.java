@@ -5,27 +5,27 @@ import gameframework.base.MoveStrategyKeyboard;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
-import zelda.entity.characters.AbstractLink;
+import zelda.entity.characters.link.Link;
 
 public class LinkMoveStrategy extends MoveStrategyKeyboard {
-	AbstractLink link;
+	Link link;
 	
-	public LinkMoveStrategy(AbstractLink link) {
+	public LinkMoveStrategy(Link link) {
 		this.link = link;
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent event) {
 		int keycode = event.getKeyCode();
-		if(keycode != KeyEvent.VK_SPACE && !link.isSwording())
+		if(keycode != KeyEvent.VK_SPACE /*&& !link.isSwording()*/) // TODO !!!!!!!!!!!!!!!!!!
 			super.keyPressed(event);
 		switch (keycode) {
 		case KeyEvent.VK_SPACE:
-			link.swording();
+			//link.swording(); // TODO !!!!!!!!!!!!!!!!!!
 			//getSpeedVector().setDir(new Point(0, 0));
 			break;
 		case KeyEvent.VK_D:
-			link.deathing();
+			link.setState("LinkStateDeath"); 
 			getSpeedVector().setDir(new Point(0, 0));
 			break;
 		}
