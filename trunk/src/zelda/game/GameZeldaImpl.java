@@ -40,7 +40,7 @@ public class GameZeldaImpl implements Game, Observer {
 	protected IntegerObservable life[] = new IntegerObservable[MAX_NUMBER_OF_PLAYER];
 	
 	private JFrame f;
-	private ZeldaGameLevel1 currentPlayedLevel = null;
+	private ZeldaGameLevel currentPlayedLevel = null;
 	
 	protected int levelNumber;
 	protected ArrayList<GameLevel> gameLevels;
@@ -216,7 +216,7 @@ public class GameZeldaImpl implements Game, Observer {
 				currentPlayedLevel.interrupt();
 				currentPlayedLevel = null;
 			}
-			currentPlayedLevel = (ZeldaGameLevel1) itLevel.next();
+			currentPlayedLevel = (ZeldaGameLevel) itLevel.next();
 			levelNumber++;
 			currentLevelValue.setText(Integer.toString(levelNumber));
 			currentPlayedLevel.start();

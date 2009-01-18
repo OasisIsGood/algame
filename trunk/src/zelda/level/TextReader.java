@@ -16,7 +16,7 @@ import java.util.Map;
 
 import zelda.entity.EntityFactory;
 import zelda.game.GameZeldaUniverse;
-import zelda.level.ZeldaGameLevel1.direction;
+import zelda.level.ZeldaGameLevel.direction;
 
 public class TextReader implements LevelReader {
 

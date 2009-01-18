@@ -20,7 +20,7 @@ import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Sword;
 import zelda.entity.decors.Tree;
 import zelda.game.GameZeldaUniverse;
-import zelda.level.ZeldaGameLevel1.direction;
+import zelda.level.ZeldaGameLevel.direction;
 import zelda.observer.EnnemyObserver;
 
 /*

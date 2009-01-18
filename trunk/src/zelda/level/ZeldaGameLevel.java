@@ -8,6 +8,7 @@ import gameframework.game.GameUniverseViewPort;
 import gameframework.game.GameUniverseViewPortDefaultImpl;
 import gameframework.game.MoveBlockerChecker;
 import gameframework.game.MoveBlockerCheckerDefaultImpl;
+import gameframework.game.MoveBlockerRuleApplierDefaultImpl;
 import gameframework.game.OverlapProcessor;
 import gameframework.game.OverlapProcessorDefaultImpl;
 import gameframework.game.OverlapRuleApplier;
@@ -20,7 +21,7 @@ import java.io.IOException;
 
 import zelda.game.GameZelda;
 import zelda.game.GameZeldaUniverseDefaultImpl;
-import zelda.rule.ZeldaMoveBlockers;
+//import zelda.rule.ZeldaMoveBlockers;
 import zelda.rule.ZeldaOverlaps;
 
 public class ZeldaGameLevel extends GameLevelDefaultImpl {
@@ -59,7 +60,8 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 		overlapProcessor.setOverlapRules(overlapRules);
 
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
-		moveBlockerChecker.setMoveBlockerRules(new ZeldaMoveBlockers());
+		//moveBlockerChecker.setMoveBlockerRules(new ZeldaMoveBlockers());
+		moveBlockerChecker.setMoveBlockerRules(new MoveBlockerRuleApplierDefaultImpl());
 
 		universe = new GameZeldaUniverseDefaultImpl(moveBlockerChecker,
 				overlapProcessor);

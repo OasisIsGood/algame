@@ -14,6 +14,7 @@ public class LinkStateNotArmed extends LinkStateAbstract {
 			image = new DrawableImageSprite("images/characters/LINK.gif", canvas, 25, 25, 8);
 		}
 		spriteType = 0;
+		strengh = 2;
 	}
 
 	@Override
