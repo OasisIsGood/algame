@@ -51,7 +51,7 @@ verte. Apprenant la nouvelle de l'invasion, le regard noir,
 il parti dans les haut bois de la for\^et d'Hyrule pour les affronter tous et
 lib\'erer la fille du Roi nomm\'ee ``Zelda''.\\
 
-The ``CREMI Legend of Zelda'', c'est l'histoire de ce jeune garçon, nomm\'e Link qui doit sauver la princesse Zelda au p\'eril de sa vie. \\
+The ``CREMI Legend of Zelda'', c'est l'histoire de ce jeune garon, nomm\'e Link qui doit sauver la princesse Zelda au p\'eril de sa vie. \\
 Une somme d'emb\^{u}ches l'attend. L'art de manier son \'ep\'ee pourra peut
 \^etre l'aider dans sa qu\^ete impossible: seul contre une arm\'ee enti\`ere.
 \end{abstract}
@@ -111,28 +111,28 @@ au plaisir de jouer.
 \newpage
 
 \section{Conception}
-La première phase du projet fût d'étudier le framework donné, ainsi que le code
-du jeu Pacman. Le framework nous permet de créer un jeu basé sur un univers
-donné, des entités évoluant dans ce monde selon des règles de collisions
-données. Nous avons commencé à utiliser les classes du jeu Pacman pour débuter
-Zelda. Ce fût non seulement un moyen de comprendre plus vite comment utiliser
-certaines fonctionnalités du framework, mais aussi une difficulté de commencer
-à vouloir adapter un jeu déjà fait à un autre, plutôt que de partir sur une
+La premi\`ere phase du projet ft d'\'etudier le framework donn\'e, ainsi que le code
+du jeu Pacman. Le framework nous permet de cr\'eer un jeu bas\'e sur un univers
+donn\'e, des entit\'es \'evoluant dans ce monde selon des r\`egles de collisions
+donn\'ees. Nous avons commenc\'e  utiliser les classes du jeu Pacman pour d\'ebuter
+Zelda. Ce fÃ»t non seulement un moyen de comprendre plus vite comment utiliser
+certaines fonctionnalit\'es du framework, mais aussi une difficult\'e de commencer
+ vouloir adapter un jeu d\'ej\`a fait \`a un autre, plut\^ot que de partir sur une
 base saine.\\
-Ce choix nous amena à ajouter petit à petit les différentes fonctionnalités en
+Ce choix nous amena \`a ajouter petit \`a petit les diff\'erentes fonctionnalit\'es en
 plus que nous voulions.
 
 \subsection{Pacquetages}
-Au fur et à mesure de l'implémentation, nous avons mis en place une
-arborescence de paquetages de classes, séparant bien chaque partie du code, ce
+Au fur et  mesure de l'impl\'ementation, nous avons mis en place une
+arborescence de paquetages de classes, s\'eparant bien chaque partie du code, ce
 qui nous a permis de nous retrouver plus facilement tout au long du projet. On
 retrouve ``\textbf{base}'', ``\textbf{game}'' comme dans le framework, mais
 aussi ``\textbf{rule}', ``\textbf{entity}'' comme dans la version de Pacman.\\
 
 Le paquetage ``\textbf{zelda}'' comprend plusieurs paquetages.\\
-Le paquetage ``\textbf{base}'' permet de g\'erer l'intéraction utilisateur,
+Le paquetage ``\textbf{base}'' permet de g\'erer l'int\'eraction utilisateur,
 sons, gestion de mouvements de personnages.\\ 
-Le paquetage ``\textbf{rule}'' contient les règles de gestion de collisions ou blocages entre entit\'es du jeu.\\ 
+Le paquetage ``\textbf{rule}'' contient les r\`egles de gestion de collisions ou blocages entre entit\'es du jeu.\\ 
 Le paquetage
 ``\textbf{level}'' permet de g\'erer la mise en place des niveaux du jeu, de la
 lecture de fichier pour les niveaux, \`a la cr\'eation de niveaux.\\ 
@@ -157,19 +157,21 @@ est r\'eserv\'e aux \'etats de Link.\\
 \subsubsection*{Une Fabrique Abstraite pour cr\'eer le niveau depuis un fichier
 texte}
 Nous avons choisi d'utilis\'e une fabrique abstraite pour permettre la
-cr\'eation et l'ajout d'entit\'es dans le niveau. Il \'etait assez intéressant
+cr\'eation et l'ajout d'entit\'es dans le niveau. Il \'etait assez intressant
 de cr\'eer cette fabrique abstraite car ainsi nous ne faisions juste qu'une
 demande de cr\'eation d'un certain objet qu'elle s'occupait d'instancier. Une
-personne voulant cr\'eer un personnage ou une autre entit\'e a juste besoin de
-faire appel \`a la m\'{e}thode create ad\'equate. Cependant, le probl\`eme le
-plus important et qui est un probl\`eme propre \`a ce mod\`ele est que l'ajout de 
-nouvelles entit\'es est assez fastidieux : à
-chaque nouvel objet il faut une m\'ethode pour le créer. Dans les constructeurs
-de niveaux actuels il faut ajouter dans la table de hashage la méthode associée.
+personne voulant cr\'eer un personnage ou une autre entit\'e a juste besoin de faire appel \`a la m\'ethode create ad\'equate. 
+Cependant, le probl\`eme le plus important et qui est un probl\`eme propre \`a
+ce mod\`ele est que l'ajout de nouvelles entit\'es est assez fastidieux : 
+chaque nouvel objet il faut une m\'ethode pour le cr\'eer. Dans les constructeurs
+de niveaux actuels il faut ajouter dans la table de hashage la m\'ethode associ\'ee.
 
 \begin{center}
  %\includegraphics[width=9cm,height=9cm]{images/abstFab.eps}
 \end{center}
+
+On reconna\^it bien l\`a la structure d'une fabrique abstraite avec ces
+diverses mÃ©thodes de cr\'eation d'objet.
 
 \subsubsection*{Le pattern Monteur pour sauvegarder la partie}
 Le fait de sauvegarder la partie est une action classique de tout
@@ -177,7 +179,7 @@ jeu. Il nous est apparu comme \'evident d'avoir une repr\'esentation sur
 fichier du contenu de cette sauvegarde. Nous avons donc mis en place un
 monteur, celui-ci en effet est particuli\`erement adapt\'e \`a ce genre de
 situation. Nous avons donc cr\'eer un monteur concret qui permet d'\'ecrire
-un fichier texte contenant les informations ainsi sauvegardée.\\
+un fichier texte contenant les informations ainsi sauvegarde.\\
 Un autre avantage de ce patron de conception est que nous pouvons ainsi
 rapidement modifier la repr\'esentation de cette sauvegarde. Il est tout \`a
 fait possible d'imaginer une sauvegarde au format HTML ou XML, ou on ne
@@ -191,11 +193,16 @@ n'aimerait pas notre repr\'esentation. \\
 
 Nous avons aussi utilis\'e ce mod\`ele pour la lecture de la sauvegarde
 ainsi que la lecture du fichier de cr\'eation de niveau et ce pour les
-m\^{e}me raisons que celles \'enonc\'ees juste avant.
+m\^{e}me raisons que celles \'enonc\'ees juste avant. Leur mise en place 
+est visible sur l'image ci-dessus.\\
+Sur cette image on voit bien les divers monteurs, on reconna\^it leur
+m\'ethode de cr\'eation s\'equentielle. Il est donc facile de voir comment
+\'etendre l'interface de chacun pour pouvoir changer la repr\'esentation
+d'une partie de ce jeu.
 
 \subsubsection*{Gestion des \'etats de Link avec le pattern Etat}
 L'\'etat de Link modifie son comportement. Ces changements
-apparaissent de façon dynamique, selon les \'evènements du jeu, ou du joueur.
+apparaissent de faon dynamique, selon les \'evnements du jeu, ou du joueur.
 Cette intention nous a amen\'e \`a utiliser le pattern Etat pour g\'erer Link. Celui
 ci peut d\'el\'eguer son comportement changeant \`a une hi\'erarchie de classes
 LinkState poss\'edant des requ\^etes sp\'ecifiques comme l'utilisation de l'arme, le
@@ -208,88 +215,80 @@ rapidement de nouveaux \'etats, et d'ajuster le comportement voulu facilement. \
 \end{center}
  
 \subsubsection*{un Singleton pour gérer le nombre d'ennemis dans le niveau}
-Dans le jeu, une des priorité est d'éliminer tout les ennemis afin de pouvoir
-finir le niveau. Afin de gérer le nombre d'ennemis, on crée un observateur
-unique à qui on adresse en début de niveau le nombre d'ennemis à tuer.
-L'intérêt est ici de créer une unique instance d'observateur et de fournir un
-point d'accès global à celle ci depuis toutes les classes du jeu. L'utilisation
-du modèle Singleton fût alors évident.
+Dans le jeu, une des priorit\'e est d'\'eliminer tous les ennemis afin de pouvoir
+finir le niveau. Afin de g\'erer le nombre d'ennemis, on cr\'ee un observateur
+unique  qui on adresse en d\'ebut de niveau le nombre d'ennemis \`a tuer.
+L'int\'er\^et est ici de cr\'eer une unique instance d'observateur et de fournir un
+point d'acc\`es global \`a celle ci depuis toutes les classes du jeu. L'utilisation
+du mod\`ele Singleton f\^ut alors \'evident.
 
 \begin{center}
  \includegraphics[scale=1]{images/Observerdiagram.eps}
 \end{center}
  
 \section{Evolutions}
-Notre jeu Zelda n'est pas complètement fini, il ne comprend que quelques
+Notre jeu Zelda n'est pas compltement fini, il ne comprend que quelques
 niveaux, comprenant quelques ennemis, et quelques objets classiques. 
 Quelques sprites ne sont pas parfaits, ni complets.\\
-Cependant, le jeu fonctionne correctement, les fonctionnalités que nous
-voulions au départ étant implémentées.\\
+Cependant, le jeu fonctionne correctement, les fonctionnalits que nous
+voulions au dpart tant implmentes.\\
 
 Nous aurions voulu, avec plus de temps, produire des niveaux plus riches en
-entités, plus agréables à jouer. Le jeu semble trop court, et nous aurions voulu
-développer un scénario plus attractif.
+entit\'es, plus agr\'eables  jouer. Le jeu semble trop court, et nous aurions voulu
+d\'evelopper un sc\'enario plus attractif.
 
 \subsection{Critiques}
-Le mouvement des gardes a été honteusement copié de celui des ``ghosts'' du Jeu
-Pacman donné, dans un premier temps, ce qui nous a permis de nous concentrer
-sur d'autres éléments du jeu. Finalement nous nous sommes habitués à ces
-mouvements primitifs qui ajoutent une difficulté au jeu. Nous pourrions créer
-une autre méthode de déplacement, plus intelligente, qui suivrait un
-déplacement précalculé. Une bonne aptitude des gardes serait de changer de
-méthode déplacement et aller attaquer Link dès qu'il s'approche trop près de
-Zelda ou trop près d'une zone donnée.\\
+Le mouvement des gardes a \'et\'e honteusement copi\'e de celui des ``ghosts'' du Jeu
+Pacman donn\'e, dans un premier temps, ce qui nous a permis de nous concentrer
+sur d'autres \'el\'ements du jeu. Finalement nous nous sommes habitu\'es \`a ces
+mouvements primitifs qui ajoutent une difficult\'e au jeu. Nous pourrions cr\'eer
+une autre m\'ethode de d\'eplacement, plus intelligente, qui suivrait un
+d\'eplacement pr\'ecalcul\'e. Une bonne aptitude des gardes serait de changer de
+m\'ethode d\'eplacement et aller attaquer Link d\`es qu'il s'approche trop pr\`es de
+Zelda ou trop pr\`es d'une zone donne.\\
 
 Les sons ne sont pas assez nombreux, ce qui laisse une part de silence trop
-grande, mais le système de son est mis en place, ce qui nous relie aux besoins
-du projet même.
+grande, mais le systme de son est mis en place, ce qui nous relie aux besoins
+du projet m\^eme.
  
-\section{Implémentation}
+\section{Impl\'ementation}
 
-\subsection*{Problèmes rencontrés}
+\subsection*{Probl\`emes rencontr\'es}
 
-Nous avons bien sûr rencontré plusieurs points difficiles.
+Nous avons bien sur rencontr\'e plusieurs points difficiles.
 
 \subsubsection*{Gestion des niveaux}
 
 Nous avons mis en place plusieurs niveaux ainsi qu'un changement de ceux-ci, 
-ce qui s'avéra \^etre une t\^ache ardu. En effet, nous pouvons passer au niveau 
-suivant sans problème mais choisir au hasard un niveau et le lancer est
-malheureusement impossible. Nous avons voulu mettre en place un système
-utilisant ceci via le rechargement de sauvegarde. Avec notre implémentation,
-quand nous rechargeons un niveau, le niveau se charge mais celui-ci ne démarre
-pas. Nous avons tenté de diverse façon de faire en sorte que cela fonctionne
-sans résultat. En fait, le plus compliqué vient de l'utilisation des threads
-qui doivent être interrompus avant de passer au niveau suivant et le niveau
-suivant doit être lancé. Mais pour des raisons inconnus, les threads ne se
-lancent pas.
+ce qui s'av\'era \^etre une t\^ache ardu. En effet, nous pouvons passer au niveau 
+suivant sans probl\`eme mais choisir au hasard un niveau et le lanc\'e est malheureusement
+impossible. Nous avons voulu mettre en place un syst\^eme utilisant ceci via le rechargement
+de sauvegarde. Avec notre impl\'ementation, quand nous rechargeons un niveau, le niveau se 
+charge mais celui-ci ne d\'emarre pas. Nous avons tent\'e de diverse faÃ§on de faire en sorte que
+cela fonctionne sans r\'esultat. En fait, le plus compliqu\'e vient de l'utilisation des threads
+qui doivent \^etre interrompus avant de passer au niveau suivant et le niveau suivant doit \^etre
+lanc\'e. Mais pour des raisons inconnus, les threads ne se lancent pas.
 
 \subsubsection*{XML}
 
-En théorie, il est possible de créer des niveaux au format XML grâce au
-Monteur LevelReader, malheureusement nous avons eu des difficultés à mettre en
-place ce lecteur de XML. Nous n'avons pas réussi surement à cause du fait que
-nous n'avions jamais utilisé l'API correspondante auparavant, et les
-différents tutoriaux présent sur internet n'ont pas suffit à nous permettre
-de réussir.
+En th\'eorie, il est possible de cr\'eer des niveaux au format XML gr\^ace au Monteur LevelReader, malheureusement
+nous avons eu des difficult\'es \`a mettre en place ce lecteur de XML. Nous n'avons pas r\'eussi surement 
+\`a cause du fait que nous n'avions jamais utilis\'e l'API correspondante auparavant, et les diff\'erents 
+tutoriaux pr\'esent sur internet n'ont pas suffit \`a nous permettre de r\'eussir.
 
 \subsubsection*{Le framework de base}
 
-Le fait d'être confronté à un framework dont nous ne pouvions rien toucher,
-fut un challenge intéressant mais cependant parfois compliqué. Il nous est
-arrivé à plusieurs reprise de vouloir récupérer une chose d'une classe du
-framework, alors que cette chose ne nous était pas accessible ou encore
-modifier une variable privée inaccessible de l'extèrieur. Nous avons
-parfois été tenté par la recopie de code (ce que nous pouvons apercevoir
-avec la classe GameZeldaAWTImpl) mais il fallait le plus souvent trouver des
-astuces. Ces astuces étaient souvent des modèles de conceptions, par exemple
-nous avons utilisé un décorateur pour permettre d'attendre les
-fonctionnalités d'une interface qui ne nous permettait pas de récupérer une
-variable pourtant essentielle sans laquelle le jeu aurait paru étrange aux yeux
-des divers joueurs.
+Le fait d'\^etre confront\'e \`a un framework dont nous ne pouvions rien toucher, fut un challenge int\'eressant 
+mais cependant parfois compliqu\'e. Il nous est arriv\'e \`a plusieurs reprise de vouloir r\'ecup\'erer une chose
+d'une classe du framework, alors que cette chose ne nous \'etait pas accessible ou encore modifier une variable
+priv\'ee inaccessible de l'ext\'erieur. Nous avons avoir parfois \'etait tent\'e par la recopie de code (ce que nous 
+pouvons apercevoir avec la classe GameZeldaAWTImpl) mais il fallait le plus souvent trouv\'e des astuces. Ces astuces 
+\'etaient souvent des mod\`eles de conceptions, par exemple nous avons utilis\'e un d\'ecorateur pour permettre d'\'etendre 
+les fonctionnalit\'es d'une interface qui ne nous permettait pas de r\'ecup\'erer une variable pourtant essentielle 
+sans laquelle le jeu aurait paru \'etrange aux yeux des divers joueurs.
 
 \subsubsection*{Gestion des sprites}
 
-Une des principales difficultés fût de gérer correctement les sprites. 
+Une des principales difficult\'es f\^ut de g\'erer correctement les sprites. 
 
 \end{document}
