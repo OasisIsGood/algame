@@ -307,11 +307,8 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	
 	private void commands() {
 		JOptionPane.showMessageDialog(null,
-				"SPACE  : attack your ennemy\n" +
-				"ESCAPE : kill your Link (snif)\n" +
-				"S      : give a Sword  to Link\n" +
-				"O      : let Link to Sing for you\n" +
-				"- / +  : Previous / Next level ! (TODO si ya le temps!)\n" +
+				"ESPACE  : attaque un ennemi\n" +
+				"O      : permet a Link de vous jouer un morceau\n" +
 				"  *** Use it with caution ! *** \n");
 	}
 
