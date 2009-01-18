@@ -115,14 +115,14 @@ au plaisir de jouer.
 
 \section{Conception}
 
-La premi\`ere phase du projet ft d'\'etudier le framework donn\'e, ainsi que le code
-du jeu Pacman. Le framework nous permet de cr\'eer un jeu bas\'e sur un univers
+La premi\`ere phase du projet f\^ut d'\'etudier le framework donn\'e, ainsi que
+le code du jeu Pacman. Le framework nous permet de cr\'eer un jeu bas\'e sur un univers
 donn\'e, des entit\'es \'evoluant dans ce monde selon des r\`egles de collisions
-donn\'ees. Nous avons commenc\'e  utiliser les classes du jeu Pacman pour d\'ebuter
-Zelda. Ce f\^ut non seulement un moyen de comprendre plus vite comment utiliser
-certaines fonctionnalit\'es du framework, mais aussi une difficult\'e de commencer
- vouloir adapter un jeu d\'ej\`a fait \`a un autre, plut\^ot que de partir sur une
-base saine.\\
+donn\'ees. Nous avons commenc\'e  par utiliser les classes du jeu Pacman pour
+d\'ebuter Zelda. Ce f\^ut non seulement un moyen de comprendre plus vite comment utiliser
+certaines fonctionnalit\'es du framework, mais aussi une difficult\'e de
+commencer \`a vouloir adapter un jeu d\'ej\`a fait \`a un autre, plut\^ot que de
+partir sur une base saine.\\
 Ce choix nous amena \`a ajouter petit \`a petit les diff\'erentes fonctionnalit\'es en
 plus que nous voulions.
 
@@ -235,15 +235,15 @@ du mod\`ele Singleton f\^ut alors \'evident.
 \end{center}
  
 \section{Evolutions}
-Notre jeu Zelda n'est pas compltement fini, il ne comprend que quelques
+Notre jeu Zelda n'est pas compl\`etement fini, il ne comprend que quelques
 niveaux, comprenant quelques ennemis, et quelques objets classiques. 
 Quelques sprites ne sont pas parfaits, ni complets.\\
-Cependant, le jeu fonctionne correctement, les fonctionnalits que nous
-voulions au dpart tant implmentes.\\
+Cependant, le jeu fonctionne correctement, les fonctionnalit\'es que nous
+voulions au d\'epart sont impl\'ement\'ees.\\
 
 Nous aurions voulu, avec plus de temps, produire des niveaux plus riches en
-entit\'es, plus agr\'eables  jouer. Le jeu semble trop court, et nous aurions voulu
-d\'evelopper un sc\'enario plus attractif.
+entit\'es, plus agr\'eables \`a jouer. Le jeu semble trop court, et nous
+aurions voulu d\'evelopper un sc\'enario plus attractif.
 
 \subsection{Critiques}
 Le mouvement des gardes a \'et\'e honteusement copi\'e de celui des ``ghosts'' du Jeu
@@ -253,17 +253,17 @@ mouvements primitifs qui ajoutent une difficult\'e au jeu. Nous pourrions cr\'ee
 une autre m\'ethode de d\'eplacement, plus intelligente, qui suivrait un
 d\'eplacement pr\'ecalcul\'e. Une bonne aptitude des gardes serait de changer de
 m\'ethode d\'eplacement et aller attaquer Link d\`es qu'il s'approche trop pr\`es de
-Zelda ou trop pr\`es d'une zone donne.\\
+Zelda ou trop pr\`es d'une zone donn\'ee.\\
 
 Les sons ne sont pas assez nombreux, ce qui laisse une part de silence trop
-grande, mais le systme de son est mis en place, ce qui nous relie aux besoins
+grande, mais le syst\`eme de son est mis en place, ce qui nous relie aux besoins
 du projet m\^eme.
  
 \section{Impl\'ementation}
 
 \subsection*{Probl\`emes rencontr\'es}
 
-Nous avons bien sur rencontr\'e plusieurs points difficiles.
+Nous avons bien s\^ur rencontr\'e plusieurs points difficiles.
 
 \subsubsection*{Gestion des niveaux}
 
@@ -272,8 +272,8 @@ ce qui s'av\'era \^etre une t\^ache ardu. En effet, nous pouvons passer au nivea
 suivant sans probl\`eme mais choisir au hasard un niveau et le lanc\'e est malheureusement
 impossible. Nous avons voulu mettre en place un syst\^eme utilisant ceci via le rechargement
 de sauvegarde. Avec notre impl\'ementation, quand nous rechargeons un niveau, le niveau se 
-charge mais celui-ci ne d\'emarre pas. Nous avons tent\'e de diverse faÃ§on de faire en sorte que
-cela fonctionne sans r\'esultat. En fait, le plus compliqu\'e vient de l'utilisation des threads
+charge mais celui-ci ne d\'emarre pas. Nous avons tent\'e de diverse façon de
+faire en sorte que cela fonctionne sans r\'esultat. En fait, le plus compliqu\'e vient de l'utilisation des threads
 qui doivent \^etre interrompus avant de passer au niveau suivant et le niveau suivant doit \^etre
 lanc\'e. Mais pour des raisons inconnus, les threads ne se lancent pas.
 
