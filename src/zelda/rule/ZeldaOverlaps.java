@@ -19,12 +19,8 @@ import zelda.entity.decors.Bush;
 import zelda.entity.decors.SuperPotion;
 import zelda.entity.decors.Sword;
 import zelda.game.GameZeldaAWTImpl;
-import zelda.game.GameZeldaImpl;
 import zelda.observer.EnnemyObserver;
 
-/*
- * Pour chaque Overlaps, attention ! Respectons l'ordre alphabétique ! MERCI !
- */
 public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 
 	protected int MAX_LIFE = 100;
@@ -114,7 +110,7 @@ public class ZeldaOverlaps extends OverlapRuleApplierDefaultImpl {
 	}
 
 	public void overlapRule(Link link, SuperPotion superPotion) {
-		life.setValue(GameZeldaImpl.NUMBER_OF_LIVES);
+		life.setValue(GameZeldaAWTImpl.NUMBER_OF_LIVES);
 		universe.removeGameEntity(superPotion);
 	}
 	

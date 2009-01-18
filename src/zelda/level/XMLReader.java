@@ -78,7 +78,7 @@ public class XMLReader implements LevelReader {
 				hashMap.put(n.getNodeName().toLowerCase(), n.getNodeValue()
 						.toLowerCase());
 			}
-			System.out.println(hashMap);
+			
 			try {
 				if (node.getNodeName().toLowerCase().equals("walls")) {
 					map.get(node.getNodeName().toLowerCase()).invoke(

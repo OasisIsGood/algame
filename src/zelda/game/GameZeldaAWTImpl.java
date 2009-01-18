@@ -37,8 +37,6 @@ import zelda.observer.EnnemyObserver;
 
 public class GameZeldaAWTImpl implements GameZelda, Observer {
 	
-	private static final long serialVersionUID = -3150854596831664346L;
-	
 	protected static final int SPRITE_SIZE = 16;
 	public static final int MAX_NUMBER_OF_PLAYER = 1;
 	public static final int NUMBER_OF_LIVES = 100;
@@ -248,7 +246,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		run();
 	}
 
-	public void restore() { //TODO Ne fonctionne pas
+	public void restore() { //TODO No start the game, fix it
 		int levelRestore;
 		int[] playerLife = new int[MAX_NUMBER_OF_PLAYER];
 		
@@ -353,7 +351,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 
 	private void handleEnnemyObservable(IntegerObservable observable) {
 		if (observable == ennemy) {
-			// TODO ?!?
+			//To add a specific behavior
 		}
 	}
 
@@ -361,9 +359,6 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		if (observable == win) {
 			if (win.getValue() == result.WIN.ordinal()) {
 				informationValue.setText("Win");
-				
-				// TODO Gael Ajout...Je peux meme pas vérifier ca passe jms en WIN
-				
 				
 				currentPlayedLevel.interrupt();
 
@@ -400,8 +395,6 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				lifeValue.setText(Integer.toString(lives <= 0 ? 0 : lives));
 				if (lives <= 0) {
 					informationValue.setText("Defeat");
-					// currentPlayedLevel.interrupt();
-					// currentPlayedLevel.end();
 					for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i)
 						life[i].setValue(NUMBER_OF_LIVES);
 					run();
