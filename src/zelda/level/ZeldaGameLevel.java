@@ -3,6 +3,7 @@ package zelda.level;
 import gameframework.base.IntegerObservable;
 import gameframework.game.CanvasDefaultImpl;
 import gameframework.game.GameLevelDefaultImpl;
+import gameframework.game.GameUniverse;
 import gameframework.game.GameUniverseViewPort;
 import gameframework.game.GameUniverseViewPortDefaultImpl;
 import gameframework.game.MoveBlockerChecker;
@@ -89,5 +90,9 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	
 	public GameUniverseViewPort getGameBoard() {
 		return gameBoard;
+	}
+	
+	public GameUniverse getUniverse() {
+		return universe;
 	}
 }

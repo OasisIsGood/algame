@@ -2,8 +2,10 @@ package zelda.game;
 
 import gameframework.base.IntegerObservable;
 import gameframework.game.CanvasDefaultImpl;
+import gameframework.game.GameEntity;
 import gameframework.game.GameLevel;
 import gameframework.game.GameLevelDefaultImpl;
+import gameframework.game.GameUniverse;
 import gameframework.game.GameUniverseViewPortDefaultImpl;
 
 import java.awt.BorderLayout;
@@ -22,6 +24,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -363,9 +366,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 				informationValue.setText("Win");
 				
 				// TODO Gael Ajout...Je peux meme pas vérifier ca passe jms en WIN
-				((GameUniverseViewPortDefaultImpl) 
-						((ZeldaGameLevel) currentPlayedLevel).getGameBoard())
-						.setBackground("images/background/Zelda_kiss.jpg");
+				
 				
 				currentPlayedLevel.interrupt();
 
@@ -377,6 +378,15 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 						currentPlayedLevel.start();
 						currentPlayedLevel.join();
 					} else {
+						((GameUniverseViewPortDefaultImpl) 
+								((ZeldaGameLevel) currentPlayedLevel).getGameBoard())
+								.setBackground("images/background/Zelda_kiss.jpg");
+						((ZeldaGameLevel) currentPlayedLevel).getGameBoard().paint();
+						GameUniverse universe = ((ZeldaGameLevel) currentPlayedLevel).getUniverse();
+						Iterator<GameEntity> it = universe.gameEntities();
+						while(it.hasNext()) {
+							universe.removeGameEntity(it.next());
+						}
 						currentPlayedLevel.end();
 					}
 				} catch (InterruptedException e) {
