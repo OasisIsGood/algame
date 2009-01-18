@@ -44,8 +44,7 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 					Sound sound = new Sound(new File("sounds/LOZ_Recorder.wav"));
 					sound.play();
 				} catch (FileNotFoundException e) {
-					System.out
-							.println("(ZeldaOverlaps) Explosion Sound file not found");
+					System.out.println("ocarina sound file not found");
 				}
 				link.setState(linkState);
 				break;
