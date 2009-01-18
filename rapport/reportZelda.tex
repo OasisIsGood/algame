@@ -97,22 +97,23 @@ que certaines actions enlève cette arme.
 
 \subsection{Astuces}
 Comme dans beaucoup de jeu vidéo d'aventure, nous avons laissé des codes
-secrets que l'on peut chercher si l'on veut. Qu'il est agréable étant joueur de
-trouver ce genre de code!
+secrets que l'on peut chercher si l'on veut. Qu'il est agréable en étant joueur
+de trouver ce genre de code!
 
 \newpage
 
 \section{Conception}
 
 \subsection{Pacquetages}
-Le paquetage ``zelda'' comprend plusieurs paquetages.\\
-Le paquetage ``base'' permet de gérer l'interaction utilisateur, sons, gestion
-de mouvements de personnages.\\ Le paquetage ``rule'' permet de gérer les
-collisions ou blocages entre entités du jeu.\\ Le paquetage ``level'' permet de
-gérer la mise en place des niveaux du jeu, de la lecture de fichier pour les niveaux, à la création de niveaux.\\ Le paquetage ``game''\\ Le paquetage ``observer'' permet de gérer tout les
-observateurs du jeu.\\ Le paquetage ``entity'' possède toutes les classes de toutes les entités
-présentes dans le jeu : personnages et décors. Dans les personnages, un
-paquetage est réservé aux états de Link.\\
+Le paquetage ``\textbf{zelda}'' comprend plusieurs paquetages.\\
+Le paquetage ``\textbf{base}'' permet de gérer l'interaction utilisateur, sons,
+gestion de mouvements de personnages.\\ Le paquetage ``\textbf{rule}'' permet de
+gérer les collisions ou blocages entre entités du jeu.\\ Le paquetage
+``\textbf{level}'' permet de gérer la mise en place des niveaux du jeu, de la
+lecture de fichier pour les niveaux, à la création de niveaux.\\ Le paquetage
+``\textbf{game}'' contient les classes nécessaires à la création du jeu
+(gestion de l'univers, sauvegarde de niveaux\ldots).\\ Le paquetage
+``\textbf{observer}'' permet de gérer tout les observateurs du jeu.\\ Le paquetage ``\textbf{entity}'' possède toutes les classes de toutes les entités présentes dans le jeu : personnages et décors. Dans les personnages, un paquetage est réservé aux états de Link.\\
 
 \subsection{Architecture générale}
 
@@ -145,9 +146,8 @@ mode attaque, la mort du personnage\ldots
 Sur la fin du développement, cette conception nous a permis de rajouter
 rapidement de nouveaux états, et d'ajuster le comportement voulu facilement. \\
 
-DIAGRAMME DE L'ETAT
 \begin{center}
- %\includegraphics[width=9cm,height=9cm]{images/linkEtats.eps}
+ \includegraphics[scale=0.8]{images/Statediagram.eps}
 \end{center}
  
 \subsubsection*{Gestion du niveau avec des observateurs}
