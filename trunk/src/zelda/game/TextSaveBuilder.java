@@ -22,11 +22,12 @@ public class TextSaveBuilder implements SaveBuilder {
 
 	@Override
 	public void level(int levelNumber) throws IOException {
-		bw.write(Integer.toString(levelNumber) + "\n");
+		bw.write("LEVEL " + Integer.toString(levelNumber) + "\n");
 	}
 
 	@Override
 	public void nbLife(int[] life) throws IOException {
+		bw.write("LIFE ");
 		for(int i = 0; i < life.length; ++i)
 			bw.write(Integer.toString(life[i]) + " ");
 		bw.write("\n");

@@ -248,22 +248,30 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		run();
 	}
 
-	public void restore() {
+	public void restore() { //TODO Ne fonctionne pas car retourne null partout
 		int levelRestore;
 		int[] playerLife = new int[MAX_NUMBER_OF_PLAYER];
 		
-		builderReader.read();
-		levelRestore = builderReader.level();
-		playerLife = builderReader.life();
+		try {
+			builderReader.read();
+			levelRestore = builderReader.level();
+			playerLife = builderReader.life();
+			
+			while (levelNumber < levelRestore) {
+				currentPlayedLevel.interrupt();
+				currentPlayedLevel.end();
+				nextLevel();
+			}
+			for(int i = 0; i < playerLife.length || i < MAX_NUMBER_OF_PLAYER; ++i) {
+				life[i].setValue(playerLife[i]);
+			}
+		} catch (IOException e) {
+			System.err.println("Can't load save game !");
+		} catch (NullPointerException e) {
+			System.err.println("Can't load save game !");
+		}
 		
-		while (levelNumber < levelRestore) {
-			currentPlayedLevel.interrupt();
-			currentPlayedLevel.end();
-			nextLevel();
-		}
-		for(int i = 0; i < playerLife.length && i < MAX_NUMBER_OF_PLAYER; ++i) {
-			life[i].setValue(playerLife[i]);
-		}
+		run();
 	}
 
 	public void save() {
