@@ -6,6 +6,6 @@ public interface SaveBuilderReader {
 
 	void read() throws IOException;
 	int level();
-	int[] life();
+	int[] life() throws IOException;
 
 }
