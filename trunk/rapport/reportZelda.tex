@@ -192,4 +192,40 @@ rapidement de nouveaux \'etats, et d'ajuster le comportement voulu facilement. \
  
 \subsubsection*{Gestion du niveau avec des observateurs}
  
+\section{Implémentation}
+
+\subsection*{Problèmes rencontrés}
+
+Nous avons bien sur rencontré plusieurs points difficiles.
+
+\subsubsection*{Gestion des niveaux}
+
+Nous avons mis en place plusieurs niveaux ainsi qu'un changement de ceux-ci, 
+ce qui s'avéra \^etre une t\^ache ardu. En effet, nous pouvons passer au niveau 
+suivant sans problème mais choisir au hasard un niveau et le lancé est malheureusement
+impossible. Nous avons voulu mettre en place un système utilisant ceci via le rechargement
+de sauvegarde. Avec notre implémentation, quand nous rechargeons un niveau, le niveau se 
+charge mais celui-ci ne démarre pas. Nous avons tenté de diverse façon de faire en sorte que
+cela fonctionne sans résultat. En fait, le plus compliqué vient de l'utilisation des threads
+qui doivent être interrompus avant de passer au niveau suivant et le niveau suivant doit être
+lancé. Mais pour des raisons inconnus, les threads ne se lancent pas.
+
+\subsubsection*{XML}
+
+En théorie, il est possible de créer des niveaux au format XML grâce au Monteur LevelReader, malheureusement
+nous avons eu des difficultés à mettre en place ce lecteur de XML. Nous n'avons pas réussi surement 
+à cause du fait que nous n'avions jamais utilisé l'API correspondante auparavant, et les différents 
+tutoriaux présent sur internet n'ont pas suffit à nous permettre de réussir.
+
+\subsubsection*{Le framework de base}
+
+Le fait d'être confronté à un framework dont nous ne pouvions rien toucher, fut un challenge intéressant 
+mais cependant parfois compliqué. Il nous est arrivé à plusieurs reprise de vouloir récupérer une chose
+d'une classe du framework, alors que cette chose ne nous était pas accessible ou encore modifier une variable
+privée inaccessible de l'extérieur. Nous avons avoir parfois était tenté par la recopie de code (ce que nous 
+pouvons apercevoir avec la classe GameZeldaAWTImpl) mais il fallait le plus souvent trouvé des astuces. Ces astuces 
+étaient souvent des modèles de conceptions, par exemple nous avons utilisé un décorateur pour permettre d'étendre 
+les fonctionnalités d'une interface qui ne nous permettait pas de récupérer une variable pourtant essentielle 
+sans laquelle le jeu aurait paru étrange aux yeux des divers joueurs.
+
 \end{document}
