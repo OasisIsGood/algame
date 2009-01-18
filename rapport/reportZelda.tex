@@ -116,18 +116,26 @@ paquetage est réservé aux états de Link.\\
 
 \subsection{Architecture générale}
 
+\begin{center}
+ %\includegraphics[width=9cm,height=9cm]{images/archiGenerale.eps}
+\end{center}
 
 \subsection{Architecture détaillée}
 
-
-\subsubsection{Une Fabrique Abstraite pour créer le niveau depuis un fichier
+\subsubsection*{Une Fabrique Abstraite pour créer le niveau depuis un fichier
 texte}
 
+\begin{center}
+ %\includegraphics[width=9cm,height=9cm]{images/abstFab.eps}
+\end{center}
 
-\subsubsection{Le pattern Monteur pour sauvegarder la partie}
+\subsubsection*{Le pattern Monteur pour sauvegarder la partie}
 
+\begin{center}
+ %\includegraphics[width=9cm,height=9cm]{images/monteur.eps}
+\end{center}
 
-\subsubsection{Gestion des états de Link avec le pattern Etat}
+\subsubsection*{Gestion des états de Link avec le pattern Etat}
 L'état de Link modifie son comportement. Ces changements
 apparaissent de façon dynamique, selon les évenements du jeu, ou du joueur.
 Cette intention nous a amené à utiliser le pattern Etat pour gérer Link. Celui
@@ -138,5 +146,10 @@ Sur la fin du développement, cette conception nous a permis de rajouter
 rapidement de nouveaux états, et d'ajuster le comportement voulu facilement. \\
 
 DIAGRAMME DE L'ETAT
+\begin{center}
+ %\includegraphics[width=9cm,height=9cm]{images/linkEtats.eps}
+\end{center}
+ 
+\subsubsection*{Gestion du niveau avec des observateurs}
  
 \end{document}
