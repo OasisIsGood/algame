@@ -8,12 +8,11 @@ import gameframework.game.GameMovable;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Constructor;
 
-import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 
 public class Link extends GameMovable implements Drawable, GameEntity,
@@ -80,8 +79,8 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 		return timer.isRunning();
 	}
 
-	public void setState(LinkState state, Link link) {
-		state.setLink(link);
+	public void setState(LinkState state) {
+		state.setLink(this);
 		this.state = state;
 	}
 
@@ -114,5 +113,9 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 
 	public boolean isDeath() {
 		return (state instanceof LinkStateDeath);
+	}
+	
+	public boolean isSingingOcarina() {
+		return (state instanceof LinkStateSingingOcarina);
 	}
 }

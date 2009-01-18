@@ -8,12 +8,14 @@ import zelda.entity.DrawableImageSprite;
 
 public abstract class LinkStateAbstract implements LinkState {
 
+	protected Link link = null;
+	protected Point position = null;
 	protected DrawableImageSprite image = null;
 	protected int spriteNumber = 0;
 	protected int spriteType = 0;
-	protected Link link = null;
+	protected int strengh = 0;
+	protected int spriteSize = 24;
 	protected boolean movable = true;
-	protected Point position = null;
 	
 	public LinkStateAbstract(Link link){
 		if(link != null){
@@ -26,9 +28,34 @@ public abstract class LinkStateAbstract implements LinkState {
 		this.link = link;
 	}
 	
-	public abstract void draw(Graphics g, Point pos);
-	public abstract Rectangle getBoundingBox();
-	public abstract void oneStepMoveHandler();
-	public abstract int getStrengh();
-	public abstract int getSpriteSize();
+	public int getStrengh() {
+		return strengh;
+	}
+	
+	public int getSpriteSize() {
+		return spriteSize;
+	}
+	
+	public void oneStepMoveHandler() {
+		if (movable|| link.isTimerRunning()) {
+			spriteNumber++;
+			spriteNumber = spriteNumber % image.getNumberOfSprites();
+		}
+	}
+	
+	public Rectangle getBoundingBox() {
+		return (new Rectangle(position.x, position.y, 
+				spriteSize, spriteSize));
+	}
+	
+	public void draw(Graphics g, Point pos) {
+		position = pos;
+		g.drawImage(image.getImage(), pos.x, pos.y, 
+				pos.x + spriteSize, 
+				pos.y + spriteSize,
+				spriteNumber * image.getPixelsLenght(), 
+				spriteType * image.getPixelsHeight(), 
+				(spriteNumber + 1) * image.getPixelsLenght(), 
+				(spriteType + 1) * image.getPixelsHeight(), null);
+	}
 }

@@ -3,14 +3,10 @@ package zelda.entity.characters.link;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 
 import zelda.entity.DrawableImageSprite;
 
 public class LinkStateNotArmed extends LinkStateAbstract {
-	
-	private int STRENGH = 2;
-	private int SpriteSize = 25;
 
 	public LinkStateNotArmed(Canvas canvas, Link link) {
 		super(link);
@@ -18,12 +14,10 @@ public class LinkStateNotArmed extends LinkStateAbstract {
 			image = new DrawableImageSprite("images/characters/LINK.gif", canvas, 25, 25, 8);
 		}
 		spriteType = 0;
-		position = link.getPosition();
 	}
 
 	@Override
 	public void draw(Graphics g, Point pos) {
-		position = pos;
 		Point tmp = link.getLinkSpeedVector().getDir();
 		movable = true;
 		
@@ -43,38 +37,6 @@ public class LinkStateNotArmed extends LinkStateAbstract {
 		if(link.isTimerRunning())
 			spriteType += 6;
 		
-		g.drawImage(image.getImage(), pos.x, pos.y, 
-				pos.x + SpriteSize, 
-				pos.y + SpriteSize,
-				spriteNumber * image.getPixelsLenght(), 
-				spriteType * image.getPixelsHeight(), 
-				(spriteNumber + 1) * image.getPixelsLenght(), 
-				(spriteType + 1) * image.getPixelsHeight(), null);
-	}
-
-	@Override
-	public Rectangle getBoundingBox() {
-		if(position == null)
-			System.out.println("POSITION NULLLLLLLLLLLLLLLLLLLLL NOTARMED");
-		return (new Rectangle(position.x, position.y, 
-				SpriteSize, SpriteSize ));
-	}
-
-	@Override
-	public void oneStepMoveHandler() {
-		if (movable || link.isTimerRunning()) {
-			spriteNumber++;
-			spriteNumber = spriteNumber % image.getNumberOfSprites();
-		}
-	}
-	
-	@Override
-	public int getStrengh() {
-		return STRENGH;
-	}
-
-	@Override
-	public int getSpriteSize() {
-		return SpriteSize;
+		super.draw(g,pos);
 	}
 }
