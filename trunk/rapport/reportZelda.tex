@@ -160,10 +160,11 @@ Nous avons choisi d'utilis\'e une fabrique abstraite pour permettre la
 cr\'eation et l'ajout d'entit\'es dans le niveau. Il \'etait assez intéressant
 de cr\'eer cette fabrique abstraite car ainsi nous ne faisions juste qu'une
 demande de cr\'eation d'un certain objet qu'elle s'occupait d'instancier. Une
-personne voulant cr\'eer un personnage ou une autre entit\'e a juste besoin de faire appel \`a la m\'ethode create ad\'equate. 
-Cependant, le probl\`eme le plus important et qui est un probl\`eme propre \`a
-ce mod\`ele est que l'ajout de nouvelles entit\'es est assez fastidieux : à
-chaque nouvel objet il faut une méthode pour le créer. Dans les constructeurs
+personne voulant cr\'eer un personnage ou une autre entit\'e a juste besoin de
+faire appel \`a la m\'{e}thode create ad\'equate. Cependant, le probl\`eme le
+plus important et qui est un probl\`eme propre \`a ce mod\`ele est que l'ajout de 
+nouvelles entit\'es est assez fastidieux : à
+chaque nouvel objet il faut une m\'ethode pour le créer. Dans les constructeurs
 de niveaux actuels il faut ajouter dans la table de hashage la méthode associée.
 
 \begin{center}
@@ -206,7 +207,7 @@ rapidement de nouveaux \'etats, et d'ajuster le comportement voulu facilement. \
  \includegraphics[scale=0.8]{images/Statediagram.eps}
 \end{center}
  
-\subsubsection*{Gestion du niveau avec des observateurs}
+\subsubsection*{un Singleton pour gérer le nombre d'ennemis dans le niveau}
 Dans le jeu, une des priorité est d'éliminer tout les ennemis afin de pouvoir
 finir le niveau. Afin de gérer le nombre d'ennemis, on crée un observateur
 unique à qui on adresse en début de niveau le nombre d'ennemis à tuer.
@@ -243,40 +244,52 @@ Les sons ne sont pas assez nombreux, ce qui laisse une part de silence trop
 grande, mais le système de son est mis en place, ce qui nous relie aux besoins
 du projet même.
  
-\section{ImplÃ©mentation}
+\section{Implémentation}
 
-\subsection*{ProblÃ¨mes rencontrÃ©s}
+\subsection*{Problèmes rencontrés}
 
-Nous avons bien sur rencontrÃ© plusieurs points difficiles.
+Nous avons bien sûr rencontré plusieurs points difficiles.
 
 \subsubsection*{Gestion des niveaux}
 
 Nous avons mis en place plusieurs niveaux ainsi qu'un changement de ceux-ci, 
-ce qui s'avÃ©ra \^etre une t\^ache ardu. En effet, nous pouvons passer au niveau 
-suivant sans problÃ¨me mais choisir au hasard un niveau et le lancÃ© est malheureusement
-impossible. Nous avons voulu mettre en place un systÃ¨me utilisant ceci via le rechargement
-de sauvegarde. Avec notre implÃ©mentation, quand nous rechargeons un niveau, le niveau se 
-charge mais celui-ci ne dÃ©marre pas. Nous avons tentÃ© de diverse faÃ§on de faire en sorte que
-cela fonctionne sans rÃ©sultat. En fait, le plus compliquÃ© vient de l'utilisation des threads
-qui doivent Ãªtre interrompus avant de passer au niveau suivant et le niveau suivant doit Ãªtre
-lancÃ©. Mais pour des raisons inconnus, les threads ne se lancent pas.
+ce qui s'avéra \^etre une t\^ache ardu. En effet, nous pouvons passer au niveau 
+suivant sans problème mais choisir au hasard un niveau et le lancer est
+malheureusement impossible. Nous avons voulu mettre en place un système
+utilisant ceci via le rechargement de sauvegarde. Avec notre implémentation,
+quand nous rechargeons un niveau, le niveau se charge mais celui-ci ne démarre
+pas. Nous avons tenté de diverse façon de faire en sorte que cela fonctionne
+sans résultat. En fait, le plus compliqué vient de l'utilisation des threads
+qui doivent être interrompus avant de passer au niveau suivant et le niveau
+suivant doit être lancé. Mais pour des raisons inconnus, les threads ne se
+lancent pas.
 
 \subsubsection*{XML}
 
-En thÃ©orie, il est possible de crÃ©er des niveaux au format XML grÃ¢ce au Monteur LevelReader, malheureusement
-nous avons eu des difficultÃ©s Ã  mettre en place ce lecteur de XML. Nous n'avons pas rÃ©ussi surement 
-Ã  cause du fait que nous n'avions jamais utilisÃ© l'API correspondante auparavant, et les diffÃ©rents 
-tutoriaux prÃ©sent sur internet n'ont pas suffit Ã  nous permettre de rÃ©ussir.
+En théorie, il est possible de créer des niveaux au format XML grâce au
+Monteur LevelReader, malheureusement nous avons eu des difficultés à mettre en
+place ce lecteur de XML. Nous n'avons pas réussi surement à cause du fait que
+nous n'avions jamais utilisé l'API correspondante auparavant, et les
+différents tutoriaux présent sur internet n'ont pas suffit à nous permettre
+de réussir.
 
 \subsubsection*{Le framework de base}
 
-Le fait d'Ãªtre confrontÃ© Ã  un framework dont nous ne pouvions rien toucher, fut un challenge intÃ©ressant 
-mais cependant parfois compliquÃ©. Il nous est arrivÃ© Ã  plusieurs reprise de vouloir rÃ©cupÃ©rer une chose
-d'une classe du framework, alors que cette chose ne nous Ã©tait pas accessible ou encore modifier une variable
-privÃ©e inaccessible de l'extÃ©rieur. Nous avons avoir parfois Ã©tait tentÃ© par la recopie de code (ce que nous 
-pouvons apercevoir avec la classe GameZeldaAWTImpl) mais il fallait le plus souvent trouvÃ© des astuces. Ces astuces 
-Ã©taient souvent des modÃ¨les de conceptions, par exemple nous avons utilisÃ© un dÃ©corateur pour permettre d'Ã©tendre 
-les fonctionnalitÃ©s d'une interface qui ne nous permettait pas de rÃ©cupÃ©rer une variable pourtant essentielle 
-sans laquelle le jeu aurait paru Ã©trange aux yeux des divers joueurs.
+Le fait d'être confronté à un framework dont nous ne pouvions rien toucher,
+fut un challenge intéressant mais cependant parfois compliqué. Il nous est
+arrivé à plusieurs reprise de vouloir récupérer une chose d'une classe du
+framework, alors que cette chose ne nous était pas accessible ou encore
+modifier une variable privée inaccessible de l'extèrieur. Nous avons
+parfois été tenté par la recopie de code (ce que nous pouvons apercevoir
+avec la classe GameZeldaAWTImpl) mais il fallait le plus souvent trouver des
+astuces. Ces astuces étaient souvent des modèles de conceptions, par exemple
+nous avons utilisé un décorateur pour permettre d'attendre les
+fonctionnalités d'une interface qui ne nous permettait pas de récupérer une
+variable pourtant essentielle sans laquelle le jeu aurait paru étrange aux yeux
+des divers joueurs.
+
+\subsubsection*{Gestion des sprites}
+
+Une des principales difficultés fût de gérer correctement les sprites. 
 
 \end{document}
