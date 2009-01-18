@@ -31,8 +31,7 @@ public class Link extends GameMovable implements Drawable, GameEntity,
 
 	@Override
 	public void draw(Graphics g) {
-		state.draw(g, new Point((int) getPosition().getX(), (int) getPosition()
-				.getY()));
+		state.draw(g, getPosition());
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class LinkStateSingingOcarina extends LinkStateAbstract {
 			image = new DrawableImageSprite("images/characters/LINK.gif", canvas, 25, 25, 8);
 		}
 		spriteType = 10;
-		spriteNumber = 0;
+		position = link.getPosition();
 	}
 
 	@Override
@@ -35,6 +35,8 @@ public class LinkStateSingingOcarina extends LinkStateAbstract {
 
 	@Override
 	public Rectangle getBoundingBox() {
+		if(position == null)
+			System.out.println("POSITION NULLLLLLLLLLLLLLLLLLLLL SINGING");
 		return (new Rectangle(position.x, position.y, 
 				SpriteSize, SpriteSize));
 	}

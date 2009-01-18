@@ -9,7 +9,7 @@ import zelda.entity.DrawableImageSprite;
 
 public class LinkStateNotArmed extends LinkStateAbstract {
 	
-	private int STRENGH = 0;
+	private int STRENGH = 2;
 	private int SpriteSize = 25;
 
 	public LinkStateNotArmed(Canvas canvas, Link link) {
@@ -18,7 +18,7 @@ public class LinkStateNotArmed extends LinkStateAbstract {
 			image = new DrawableImageSprite("images/characters/LINK.gif", canvas, 25, 25, 8);
 		}
 		spriteType = 0;
-		spriteNumber = 0;
+		position = link.getPosition();
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class LinkStateNotArmed extends LinkStateAbstract {
 			spriteType = 0;
 		} else {  						// "de Face");
 			spriteType = 0;
-			spriteNumber = 0;
+			//spriteNumber = 0;
 			movable = false;
 		}
 		if(link.isTimerRunning())
@@ -54,6 +54,8 @@ public class LinkStateNotArmed extends LinkStateAbstract {
 
 	@Override
 	public Rectangle getBoundingBox() {
+		if(position == null)
+			System.out.println("POSITION NULLLLLLLLLLLLLLLLLLLLL NOTARMED");
 		return (new Rectangle(position.x, position.y, 
 				SpriteSize, SpriteSize ));
 	}
