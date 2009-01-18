@@ -28,9 +28,7 @@ public class ZeldaGameLevel extends GameLevelDefaultImpl {
 	Canvas canvas;
 
 	public static final int SPRITE_SIZE = 16;
-	public int NUMBER_OF_ENNEMYS = 0; // Faire en sorte que cette valeur est
-										// une raison d'�tre et corresponde �
-										// quelque chose
+	public int NUMBER_OF_ENNEMYS = 0;
 	protected static final int NB_ROWS = 31;
 	protected static final int NB_COLUMNS = 50;
 

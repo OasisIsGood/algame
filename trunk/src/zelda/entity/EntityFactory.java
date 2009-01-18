@@ -26,7 +26,6 @@ import zelda.observer.EnnemyObserver;
 /*
  * Class where we can create all the entity objects
  * Please respect the alphabetical order thxs !
- * G FAIT MON MONK LA 
  */
 public class EntityFactory {
 

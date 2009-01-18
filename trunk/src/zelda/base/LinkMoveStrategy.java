@@ -39,7 +39,6 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 				LinkState linkState = link.getState(); 
 				link.setState("LinkStateSingingOcarina");
 				getSpeedVector().setDir(new Point(0, 0));
-				// TODO CE QUI SUIT FAIT TOUT BUGGER
 				try {
 					Sound sound = new Sound(new File("sounds/LOZ_Recorder.wav"));
 					sound.play();

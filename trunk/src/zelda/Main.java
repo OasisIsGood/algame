@@ -10,7 +10,6 @@ import zelda.level.ZeldaGameLevel;
 
 public class Main {
 	public static void main(String[] args) {
-		//GameZeldaImpl g = new GameZeldaImpl();
 		GameZeldaAWTImpl g = new GameZeldaAWTImpl();
 		ArrayList<GameLevel> levels = new ArrayList<GameLevel>();
 
