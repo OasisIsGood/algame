@@ -8,16 +8,13 @@ import java.io.IOException;
 public class TextSaveBuilder implements SaveBuilder {
 
 	BufferedWriter bw;
-	
-	public TextSaveBuilder(File file) {
-		try {
-			if(!file.exists())
-				if(!file.createNewFile())
-					throw new IOException(file.getName() + " (No such file or directory)");
-			this.bw = new BufferedWriter(new FileWriter(file));
-		} catch (IOException e) {
-			System.err.println(e.getMessage());
-		}
+
+	public TextSaveBuilder(File file) throws IOException {
+		if (!file.exists())
+			if (!file.createNewFile())
+				throw new IOException(file.getName()
+						+ " (No such file or directory)");
+		this.bw = new BufferedWriter(new FileWriter(file));
 	}
 
 	@Override
@@ -28,7 +25,7 @@ public class TextSaveBuilder implements SaveBuilder {
 	@Override
 	public void nbLife(int[] life) throws IOException {
 		bw.write("LIFE ");
-		for(int i = 0; i < life.length; ++i)
+		for (int i = 0; i < life.length; ++i)
 			bw.write(Integer.toString(life[i]) + " ");
 		bw.write("\n");
 	}

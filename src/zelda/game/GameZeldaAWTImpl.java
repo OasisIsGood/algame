@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,6 +33,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import zelda.base.Sound;
 import zelda.level.ZeldaGameLevel;
 import zelda.observer.EnnemyObserver;
 
@@ -69,8 +71,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 	protected Label currentLevel;
 	protected Label currentLevelValue;
 
-	protected SaveBuilder builderWriter = new TextSaveBuilder(new File("save/link.zld"));
-	protected SaveBuilderReader builderReader = new TextSaveBuilderReader(new File("save/link.zld"));
+	private File saveFile = new File("save/link.zld");
 
 	public GameZeldaAWTImpl() {
 		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i) {
@@ -193,8 +194,6 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		about.add(commands);
 
 		start.setEnabled(false);
-		// save.setEnabled(false);
-		//restore.setEnabled(false);
 	}
 
 	private Container createStatusBar() {
@@ -251,11 +250,12 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		run();
 	}
 
-	public void restore() { //TODO Ne fonctionne pas car retourne null partout
+	public void restore() { //TODO Ne fonctionne pas
 		int levelRestore;
 		int[] playerLife = new int[MAX_NUMBER_OF_PLAYER];
 		
 		try {
+			SaveBuilderReader builderReader = new TextSaveBuilderReader(saveFile);
 			builderReader.read();
 			levelRestore = builderReader.level();
 			playerLife = builderReader.life();
@@ -270,8 +270,6 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 			}
 		} catch (IOException e) {
 			System.err.println("Can't load save game !");
-		} catch (NullPointerException e) {
-			System.err.println("Can't load save game !");
 		}
 		
 		run();
@@ -282,6 +280,7 @@ public class GameZeldaAWTImpl implements GameZelda, Observer {
 		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i)
 			playerLife[i] = this.life[i].getValue();
 		try {
+			SaveBuilder builderWriter = new TextSaveBuilder(saveFile);
 			builderWriter.nbLife(playerLife);
 			builderWriter.level(this.levelNumber);
 			builderWriter.result();

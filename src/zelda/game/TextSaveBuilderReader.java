@@ -19,9 +19,8 @@ public class TextSaveBuilderReader implements SaveBuilderReader {
 		try {
 			br = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
-		;
 	}
 
 	@Override
@@ -38,7 +37,7 @@ public class TextSaveBuilderReader implements SaveBuilderReader {
 	}
 
 	@Override
-	public int[] life() {
+	public int[] life() throws IOException {
 		if (life == null) {
 			String s = map.get("LIFE");
 			if (s != null) {
@@ -50,6 +49,8 @@ public class TextSaveBuilderReader implements SaveBuilderReader {
 					} catch (NumberFormatException e) {
 						System.err.println("Error : Invalid Life !");
 						life[i] = 0;
+					} catch (NullPointerException e) {
+						throw new IOException("Life is not appearing");
 					}
 				}
 			}
