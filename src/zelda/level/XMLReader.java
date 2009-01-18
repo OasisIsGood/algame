@@ -16,7 +16,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import zelda.entity.EntityFactory;
-import zelda.level.ZeldaGameLevel1.direction;
+import zelda.level.ZeldaGameLevel.direction;
 
 public class XMLReader implements LevelReader {
 
