@@ -289,6 +289,37 @@ sans laquelle le jeu aurait paru \'etrange aux yeux des divers joueurs.
 
 \subsubsection*{Gestion des sprites}
 
-Une des principales difficult\'es f\^ut de g\'erer correctement les sprites. 
+Une des principales difficultés fût de gérer correctement les sprites. Au
+départ, nous avions repris le code de Pacman. Celui ci utilisait pour Pacman
+une grande image contenant une série de sprites différentes. Dans le code
+apparaissait plusieurs fois le même identificateur SPRITE\_SIZE. Il nous a
+fallu analyser plus en détail le code pour nous rendre compte qu'en fait, tout
+dépendait de la taille de l'image affichée à l'écran, de sa taille en largeur
+et hauteur en pixels. Durant plusieurs jours, nous nous sommes entétés à
+utiliser des sprites complexes, de tailles variées. L'idée fût alors de créer
+ses propres sprites et de s'occuper de chacun selon ses dimensions respectives.
+\\ 
+Ainsi pour Link, on a créé un sprite sans arme, et un autre avec épée. 
+L'utilisation de plusieurs classes permet alors d'utiliser le sprite voulu avec
+ses dimensions particulières, nottament le nombre de sprite sur une ligne, mais
+aussi son affichage à l'écran. \\
+La difficulté fût d'abord d'apprendre à utiliser le logiciel de retouches
+d'images Gimp, ce qui ne fût pas sans peine, sachant qu'il nou fallait peu de
+temps pour créer une série de plusieurs sprites différents, calés au pixel
+près. \\
+Ensuite, il a fallut déméler les SPRITE\_SIZE selon leur vraie utilité. \\
+Ensuite, il a fallu gérer l'utilisation du bon sprite selon l'état du
+personnage (pour Link). Link fût le personnage qui fût le plus compliqué à
+manier dans le sens où justement les transitions d'états compliquent la gestion
+du mouvement des sprites selon la classe qui l'utilise. Il n'est pas impossible
+par exemple que sur la dernière version, les dernières modifications aient
+entrainées que l'on ne puisse plus voir le sprite de Link en train de jouer un
+air de musique, car on fait suivre ce mouvement particulier d'une nouvelle
+transition d'état vers un Link armé par exemple. Surement que ce problème sera
+débuggué d'ici la remise du projet (en tout cas ça a marché il y a quelques
+heures!).\\
+
+Les sprites prirent donc un temps monstrueux dans la gestion du projet, ce qui
+a affaibli les fonctionnalités où le design des autres entités du décor. 
 
 \end{document}
