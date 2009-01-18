@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import zelda.entity.characters.link.Link;
+import zelda.entity.characters.link.LinkState;
 
 public class LinkMoveStrategy extends MoveStrategyKeyboard {
 	Link link;
@@ -18,9 +19,7 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 
 	@Override
 	public void keyPressed(KeyEvent event) {
-		if (link.isDeath())
-			;
-		else {
+		if (!link.isDeath() || !link.isSingingOcarina()) {
 			int keycode = event.getKeyCode();
 			if (keycode != KeyEvent.VK_SPACE && !link.isFighting())
 				super.keyPressed(event);
@@ -37,6 +36,7 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 				getSpeedVector().setDir(new Point(0, 0));
 				break;
 			case KeyEvent.VK_O:
+				LinkState linkState = link.getState(); 
 				link.setState("LinkStateSingingOcarina");
 				getSpeedVector().setDir(new Point(0, 0));
 				// TODO CE QUI SUIT FAIT TOUT BUGGER
@@ -47,7 +47,7 @@ public class LinkMoveStrategy extends MoveStrategyKeyboard {
 					System.out
 							.println("(ZeldaOverlaps) Explosion Sound file not found");
 				}
-				link.setState("LinkStateNotArmed");
+				link.setState(linkState);
 				break;
 			}
 		}
