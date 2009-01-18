@@ -1,20 +1,5 @@
 TODO
-	
-########################################################
-
-* Gérer le sprite de Link pour quand il se fight
- ---> si épée sur LINKSWORDING.gif
- ---> fighting sur sprite LINK.gif sinon
-
-########################################################
 
 * Tests JUnit ?!?
-########################################################
 
-* Bug des sons qui stop tout
-
-########################################################
-
-* Bug des états qui sort une grosse exception
-
-########################################################
+* RAPPORT
