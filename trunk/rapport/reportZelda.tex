@@ -10,21 +10,21 @@
 \usepackage{xcolor}
 
 \title{\large{\bfseries{ARCHITECTURE LOGICIELLE}}}
-\author{Benoît Védrenne, Gaël Walter}
+\author{BenoÃ®t VÃ©drenne, GaÃ«l Walter}
 
 \begin{document}
 
 \maketitle
 
 \begin{center}
-\emph{Chargé de TD :} Damien Cassou\end{center}
+\emph{ChargÃ© de TD :} Damien Cassou\end{center}
 
 \vspace{0.5cm}
 
 \begin{center}
 \includegraphics[width=2.5cm,height=2.5cm]{images/bdx1.eps}\\
-\large{Université Bordeaux 1,\\
-351 cours de la Libération,\\
+\large{UniversitÃ© Bordeaux 1,\\
+351 cours de la LibÃ©ration,\\
 33405 Talence Cedex,\\
 France}
 \end{center} 
@@ -40,64 +40,64 @@ France}
 \end{center}
 
 \begin{abstract}
-La légende raconte que la grande forêt d'Hyrule est occupée par Ganon, le
-puissant Prince des Ténèbres. Ganon a capturé la fille du Roi qui tenta de séparer la
-Triforce, puissant sortilège qui protège le royaume d'Hyrule. Ses guardes
-maléfiques avancent à grand pas dans la forêt en détruisant tout sur leurs
+La lÃ©gende raconte que la grande forÃªt d'Hyrule est occupÃ©e par Ganon, le
+puissant Prince des TÃ©nÃ¨bres. Ganon a capturÃ© la fille du Roi qui tenta de sÃ©parer la
+Triforce, puissant sortilÃ¨ge qui protÃ¨ge le royaume d'Hyrule. Ses guardes
+malÃ©fiques avancent Ã  grand pas dans la forÃªt en dÃ©truisant tout sur leurs
 passages\ldots \\
 Il existe cependant un chevalier courageux, en ces temps de manants. 
-On le reconnait facilement à sa chevelure blonde sous sa longue cape
+On le reconnait facilement Ã  sa chevelure blonde sous sa longue cape
 verte. Apprenant la nouvelle de l'invasion, le regard noir,
-il parti dans les haut bois de la forêt d'Hyrule pour les affronter tous et
-libérer la fille du Roi nommée ``Zelda''.\\
+il parti dans les haut bois de la forÃªt d'Hyrule pour les affronter tous et
+libÃ©rer la fille du Roi nommÃ©e ``Zelda''.\\
 
-The ``CREMI Legend of Zelda'', c'est l'histoire de ce jeune garçon, nommé
-LinkAuber, alias Link qui doit sauver la princesse Zelda au péril de sa vie. \\
-Une somme d'embûches l'attend. L'art de manier son épée pourra peut être
-l'aider dans sa quête impossible: seul contre une armée entière.
+The ``CREMI Legend of Zelda'', c'est l'histoire de ce jeune garÃ§on, nommÃ©
+LinkAuber, alias Link qui doit sauver la princesse Zelda au pÃ©ril de sa vie. \\
+Une somme d'embÃ»ches l'attend. L'art de manier son Ã©pÃ©e pourra peut Ãªtre
+l'aider dans sa quÃªte impossible: seul contre une armÃ©e entiÃ¨re.
 \end{abstract}
 
 \newpage
 
 \section{Introduction}
 Le framework de jeu plateforme dont nous disposions, nous a permis
-d'implémenter une version du Jeu Zelda. Ce jeu, créé par Miyamoto (auteur
-également de Donkey Kong et Mario), possède une version Nintendo de 1986. \\
+d'implÃ©menter une version du Jeu Zelda. Ce jeu, crÃ©Ã© par Miyamoto (auteur
+Ã©galement de Donkey Kong et Mario), possÃ¨de une version Nintendo de 1986. \\
 
-Notre application s'inspire de cette version là, où l'on peut guider dans une
-forêt le personnage Link. Il peut utiliser son épée avec la touche ``Espace'', comme notre version. \\
-Nous l'avons bien sûr dénommé Cremi Legend Of Zelda car il a été principalement
-développé au Cremi !
+Notre application s'inspire de cette version lÃ , oÃ¹ l'on peut guider dans une
+forÃªt le personnage Link. Il peut utiliser son Ã©pÃ©e avec la touche ``Espace'', comme notre version. \\
+Nous l'avons bien sÃ»r dÃ©nommÃ© Cremi Legend Of Zelda car il a Ã©tÃ© principalement
+dÃ©veloppÃ© au Cremi !
 
-\subsection{Comment jouer à CLOZ ?}
-Le but du jeu est de guider Link dans la forêt pour l'amener à Zelda avec les
-touches fléchées. \\ 
-On devra tout d'abord éliminer tout ses ennemis méléfiques en utilisant le coup
-d'attaque par la touche ``Espace''. Ceux ci sont très énervés car
-ils ont été prévenus de l'arrivé de Link, c'est pour cela qu'ils n'ont pas un
-comportement très logiques. Parfois, il se peut qu'un ennemi plus robuste
-surveille plus raisonnablement Zelda, il est donc plus difficile à tuer.\\
+\subsection{Comment jouer Ã  CLOZ ?}
+Le but du jeu est de guider Link dans la forÃªt pour l'amener Ã  Zelda avec les
+touches flÃ©chÃ©es. \\ 
+On devra tout d'abord Ã©liminer tout ses ennemis mÃ©lÃ©fiques en utilisant le coup
+d'attaque par la touche ``Espace''. Ceux ci sont trÃ¨s Ã©nervÃ©s car
+ils ont Ã©tÃ© prÃ©venus de l'arrivÃ© de Link, c'est pour cela qu'ils n'ont pas un
+comportement trÃ¨s logiques. Parfois, il se peut qu'un ennemi plus robuste
+surveille plus raisonnablement Zelda, il est donc plus difficile Ã  tuer.\\
 
-La difficulté du jeu réside dans le nombre d'ennemis à tuer, plus ou moins
-forts selon leurs grades, mais aussi dans les différents objets
-qui peuvent agrémenter le jeu. Le joueur est libre de tous les essayer.\\
+La difficultÃ© du jeu rÃ©side dans le nombre d'ennemis Ã  tuer, plus ou moins
+forts selon leurs grades, mais aussi dans les diffÃ©rents objets
+qui peuvent agrÃ©menter le jeu. Le joueur est libre de tous les essayer.\\
 
-La vie de Link démarre à ``100'' mais elle peut descendre très vite!
+La vie de Link dÃ©marre Ã  ``100'' mais elle peut descendre trÃ¨s vite!
 
-\subsection{Quelques règles du jeu}
+\subsection{Quelques rÃ¨gles du jeu}
 Seul le clavier est utile au jeu, mais le menu permet d'autres actions.\\
 Au croisement avec des ennemis, Link perd de la vie. S'il meurt, le niveau de
-jeu redémarre au début. \\
-Depuis le menu, on peut redémarrer la partie au début, mais aussi sauvegarder la
+jeu redÃ©marre au dÃ©but. \\
+Depuis le menu, on peut redÃ©marrer la partie au dÃ©but, mais aussi sauvegarder la
 partie ou en restaurer une.\\
-Lorsque tout les ennemis sont tués, il faut aller vers la princesse et le
-niveau est gagné, on passe alors automatiquement au niveau suivant, s'il existe.
+Lorsque tout les ennemis sont tuÃ©s, il faut aller vers la princesse et le
+niveau est gagnÃ©, on passe alors automatiquement au niveau suivant, s'il existe.
 On peut trouver une arme sur le sol, Link peut attaquer avec. Il est possible
-que certaines actions enlève cette arme. 
+que certaines actions enlÃ¨ve cette arme. 
 
 \subsection{Astuces}
-Comme dans beaucoup de jeu vidéo d'aventure, nous avons laissé des codes
-secrets que l'on peut chercher si l'on veut. Qu'il est agréable en étant joueur
+Comme dans beaucoup de jeu vidÃ©o d'aventure, nous avons laissÃ© des codes
+secrets que l'on peut chercher si l'on veut. Qu'il est agrÃ©able en Ã©tant joueur
 de trouver ce genre de code!
 
 \newpage
@@ -106,52 +106,75 @@ de trouver ce genre de code!
 
 \subsection{Pacquetages}
 Le paquetage ``\textbf{zelda}'' comprend plusieurs paquetages.\\
-Le paquetage ``\textbf{base}'' permet de gérer l'interaction utilisateur, sons,
+Le paquetage ``\textbf{base}'' permet de gÃ©rer l'interaction utilisateur, sons,
 gestion de mouvements de personnages.\\ 
 Le paquetage ``\textbf{rule}'' permet de
-gérer les collisions ou blocages entre entités du jeu.\\ 
+gÃ©rer les collisions ou blocages entre entitÃ©s du jeu.\\ 
 Le paquetage
-``\textbf{level}'' permet de gérer la mise en place des niveaux du jeu, de la
-lecture de fichier pour les niveaux, à la création de niveaux.\\ 
+``\textbf{level}'' permet de gÃ©rer la mise en place des niveaux du jeu, de la
+lecture de fichier pour les niveaux, Ã  la crÃ©ation de niveaux.\\ 
 Le paquetage
-``\textbf{game}'' contient les classes nécessaires à la création du jeu
+``\textbf{game}'' contient les classes nÃ©cessaires Ã  la crÃ©ation du jeu
 (gestion de l'univers, sauvegarde de niveaux\ldots).\\ 
 Le paquetage
-``\textbf{observer}'' permet de gérer tout les observateurs du jeu.\\ 
-Le paquetage ``\textbf{entity}'' possède toutes les classes de toutes les entités 
-présentes dans le jeu : personnages et décors. Dans les personnages, un paquetage 
-est réservé aux états de Link.\\
+``\textbf{observer}'' permet de gÃ©rer tout les observateurs du jeu.\\ 
+Le paquetage ``\textbf{entity}'' possÃ¨de toutes les classes de toutes les entitÃ©s 
+prÃ©sentes dans le jeu : personnages et dÃ©cors. Dans les personnages, un paquetage 
+est rÃ©servÃ© aux Ã©tats de Link.\\
 
-\subsection{Architecture générale}
+\subsection{Architecture gÃ©nÃ©rale}
 
 \begin{center}
  %\includegraphics[width=9cm,height=9cm]{images/archiGenerale.eps}
 \end{center}
 
-\subsection{Architecture détaillée}
+\subsection{Architecture dÃ©taillÃ©e}
 
-\subsubsection*{Une Fabrique Abstraite pour créer le niveau depuis un fichier
+\subsubsection*{Une Fabrique Abstraite pour crÃ©er le niveau depuis un fichier
 texte}
+Nous avons choisi d'utilisÃ© une fabrique abstraite pour permettre la
+crÃ©ation et l'ajout d'entitÃ© dans le niveau. Il Ã©tait assez interressant
+de crÃ©er cette fabrique abstraite car aisni nous faisions juste une
+demande de crÃ©ation d'un certain objet Ã  celle-ci et elle s'occuper du
+reste. Une personne voulant crÃ©er un personnage ou une autre entitÃ© a
+juste besoin de faire appel Ã  la mÃ©thode create adÃ©quate. Cependant, le
+problÃ¨me le plus important et qui est un problÃ¨me propre Ã  ce modÃ¨le,
+c'est que l'ajout de nouvelles entitÃ©s est assez fastidieux.
 
 \begin{center}
  %\includegraphics[width=9cm,height=9cm]{images/abstFab.eps}
 \end{center}
 
 \subsubsection*{Le pattern Monteur pour sauvegarder la partie}
+Le fait de sauvegarder la partie est une action classique de tout
+jeu. Il nous est apparu comme Ã©vident d'avoir une reprÃ©sentation sur
+fichier du contenu de cette sauvegarde. Nous avons donc mis en place un
+monteur, celui-ci en effet est particuliÃ¨rement adaptÃ© Ã  ce genre de
+situation. Nous avons donc crÃ©er un monteur concret qui permet d'Ã©crire
+un fichier texte contenant les informations ainsi sauvegarder.\\
+Un autre avantage de ce patron de conception est que nous pouvons ainsi
+rapidement modifier la reprÃ©sentation de cette sauvegarde. Il est tout Ã 
+fait possible d'imaginÃ© une sauvegarde au format HTML ou XML, ou on ne
+sait quel autre format. Le format de la sauvegarde est donc facilement
+modifiable pour n'importe quelle personne reprennant notre code et qui
+n'aimerait pas notre reprÃ©sentation. \\
 
 \begin{center}
  %\includegraphics[width=9cm,height=9cm]{images/monteur.eps}
 \end{center}
 
-\subsubsection*{Gestion des états de Link avec le pattern Etat}
-L'état de Link modifie son comportement. Ces changements
-apparaissent de façon dynamique, selon les évenements du jeu, ou du joueur.
-Cette intention nous a amené à utiliser le pattern Etat pour gérer Link. Celui
-ci peut déléguer son comportement changeant à une hiérarchie de classes
-LinkState possédant des requêtes spécifiques comme l'utilisation de l'arme, le
+Nous avons aussi utilisÃ© ce modÃ¨le pour la lecture de la sauvegarde
+ainsi que la lecture du fichier de crÃ©ation de niveau.
+
+\subsubsection*{Gestion des Ã©tats de Link avec le pattern Etat}
+L'Ã©tat de Link modifie son comportement. Ces changements
+apparaissent de faÃ§on dynamique, selon les Ã©venements du jeu, ou du joueur.
+Cette intention nous a amenÃ© Ã  utiliser le pattern Etat pour gÃ©rer Link. Celui
+ci peut dÃ©lÃ©guer son comportement changeant Ã  une hiÃ©rarchie de classes
+LinkState possÃ©dant des requÃªtes spÃ©cifiques comme l'utilisation de l'arme, le
 mode attaque, la mort du personnage\ldots
-Sur la fin du développement, cette conception nous a permis de rajouter
-rapidement de nouveaux états, et d'ajuster le comportement voulu facilement. \\
+Sur la fin du dÃ©veloppement, cette conception nous a permis de rajouter
+rapidement de nouveaux Ã©tats, et d'ajuster le comportement voulu facilement. \\
 
 \begin{center}
  \includegraphics[scale=0.8]{images/Statediagram.eps}
