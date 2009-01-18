@@ -18,7 +18,7 @@ public class LinkStateHaveSword extends LinkStateAbstract {
 			image = new DrawableImageSprite("images/characters/LINKSWORD.gif", canvas, 35, 35, 8);
 		}
 		spriteType = 0;
-		spriteNumber = 0;
+		position = link.getPosition();
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class LinkStateHaveSword extends LinkStateAbstract {
 			spriteType = 0;
 		} else {  						// "de Face");
 			spriteType = 0;
-			spriteNumber = 0;
+			//spriteNumber = 0;
 			movable = false;
 		}
 		if(link.isTimerRunning())
@@ -54,6 +54,8 @@ public class LinkStateHaveSword extends LinkStateAbstract {
 
 	@Override
 	public Rectangle getBoundingBox() {
+		if(position == null)
+			System.out.println("POSITION NULLLLLLLLLLLLLLLLLLLLL HAVESWORD");
 		return (new Rectangle(position.x, position.y, 
 					SpriteSize, SpriteSize ));
 	}

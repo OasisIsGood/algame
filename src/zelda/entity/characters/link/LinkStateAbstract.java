@@ -19,6 +19,7 @@ public abstract class LinkStateAbstract implements LinkState {
 		if(link != null){
 			this.link = link;
 		}
+		position = link.getPosition();
 	}
 	
 	public void setLink(Link link) {

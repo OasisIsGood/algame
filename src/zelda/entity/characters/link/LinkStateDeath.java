@@ -18,7 +18,7 @@ public class LinkStateDeath extends LinkStateAbstract {
 			image = new DrawableImageSprite("images/characters/LINK.gif", canvas, 25, 25, 8);
 		}
 		spriteType = 11;
-		spriteNumber = 0;
+		position = link.getPosition();
 	}
 
 	@Override
