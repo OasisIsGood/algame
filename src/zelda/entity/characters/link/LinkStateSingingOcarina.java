@@ -48,6 +48,7 @@ public class LinkStateSingingOcarina extends LinkStateAbstract {
 				movable = false; // ça y est il a fini de chanter là, il ne bouge plus
 			//link.setState("LinkStateNotArmed");
 			// TODO GROSSE EXCEPTION LA !!!
+			//link.setState(LinkStateNotArmed.class.getName()); TODO a essayer dans ce style
 		}
 	}
 
