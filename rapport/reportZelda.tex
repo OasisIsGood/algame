@@ -59,6 +59,7 @@ Une somme d'emb\^{u}ches l'attend. L'art de manier son \'ep\'ee pourra peut
 \newpage
 
 \section{Introduction}
+
 Le framework de jeu plateforme dont nous disposions, nous a permis
 d'impl\'ementer une version du Jeu Zelda. Ce jeu, cr\'e\'e par Miyamoto (auteur
 \'egalement de Donkey Kong et Mario), poss\`ede une version Nintendo de 1986. \\
@@ -69,6 +70,7 @@ Nous l'avons bien s\^{u}r d\'enomm\'e Cremi Legend Of Zelda car il a \'et\'e
 principalement d\'evelopp\'e au Cremi !
 
 \subsection{Comment jouer \`a CLOZ ?}
+
 Le but du jeu est de guider Link dans la for\^et pour l'amener \`a la
 princesse Zelda avec les
 touches fl\'ech\'ees. \\ 
@@ -89,6 +91,7 @@ vite ! Faites attention Link, n'est pas immortel. En mourrant, vous
 recommencerez le jeu au d\'ebut du niveau.
 
 \subsection{Quelques r\`egles du jeu}
+
 Seul le clavier est utile au jeu, mais le menu permet d'autres actions.\\
 Au croisement avec des ennemis, Link perd de la vie car il se fait
 frapper par ceux-ci. Les boss notament sont plus coriaces (de vrais brutes), et
@@ -111,11 +114,12 @@ au plaisir de jouer.
 \newpage
 
 \section{Conception}
+
 La premi\`ere phase du projet ft d'\'etudier le framework donn\'e, ainsi que le code
 du jeu Pacman. Le framework nous permet de cr\'eer un jeu bas\'e sur un univers
 donn\'e, des entit\'es \'evoluant dans ce monde selon des r\`egles de collisions
 donn\'ees. Nous avons commenc\'e  utiliser les classes du jeu Pacman pour d\'ebuter
-Zelda. Ce fÃ»t non seulement un moyen de comprendre plus vite comment utiliser
+Zelda. Ce f\^ut non seulement un moyen de comprendre plus vite comment utiliser
 certaines fonctionnalit\'es du framework, mais aussi une difficult\'e de commencer
  vouloir adapter un jeu d\'ej\`a fait \`a un autre, plut\^ot que de partir sur une
 base saine.\\
@@ -123,6 +127,7 @@ Ce choix nous amena \`a ajouter petit \`a petit les diff\'erentes fonctionnalit\
 plus que nous voulions.
 
 \subsection{Pacquetages}
+
 Au fur et  mesure de l'impl\'ementation, nous avons mis en place une
 arborescence de paquetages de classes, s\'eparant bien chaque partie du code, ce
 qui nous a permis de nous retrouver plus facilement tout au long du projet. On
@@ -145,7 +150,7 @@ Le paquetage ``\textbf{entity}'' poss\`ede toutes les classes de toutes les enti
 pr\'esentes dans le jeu : personnages et d\'ecors. Dans les personnages, un paquetage 
 est r\'eserv\'e aux \'etats de Link.\\
 
-\subsection{Architecture g\'en\'erale}
+%\subsection{Architecture g\'en\'erale}
 
 
 \begin{center}
@@ -156,6 +161,7 @@ est r\'eserv\'e aux \'etats de Link.\\
 
 \subsubsection*{Une Fabrique Abstraite pour cr\'eer le niveau depuis un fichier
 texte}
+
 Nous avons choisi d'utilis\'e une fabrique abstraite pour permettre la
 cr\'eation et l'ajout d'entit\'es dans le niveau. Il \'etait assez intressant
 de cr\'eer cette fabrique abstraite car ainsi nous ne faisions juste qu'une
@@ -167,13 +173,14 @@ chaque nouvel objet il faut une m\'ethode pour le cr\'eer. Dans les constructeur
 de niveaux actuels il faut ajouter dans la table de hashage la m\'ethode associ\'ee.
 
 \begin{center}
- %\includegraphics[width=9cm,height=9cm]{images/abstFab.eps}
+ \includegraphics[scale=0.8]{images/Factorydiagram.eps}
 \end{center}
 
-On reconna\^it bien l\`a la structure d'une fabrique abstraite avec ces
-diverses mÃ©thodes de cr\'eation d'objet.
+On reconna\^it bien l\`a la structure d'une fabrique abstraite avec ses
+diverses m\'{e}thodes de cr\'eation d'objet.
 
 \subsubsection*{Le pattern Monteur pour sauvegarder la partie}
+
 Le fait de sauvegarder la partie est une action classique de tout
 jeu. Il nous est apparu comme \'evident d'avoir une repr\'esentation sur
 fichier du contenu de cette sauvegarde. Nous avons donc mis en place un
@@ -188,7 +195,7 @@ modifiable pour n'importe quelle personne reprennant notre code et qui
 n'aimerait pas notre repr\'esentation. \\
 
 \begin{center}
- \includegraphics[width=9cm,height=9cm]{images/Buildersdiagram.eps}
+ \includegraphics[scale=0.7]{images/Buildersdiagram.eps}
 \end{center}
 
 Nous avons aussi utilis\'e ce mod\`ele pour la lecture de la sauvegarde
@@ -201,6 +208,7 @@ m\'ethode de cr\'eation s\'equentielle. Il est donc facile de voir comment
 d'une partie de ce jeu.
 
 \subsubsection*{Gestion des \'etats de Link avec le pattern Etat}
+
 L'\'etat de Link modifie son comportement. Ces changements
 apparaissent de faon dynamique, selon les \'evnements du jeu, ou du joueur.
 Cette intention nous a amen\'e \`a utiliser le pattern Etat pour g\'erer Link. Celui
@@ -211,10 +219,10 @@ Sur la fin du d\'eveloppement, cette conception nous a permis de rajouter
 rapidement de nouveaux \'etats, et d'ajuster le comportement voulu facilement. \\
 
 \begin{center}
- \includegraphics[scale=0.8]{images/Statediagram.eps}
+ \includegraphics[scale=0.7]{images/Statediagram.eps}
 \end{center}
  
-\subsubsection*{un Singleton pour gérer le nombre d'ennemis dans le niveau}
+\subsubsection*{un Singleton pour g\'erer le nombre d'ennemis dans le niveau}
 Dans le jeu, une des priorit\'e est d'\'eliminer tous les ennemis afin de pouvoir
 finir le niveau. Afin de g\'erer le nombre d'ennemis, on cr\'ee un observateur
 unique  qui on adresse en d\'ebut de niveau le nombre d'ennemis \`a tuer.
@@ -223,7 +231,7 @@ point d'acc\`es global \`a celle ci depuis toutes les classes du jeu. L'utilisat
 du mod\`ele Singleton f\^ut alors \'evident.
 
 \begin{center}
- \includegraphics[scale=1]{images/Observerdiagram.eps}
+ \includegraphics[scale=0.8]{images/Observerdiagram.eps}
 \end{center}
  
 \section{Evolutions}
@@ -289,37 +297,37 @@ sans laquelle le jeu aurait paru \'etrange aux yeux des divers joueurs.
 
 \subsubsection*{Gestion des sprites}
 
-Une des principales difficultés fût de gérer correctement les sprites. Au
-départ, nous avions repris le code de Pacman. Celui ci utilisait pour Pacman
-une grande image contenant une série de sprites différentes. Dans le code
-apparaissait plusieurs fois le même identificateur SPRITE\_SIZE. Il nous a
-fallu analyser plus en détail le code pour nous rendre compte qu'en fait, tout
-dépendait de la taille de l'image affichée à l'écran, de sa taille en largeur
-et hauteur en pixels. Durant plusieurs jours, nous nous sommes entétés à
-utiliser des sprites complexes, de tailles variées. L'idée fût alors de créer
+Une des principales difficult\'es f\^ut de g\'erer correctement les sprites. Au
+d\'epart, nous avions repris le code de Pacman. Celui ci utilisait pour Pacman
+une grande image contenant une s\'erie de sprites diff\'erentes. Dans le code
+apparaissait plusieurs fois le m\^eme identificateur SPRITE\_SIZE. Il nous a
+fallu analyser plus en d\'etail le code pour nous rendre compte qu'en fait, tout
+d\'ependait de la taille de l'image affich\'ee à l'\'ecran, de sa taille en largeur
+et hauteur en pixels. Durant plusieurs jours, nous nous sommes ent\'et\'es à
+utiliser des sprites complexes, de tailles vari\'ees. L'id\'ee f\^ut alors de cr\'eer
 ses propres sprites et de s'occuper de chacun selon ses dimensions respectives.
 \\ 
-Ainsi pour Link, on a créé un sprite sans arme, et un autre avec épée. 
+Ainsi pour Link, on a cr\'e\'e un sprite sans arme, et un autre avec \'ep\'ee. 
 L'utilisation de plusieurs classes permet alors d'utiliser le sprite voulu avec
-ses dimensions particulières, nottament le nombre de sprite sur une ligne, mais
-aussi son affichage à l'écran. \\
-La difficulté fût d'abord d'apprendre à utiliser le logiciel de retouches
-d'images Gimp, ce qui ne fût pas sans peine, sachant qu'il nou fallait peu de
-temps pour créer une série de plusieurs sprites différents, calés au pixel
+ses dimensions particuli\`eres, nottament le nombre de sprite sur une ligne,
+mais aussi son affichage \`a l'\'ecran. \\
+La difficult\'e f\^ut d'abord d'apprendre à utiliser le logiciel de retouches
+d'images Gimp, ce qui ne f\^ut pas sans peine, sachant qu'il nou fallait peu de
+temps pour cr\'eer une s\'erie de plusieurs sprites diff\'erents, cal\'es au pixel
 près. \\
-Ensuite, il a fallut déméler les SPRITE\_SIZE selon leur vraie utilité. \\
-Ensuite, il a fallu gérer l'utilisation du bon sprite selon l'état du
-personnage (pour Link). Link fût le personnage qui fût le plus compliqué à
-manier dans le sens où justement les transitions d'états compliquent la gestion
+Ensuite, il a fallut d\'em\'eler les SPRITE\_SIZE selon leur vraie utilit\'e. \\
+Ensuite, il a fallu g\'erer l'utilisation du bon sprite selon l'\'etat du
+personnage (pour Link). Link f\^ut le personnage qui f\^ut le plus compliqu\'e à
+manier dans le sens où justement les transitions d'\'etats compliquent la gestion
 du mouvement des sprites selon la classe qui l'utilise. Il n'est pas impossible
-par exemple que sur la dernière version, les dernières modifications aient
-entrainées que l'on ne puisse plus voir le sprite de Link en train de jouer un
+par exemple que sur la derni\`ere version, les dernières modifications aient
+entrain\'ees que l'on ne puisse plus voir le sprite de Link en train de jouer un
 air de musique, car on fait suivre ce mouvement particulier d'une nouvelle
-transition d'état vers un Link armé par exemple. Surement que ce problème sera
-débuggué d'ici la remise du projet (en tout cas ça a marché il y a quelques
+transition d'\'etat vers un Link arm\'e par exemple. Surement que ce probl\`eme sera
+d\'ebuggu\'e d'ici la remise du projet (en tout cas ça a march\'e il y a quelques
 heures!).\\
 
 Les sprites prirent donc un temps monstrueux dans la gestion du projet, ce qui
-a affaibli les fonctionnalités où le design des autres entités du décor. 
+a affaibli les fonctionnalit\'es où le design des autres entit\'es du d\'ecor. 
 
 \end{document}
