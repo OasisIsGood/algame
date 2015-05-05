@@ -1,0 +1,1 @@
+Un jeu basé sur un frameworks écrit par un enseignant (ou pas, au vu de la qualité du code surtout sur le pacman ...). Et nous allons faire notre propre jeu.
